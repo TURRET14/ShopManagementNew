@@ -1,0 +1,22 @@
+﻿<UserControl xaml:Class="ShopManagement.UpdateTables.UpdateCustomerReturnItem" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:xaml="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Text="Просмотр Возврата"></TextBlock>
+        <Button  Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Click="Button_Back_Click">Назад</Button>
+        <Button  Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center" Click="Button_Delete_Click">Удалить</Button>
+        <DataGrid Grid.Row="3" Name="DataGrid_Table" AutoGenerateColumns="False" HeadersVisibility="Column" HorizontalAlignment="Left" VerticalAlignment="Top" ColumnWidth="Auto" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding Id}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Количество" Binding="{Binding Amount}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Сотрудник" Binding="{Binding Employee.NameId}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Причина" Binding="{Binding Reason}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Дата" Binding="{Binding Date}"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>

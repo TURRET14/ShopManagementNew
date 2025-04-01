@@ -1,0 +1,63 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net9.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="InsertIntoTables\CreateCustomerReturnItem.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="InsertIntoTables\CreateCustomerOrderItem.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="InsertIntoTables\CreateCustomerOrder.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="InsertIntoTables\CreateSupplier.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="InsertIntoTables\CreateCustomer.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="InsertIntoTables\CreateProduct.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Tables\CustomerOrderItemsTable.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Tables\CustomerReturnItemsTable.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Tables\CustomerOrdersTable.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UpdateTables\UpdateCustomerReturnItem.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UpdateTables\UpdateSupplier.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UpdateTables\UpdateCustomer.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
+</Project>

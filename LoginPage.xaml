@@ -1,0 +1,10 @@
+﻿<UserControl xaml:Class="ShopManagement.LoginPage" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:xaml="http://schemas.microsoft.com/winfx/2006/xaml">
+    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <TextBlock Text="Войти"></TextBlock>
+        <TextBlock Text="Логин"></TextBlock>
+        <TextBox Name="TextBox_Login"></TextBox>
+        <TextBlock Text="Пароль"></TextBlock>
+        <PasswordBox Name="PasswordBox_Password"></PasswordBox>
+        <Button Click="Button_Login_Click">Войти</Button>
+    </StackPanel>
+</UserControl>

@@ -1,0 +1,35 @@
+﻿<UserControl x:Class="ShopManagement.MainPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ShopManagement"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Row="0" Grid.Column="0">
+                <Button Name="Button_Orders" Click="Button_Orders_Click">Заказы</Button>
+                <Button Name="Button_SupplierOrders">Закупки</Button>
+                <Button Name="Button_Products" Click="Button_Products_Click">Товары</Button>
+                <Button Name="Button_Customers" Click="Button_Customers_Click">Клиенты</Button>
+                <Button Name="Button_Suppliers" Click="Button_Suppliers_Click">Поставщики</Button>
+                <Button Name="Button_Employees" Click="Button_Employees_Click">Сотрудники</Button>
+            </StackPanel>
+            <ContentControl Name="ContentControl_ForTables" Grid.Row="0" Grid.Column="1">
+                
+            </ContentControl>
+        </Grid>
+    </Grid>
+</UserControl>
