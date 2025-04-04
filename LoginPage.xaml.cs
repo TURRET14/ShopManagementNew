@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,24 +32,31 @@ namespace ShopManagement
 
         private void Button_Login_Click(object sender, RoutedEventArgs e)
         {
-            if (TextBox_Login.Text.Length > 50 || PasswordBox_Password.Password.Length > 50)
+            try
             {
-                ShowMessageEvent.Invoke("ERROR", "ERROR_TOO_LONG");
-                return;
+                if (TextBox_Login.Text.Length > 50 || PasswordBox_Password.Password.Length > 50)
+                {
+                    ShowMessageEvent.Invoke("ERROR", "ERROR_TOO_LONG");
+                    return;
+                }
+                string Login = TextBox_Login.Text;
+                string Password = PasswordBox_Password.Password;
+                string AccessLevel = Models.ShopManagementContext.GetContext().Database.SqlQueryRaw<string>("SELECT Dbo.SignIn (@p0, @p1)", Login, Password).AsEnumerable().First();
+                if (AccessLevel == "SYSTEM_ADMIN" || AccessLevel == "SHOP_ADMIN" || AccessLevel == "SHOP_MANAGER" || AccessLevel == "SHOP_CASHIER")
+                {
+                    UserData.AccessLevel = AccessLevel;
+                    UserData.Login = Login;
+                    UserData.Password = Password;
+                    ShowMainPageEvent.Invoke();
+                }
+                else
+                {
+                    ShowMessageEvent("ERROR", "INVALID_LOGIN_OR_PASSWORD");
+                }
             }
-            string Login = TextBox_Login.Text;
-            string Password = PasswordBox_Password.Password;
-            string AccessLevel = Models.ShopManagementContext.GetContext().Database.SqlQueryRaw<string>("SELECT Dbo.SignIn (@p0, @p1)", Login, Password).AsEnumerable().First();
-            if (AccessLevel == "SYSTEM_ADMIN" || AccessLevel == "SHOP_ADMIN" || AccessLevel == "SHOP_MANAGER" || AccessLevel == "SHOP_CASHIER")
+            catch (SqlException Ex)
             {
-                UserData.AccessLevel = AccessLevel;
-                UserData.Login = Login;
-                UserData.Password = Password;
-                ShowMainPageEvent.Invoke();
-            }
-            else
-            {
-                ShowMessageEvent("ERROR", "INVALID_LOGIN_OR_PASSWORD");
+                ShowMessageEvent.Invoke("ERROR", "UNKNOWN_SQL_SERVER_ERROR. Error Code: " + Ex.ErrorCode);
             }
         }
     }

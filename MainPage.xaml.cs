@@ -57,27 +57,27 @@ namespace ShopManagement
 
         private void Button_Employees_Click(object sender, RoutedEventArgs e)
         {
-            ShowAnotherTab(new Tables.EmployeesTable(ShowAnotherTab));
+            ShowAnotherTab(new Tables.EmployeesTable(ShowAnotherTab, ShowMessageEvent, ShowLoginPageEvent));
         }
 
         private void Button_Customers_Click(object sender, RoutedEventArgs e)
         {
-            ShowAnotherTab(new Tables.CustomersTable(ShowAnotherTab));
+            ShowAnotherTab(new Tables.CustomersTable(ShowAnotherTab, ShowMessageEvent, ShowLoginPageEvent));
         }
 
         private void Button_Suppliers_Click(object sender, RoutedEventArgs e)
         {
-            ShowAnotherTab(new Tables.SuppliersTable(ShowAnotherTab));
+            ShowAnotherTab(new Tables.SuppliersTable(ShowAnotherTab, ShowMessageEvent, ShowLoginPageEvent));
         }
 
         private void Button_Products_Click(object sender, RoutedEventArgs e)
         {
-            ShowAnotherTab(new Tables.ProductsTable(ShowAnotherTab));
+            ShowAnotherTab(new Tables.ProductsTable(ShowAnotherTab, ShowMessageEvent, ShowLoginPageEvent));
         }
 
         private void Button_Orders_Click(object sender, RoutedEventArgs e)
         {
-            ShowAnotherTab(new Tables.CustomerOrdersTable(ShowAnotherTab));
+            ShowAnotherTab(new Tables.CustomerOrdersTable(ShowAnotherTab, ShowMessageEvent, ShowLoginPageEvent));
         }
 
         public void ShowAnotherTab(UserControl Tab)

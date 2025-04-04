@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using ShopManagement.Models;
 using System;
 using System.Collections.Generic;
@@ -19,30 +20,69 @@ namespace ShopManagement.UpdateTables
 {
     public partial class UpdateCustomerReturnItem : UserControl
     {
+        public event Events.ShowMessageDelegate ShowMessageEvent;
+        public event Events.ShowLoginPageDelegate ShowLoginPageEvent;
         public event Events.ShowAnotherTabDelegate ShowAnotherTabEvent;
         private CustomerOrderItem OrderItem;
         private CustomerOrder Order;
-        public UpdateCustomerReturnItem(Events.ShowAnotherTabDelegate ShowAnotherTab, CustomerReturnItem Selected, CustomerOrderItem OrderItemObject, CustomerOrder OrderObject)
+        public UpdateCustomerReturnItem(Events.ShowAnotherTabDelegate ShowAnotherTab, CustomerReturnItem Selected, CustomerOrderItem OrderItemObject, CustomerOrder OrderObject, Events.ShowMessageDelegate ShowMessage, Events.ShowLoginPageDelegate ShowLoginPage)
         {
             InitializeComponent();
             ShowAnotherTabEvent = ShowAnotherTab;
             OrderItem = OrderItemObject;
             Order = OrderObject;
-            List<Employee> Employees = ShopManagementContext.GetContext().Employees.FromSqlRaw("EXEC GetEmployeesIDAndNames @AdminLogin = {0}, @AdminPassword = {1}", UserData.Login, UserData.Password).AsNoTracking().AsEnumerable().ToList();
-            Selected.Employee = Employees.FirstOrDefault(Entry => Entry.Id == Selected.EmployeeId);
-            DataGrid_Table.ItemsSource = new List<CustomerReturnItem>() { Selected };
+            ShowMessageEvent = ShowMessage;
+            ShowLoginPageEvent = ShowLoginPage;
+            try
+            {
+                List<Employee> Employees = ShopManagementContext.GetContext().Employees.FromSqlRaw("EXEC GetEmployeesIDAndNames @AdminLogin = {0}, @AdminPassword = {1}", UserData.Login, UserData.Password).AsNoTracking().AsEnumerable().ToList();
+                Selected.Employee = Employees.FirstOrDefault(Entry => Entry.Id == Selected.EmployeeId);
+                DataGrid_Table.ItemsSource = new List<CustomerReturnItem>() { Selected };
+            }
+            catch (SqlException Ex)
+            {
+                if (Ex.Message == "AUTHORIZATION_ERROR")
+                {
+                    ShowMessageEvent.Invoke("ERROR", "AUTHORIZATION_ERROR");
+                    ShowLoginPageEvent.Invoke();
+                }
+                else
+                {
+                    ShowMessageEvent.Invoke("ERROR", "UNKNOWN_SQL_SERVER_ERROR. Error Code: " + Ex.ErrorCode);
+                }
+            }
         }
 
         private void Button_Delete_Click(object sender, RoutedEventArgs e)
         {
-            CustomerReturnItem Selected = ((List<CustomerReturnItem>)DataGrid_Table.ItemsSource)[0];
-            ShopManagementContext.GetContext().Database.ExecuteSqlRaw("EXEC Dbo.DeleteCustomerReturnItem @ID = {0}, @AdminLogin = {1}, @AdminPassword = {2}", Selected.Id, UserData.Login, UserData.Password);
-            ShowAnotherTabEvent.Invoke(new Tables.CustomerOrdersTable(ShowAnotherTabEvent));
+            try
+            {
+                CustomerReturnItem Selected = ((List<CustomerReturnItem>)DataGrid_Table.ItemsSource)[0];
+                ShopManagementContext.GetContext().Database.ExecuteSqlRaw("EXEC Dbo.DeleteCustomerReturnItem @ID = {0}, @AdminLogin = {1}, @AdminPassword = {2}", Selected.Id, UserData.Login, UserData.Password);
+                ShowAnotherTabEvent.Invoke(new Tables.CustomerOrdersTable(ShowAnotherTabEvent, ShowMessageEvent, ShowLoginPageEvent));
+            }
+            catch (SqlException Ex)
+            {
+                if (Ex.Message == "AUTHORIZATION_ERROR")
+                {
+                    ShowMessageEvent.Invoke("ERROR", "AUTHORIZATION_ERROR");
+                    ShowLoginPageEvent.Invoke();
+                }
+                else if (Ex.Message == "INVALID_ID")
+                {
+                    ShowMessageEvent.Invoke("ERROR", "INVALID_ID");
+                    ShowLoginPageEvent.Invoke();
+                }
+                else
+                {
+                    ShowMessageEvent.Invoke("ERROR", "UNKNOWN_SQL_SERVER_ERROR. Error Code: " + Ex.ErrorCode);
+                }
+            }
         }
 
         private void Button_Back_Click(object sender, RoutedEventArgs e)
         {
-            ShowAnotherTabEvent.Invoke(new Tables.CustomerReturnItemsTable(ShowAnotherTabEvent, OrderItem, Order));
+            ShowAnotherTabEvent.Invoke(new Tables.CustomerReturnItemsTable(ShowAnotherTabEvent, OrderItem, Order, ShowMessageEvent, ShowLoginPageEvent));
         }
     }
 }
