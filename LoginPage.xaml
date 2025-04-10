@@ -1,10 +1,19 @@
 ﻿<UserControl xaml:Class="ShopManagement.LoginPage" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:xaml="http://schemas.microsoft.com/winfx/2006/xaml">
-    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
-        <TextBlock Text="Войти"></TextBlock>
-        <TextBlock Text="Логин"></TextBlock>
-        <TextBox Name="TextBox_Login"></TextBox>
-        <TextBlock Text="Пароль"></TextBlock>
-        <PasswordBox Name="PasswordBox_Password"></PasswordBox>
-        <Button Click="Button_Login_Click">Войти</Button>
-    </StackPanel>
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Dictionary.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Border Width="400" HorizontalAlignment="Center" VerticalAlignment="Center" CornerRadius="20" Padding="20">
+        <StackPanel Orientation="Vertical">
+            <TextBlock Text="Вход" FontSize="50"></TextBlock>
+            <TextBlock Text="Логин" Margin="0 5 0 0" FontSize="30"></TextBlock>
+            <TextBox Name="TextBox_Login" Margin="0 5 0 0" FontSize="40"></TextBox>
+            <TextBlock Text="Пароль" Margin="0 5 0 0" FontSize="30"></TextBlock>
+            <PasswordBox Name="PasswordBox_Password" Margin="0 5 0 0" FontSize="40"></PasswordBox>
+            <Button Click="Button_Login_Click" Margin="0 20 0 0" FontSize="50">Войти</Button>
+        </StackPanel>
+    </Border>
 </UserControl>

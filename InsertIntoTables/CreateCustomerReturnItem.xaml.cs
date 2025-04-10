@@ -34,6 +34,7 @@ namespace ShopManagement.InsertIntoTables
             Order = OrderObject;
             ShowMessageEvent = ShowMessage;
             ShowLoginPageEvent = ShowLoginPage;
+            DataGrid_Table_Info.ItemsSource = new List<CustomerOrderItem>() { OrderItem };
             DataGrid_Table.ItemsSource = new List<CustomerReturnItem>() { new CustomerReturnItem()};
         }
 

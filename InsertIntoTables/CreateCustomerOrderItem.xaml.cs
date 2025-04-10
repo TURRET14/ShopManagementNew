@@ -33,6 +33,7 @@ namespace ShopManagement.InsertIntoTables
             Order = OrderObject;
             ShowMessageEvent = ShowMessage;
             ShowLoginPageEvent = ShowLoginPage;
+            DataGrid_Table_Info.ItemsSource = new List<CustomerOrder>() { Order };
             try
             {
                 ProductList = ShopManagementContext.GetContext().Products.FromSqlRaw("EXEC GetProducts @AdminLogin = {0}, @AdminPassword = {1}", UserData.Login, UserData.Password).AsNoTracking().AsEnumerable().OrderBy(Entry => Entry.Name).ToList();
