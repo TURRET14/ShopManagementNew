@@ -64,18 +64,36 @@ namespace ShopManagement.Tables
         private void Button_Filter_Click(object sender, RoutedEventArgs e)
         {
             List<CustomerOrder> FilteredList = new List<CustomerOrder>(OrdersList);
-            if (CheckBox_Customer.IsChecked == true)
+            if (CheckBox_CustomerName.IsChecked == true)
             {
-                if (TextBox_Customer.Text.Length > 0)
+                if (TextBox_CustomerName.Text.Length > 0)
                 {
-                    FilteredList = FilteredList.Where(Entry => Entry.Customer.Name.ToLower().Contains(TextBox_Customer.Text.ToLower())).ToList();
+                    FilteredList = FilteredList.Where(Entry => {
+                        if (Entry.Customer is not null)
+                        {
+                            return Entry.Customer.Name.ToLower().Contains(TextBox_CustomerName.Text.ToLower());
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                        }).ToList();
                 }
             }
-            if (CheckBox_Employee.IsChecked == true)
+            if (CheckBox_EmployeeName.IsChecked == true)
             {
-                if (TextBox_Employee.Text.Length > 0)
+                if (TextBox_EmployeeName.Text.Length > 0)
                 {
-                    FilteredList = FilteredList.Where(Entry => Entry.Employee.Name.ToLower().Contains(TextBox_Employee.Text.ToLower())).ToList();
+                    FilteredList = FilteredList.Where(Entry => {
+                        if (Entry.Employee is not null)
+                        {
+                            return Entry.Employee.Name.ToLower().Contains(TextBox_EmployeeName.Text.ToLower());
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }).ToList();
                 }
             }
             if (CheckBox_Date.IsChecked == true)

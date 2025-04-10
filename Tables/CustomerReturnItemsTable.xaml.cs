@@ -89,7 +89,16 @@ namespace ShopManagement.Tables
             {
                 if (TextBox_EmployeeName.Text.Length > 0)
                 {
-                    FilteredList = FilteredList.Where(Entry => Entry.Employee.Name.ToLower().Contains(TextBox_EmployeeName.Text.ToLower())).ToList();
+                    FilteredList = FilteredList.Where(Entry => {
+                        if (Entry.Employee is not null)
+                        {
+                            return Entry.Employee.Name.ToLower().Contains(TextBox_EmployeeName.Text.ToLower());
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }).ToList();
                 }
             }
             if (CheckBox_Amount.IsChecked == true)

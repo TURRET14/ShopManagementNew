@@ -88,7 +88,16 @@ namespace ShopManagement.Tables
             {
                 if (TextBox_ProductName.Text.Length > 0)
                 {
-                    FilteredList = FilteredList.Where(Entry => Entry.Product.Name.ToLower().Contains(TextBox_ProductName.Text.ToLower())).ToList();
+                    FilteredList = FilteredList.Where(Entry => {
+                        if (Entry.Product is not null)
+                        {
+                            return Entry.Product.Name.ToLower().Contains(TextBox_ProductName.Text.ToLower());
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }).ToList();
                 }
             }
             if (CheckBox_Price.IsChecked == true)
@@ -97,7 +106,7 @@ namespace ShopManagement.Tables
                 {
                     if (TextBox_PriceBegin.Text.Length > 0)
                     {
-                        FilteredList = FilteredList.Where(Entry => Entry.Price >= Convert.ToInt32(TextBox_PriceBegin.Text)).ToList();
+                        FilteredList = FilteredList.Where(Entry => Entry.Price >= Convert.ToDecimal(TextBox_PriceBegin.Text)).ToList();
                     }
                 }
                 catch { }
@@ -105,7 +114,7 @@ namespace ShopManagement.Tables
                 {
                     if (TextBox_PriceEnd.Text.Length > 0)
                     {
-                        FilteredList = FilteredList.Where(Entry => Entry.Price <= Convert.ToInt32(TextBox_PriceEnd.Text)).ToList();
+                        FilteredList = FilteredList.Where(Entry => Entry.Price <= Convert.ToDecimal(TextBox_PriceEnd.Text)).ToList();
                     }
                 }
                 catch { }

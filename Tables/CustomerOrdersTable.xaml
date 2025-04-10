@@ -21,11 +21,11 @@
                 <RowDefinition Height="Auto"></RowDefinition>
             </Grid.RowDefinitions>
 
-            <CheckBox Name="CheckBox_Customer" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Left" VerticalContentAlignment="Center">Клиент</CheckBox>
-            <TextBox Name="TextBox_Customer" Grid.Row="0" Grid.Column="1" Width="500"></TextBox>
+            <CheckBox Name="CheckBox_CustomerName" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Left" VerticalContentAlignment="Center">Клиент</CheckBox>
+            <TextBox Name="TextBox_CustomerName" Grid.Row="0" Grid.Column="1" Width="500"></TextBox>
 
-            <CheckBox Name="CheckBox_Employee" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Left" VerticalContentAlignment="Center">Сотрудник</CheckBox>
-            <TextBox Name="TextBox_Employee" Grid.Row="1" Grid.Column="1" Width="500"></TextBox>
+            <CheckBox Name="CheckBox_EmployeeName" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Left" VerticalContentAlignment="Center">Сотрудник</CheckBox>
+            <TextBox Name="TextBox_EmployeeName" Grid.Row="1" Grid.Column="1" Width="500"></TextBox>
 
             <CheckBox Name="CheckBox_Date" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Left" VerticalContentAlignment="Center">Дата</CheckBox>
             <Grid Grid.Row="2" Grid.Column="1">
