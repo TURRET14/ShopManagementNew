@@ -20,6 +20,7 @@ namespace ShopManagement.Tables
 {
     public partial class ProductsTable : UserControl
     {
+        private List<Product> ProductsList;
         public event Events.ShowMessageDelegate ShowMessageEvent;
         public event Events.ShowLoginPageDelegate ShowLoginPageEvent;
         public event Events.ShowAnotherTabDelegate ShowAnotherTabEvent;
@@ -31,19 +32,12 @@ namespace ShopManagement.Tables
             ShowLoginPageEvent = ShowLoginPage;
             try
             {
-                DataGrid_Table.ItemsSource = ShopManagementContext.GetContext().Products.FromSqlRaw("EXEC GetProducts @AdminLogin = {0}, @AdminPassword = {1}", UserData.Login, UserData.Password).AsNoTracking().AsEnumerable().ToList();
+                ProductsList = ShopManagementContext.GetContext().Products.FromSqlRaw("EXEC GetProducts @AdminLogin = {0}, @AdminPassword = {1}", UserData.Login, UserData.Password).AsNoTracking().AsEnumerable().ToList();
+                DataGrid_Table.ItemsSource = ProductsList;
             }
             catch (SqlException Ex)
             {
-                if (Ex.Message == "AUTHORIZATION_ERROR")
-                {
-                    ShowMessageEvent.Invoke("ERROR", "AUTHORIZATION_ERROR");
-                    ShowLoginPageEvent.Invoke();
-                }
-                else
-                {
-                    ShowMessageEvent.Invoke("ERROR", "UNKNOWN_SQL_SERVER_ERROR. Error Code: " + Ex.ErrorCode);
-                }
+                ExceptionHandlers.SqlExceptionHandler(Ex, ShowMessageEvent, ShowLoginPageEvent);
             }
         }
 
@@ -58,6 +52,73 @@ namespace ShopManagement.Tables
             {
                 ShowAnotherTabEvent.Invoke(new UpdateTables.UpdateProduct(ShowAnotherTabEvent, (Product)DataGrid_Table.SelectedItem, ShowMessageEvent, ShowLoginPageEvent));
             }
+        }
+
+        private void Button_Filter_Click(object sender, RoutedEventArgs e)
+        {
+            List<Product> FilteredList = new List<Product>(ProductsList);
+            if (CheckBox_Name.IsChecked == true)
+            {
+                if (TextBox_Name.Text.Length > 0)
+                {
+                    FilteredList = FilteredList.Where(Entry => Entry.Name.ToLower().Contains(TextBox_Name.Text.ToLower())).ToList();
+                }
+            }
+            if (CheckBox_Price.IsChecked == true)
+            {
+                try
+                {
+                    if (TextBox_PriceBegin.Text.Length > 0)
+                    {
+                        FilteredList = FilteredList.Where(Entry => Entry.Price >= Convert.ToInt32(TextBox_PriceBegin.Text)).ToList();
+                    }
+                }
+                catch { }
+                try
+                {
+                    if (TextBox_PriceEnd.Text.Length > 0)
+                    {
+                        FilteredList = FilteredList.Where(Entry => Entry.Price <= Convert.ToInt32(TextBox_PriceEnd.Text)).ToList();
+                    }
+                }
+                catch { }
+            }
+            if (CheckBox_Amount.IsChecked == true)
+            {
+                try
+                {
+                    if (TextBox_AmountBegin.Text.Length > 0)
+                    {
+                        FilteredList = FilteredList.Where(Entry => Entry.Amount >= Convert.ToInt32(TextBox_AmountBegin.Text)).ToList();
+                    }
+                }
+                catch { }
+                try
+                {
+                    if (TextBox_AmountEnd.Text.Length > 0)
+                    {
+                        FilteredList = FilteredList.Where(Entry => Entry.Amount <= Convert.ToInt32(TextBox_AmountEnd.Text)).ToList();
+                    }
+                }
+                catch { }
+            }
+            if (CheckBox_Description.IsChecked == true)
+            {
+                if (TextBox_Description.Text.Length > 0)
+                {
+                    FilteredList = FilteredList.Where(Entry => {
+                        if (Entry.Description is not null)
+                        {
+                            return Entry.Description.ToLower().Contains(TextBox_Description.Text.ToLower());
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }).ToList();
+                }
+            }
+            DataGrid_Table.ItemsSource = FilteredList;
         }
     }
 }

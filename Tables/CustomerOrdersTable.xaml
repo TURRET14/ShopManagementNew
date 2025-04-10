@@ -3,16 +3,53 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" Text="Все Заказы"></TextBlock>
         <Button  Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Click="Button_Create_Click">Добавить</Button>
-        <DataGrid Grid.Row="2" Name="DataGrid_Table" AutoGenerateColumns="False" HeadersVisibility="Column" HorizontalAlignment="Left" VerticalAlignment="Top" ColumnWidth="Auto" IsReadOnly="True">
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="500"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <CheckBox Name="CheckBox_Customer" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Left" VerticalContentAlignment="Center">Клиент</CheckBox>
+            <TextBox Name="TextBox_Customer" Grid.Row="0" Grid.Column="1" Width="500"></TextBox>
+
+            <CheckBox Name="CheckBox_Employee" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Left" VerticalContentAlignment="Center">Сотрудник</CheckBox>
+            <TextBox Name="TextBox_Employee" Grid.Row="1" Grid.Column="1" Width="500"></TextBox>
+
+            <CheckBox Name="CheckBox_Date" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Left" VerticalContentAlignment="Center">Дата</CheckBox>
+            <Grid Grid.Row="2" Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" HorizontalAlignment="Center">От</TextBlock>
+                <DatePicker Name="DatePicker_DateBegin" Grid.Column="1"></DatePicker>
+                <TextBlock Grid.Column="2" HorizontalAlignment="Center">До</TextBlock>
+                <DatePicker Name="DatePicker_DateEnd" Grid.Column="3"></DatePicker>
+            </Grid>
+
+            <Button Grid.Row="3" Grid.ColumnSpan="2" Click="Button_Filter_Click">Найти</Button>
+        </Grid>
+
+        <DataGrid Grid.Row="3" Name="DataGrid_Table" AutoGenerateColumns="False" HeadersVisibility="Column" HorizontalAlignment="Stretch" VerticalAlignment="Top" ColumnWidth="Auto" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True" HorizontalScrollBarVisibility="Disabled">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Binding="{Binding Id}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Клиент" Binding="{Binding Customer.NameId}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Сотрудник" Binding="{Binding Employee.NameId}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Дата" Binding="{Binding Date}"></DataGridTextColumn>
+                <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="Auto"></DataGridTextColumn>
+                <DataGridTextColumn Header="Клиент" Binding="{Binding Customer.NameId}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Сотрудник" Binding="{Binding Employee.NameId}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Дата" Binding="{Binding Date}" Width="Auto"></DataGridTextColumn>
             </DataGrid.Columns>
             <DataGrid.Resources>
                 <Style TargetType="DataGridCell">

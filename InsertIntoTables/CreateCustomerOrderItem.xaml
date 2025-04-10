@@ -9,9 +9,9 @@
         <TextBlock Grid.Row="0" Text="Создание Позиции Заказа"></TextBlock>
         <Button Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Click="Button_Back_Click">Назад</Button>
         <Button Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center" Click="Button_Create_Click">Добавить</Button>
-        <DataGrid Grid.Row="3" Name="DataGrid_Table" AutoGenerateColumns="False" HeadersVisibility="Column" HorizontalAlignment="Left" VerticalAlignment="Top" ColumnWidth="Auto" CanUserAddRows="False">
+        <DataGrid Grid.Row="3" Name="DataGrid_Table" AutoGenerateColumns="False" HeadersVisibility="Column" HorizontalAlignment="Stretch" VerticalAlignment="Top" ColumnWidth="Auto" CanUserAddRows="False" CanUserDeleteRows="False" HorizontalScrollBarVisibility="Disabled">
             <DataGrid.Columns>
-                <DataGridComboBoxColumn xaml:Name="ColumnProduct" Header="Продукт" SelectedItemBinding="{Binding Product}" DisplayMemberPath="NameId">
+                <DataGridComboBoxColumn xaml:Name="ColumnProduct" Header="Продукт" SelectedItemBinding="{Binding Product}" DisplayMemberPath="NameId" Width="*">
                     <DataGridComboBoxColumn.EditingElementStyle>
                         <Style TargetType="ComboBox">
                             <Setter Property="IsEditable" Value="True"/>
@@ -19,7 +19,13 @@
                         </Style>
                     </DataGridComboBoxColumn.EditingElementStyle>
                 </DataGridComboBoxColumn>
-                <DataGridTextColumn Header="Количество" Binding="{Binding Amount}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Количество" Binding="{Binding Amount}" Width="Auto">
+                    <DataGridTextColumn.EditingElementStyle>
+                        <Style TargetType="TextBox">
+                            <Setter Property="MaxLength" Value="10"></Setter>
+                        </Style>
+                    </DataGridTextColumn.EditingElementStyle>
+                </DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

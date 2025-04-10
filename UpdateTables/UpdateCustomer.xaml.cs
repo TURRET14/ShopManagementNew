@@ -37,25 +37,58 @@ namespace ShopManagement.UpdateTables
             try
             {
                 Customer Selected = ((List<Customer>)DataGrid_Table.ItemsSource)[0];
+
+                if (Selected.Name is not null)
+                {
+                    if (Selected.Name.Length > 100)
+                    {
+                        ShowMessageEvent("Ошибка Записи", "Длина Имени Не Может Быть Больше 100 Символов!");
+                        return;
+                    }
+                    else if (Selected.Name.Length == 0)
+                    {
+                        ShowMessageEvent("Ошибка Записи", "Имя Не Может Быть Пустым!");
+                        return;
+                    }
+                }
+                else
+                {
+                    ShowMessageEvent("Ошибка Записи", "Имя Не Может Быть Пустым!");
+                    return;
+                }
+
+                if (Selected.PhoneNumber is not null)
+                {
+                    if (Selected.PhoneNumber.Length > 20)
+                    {
+                        ShowMessageEvent("Ошибка Записи", "Длина Номера Телефона Не Может Быть Больше 20 Символов!");
+                        return;
+                    }
+                    else if (Selected.PhoneNumber.Length == 0)
+                    {
+                        Selected.PhoneNumber = null;
+                    }
+                }
+
+                if (Selected.Email is not null)
+                {
+                    if (Selected.Email.Length > 100)
+                    {
+                        ShowMessageEvent("Ошибка Записи", "Длина Электронной Почты Не Может Быть Больше 100 Символов!");
+                        return;
+                    }
+                    else if (Selected.Email.Length == 0)
+                    {
+                        Selected.PhoneNumber = null;
+                    }
+                }
+
                 ShopManagementContext.GetContext().Database.ExecuteSqlRaw("EXEC Dbo.UpdateCustomer @ID = {0}, @Name = {1},  @PhoneNumber = {2}, @Email = {3},  @AdminLogin = {4}, @AdminPassword = {5}", Selected.Id, Selected.Name, Selected.PhoneNumber, Selected.Email, UserData.Login, UserData.Password);
                 ShowAnotherTabEvent.Invoke(new Tables.CustomersTable(ShowAnotherTabEvent, ShowMessageEvent, ShowLoginPageEvent));
             }
             catch (SqlException Ex)
             {
-                if (Ex.Message == "AUTHORIZATION_ERROR")
-                {
-                    ShowMessageEvent.Invoke("ERROR", "AUTHORIZATION_ERROR");
-                    ShowLoginPageEvent.Invoke();
-                }
-                else if (Ex.Message == "INVALID_ID")
-                {
-                    ShowMessageEvent.Invoke("ERROR", "INVALID_ID");
-                    ShowLoginPageEvent.Invoke();
-                }
-                else
-                {
-                    ShowMessageEvent.Invoke("ERROR", "UNKNOWN_SQL_SERVER_ERROR. Error Code: " + Ex.ErrorCode);
-                }
+                ExceptionHandlers.SqlExceptionHandler(Ex, ShowMessageEvent, ShowLoginPageEvent);
             }
         }
 
@@ -69,20 +102,7 @@ namespace ShopManagement.UpdateTables
             }
             catch (SqlException Ex)
             {
-                if (Ex.Message == "AUTHORIZATION_ERROR")
-                {
-                    ShowMessageEvent.Invoke("ERROR", "AUTHORIZATION_ERROR");
-                    ShowLoginPageEvent.Invoke();
-                }
-                else if (Ex.Message == "INVALID_ID")
-                {
-                    ShowMessageEvent.Invoke("ERROR", "INVALID_ID");
-                    ShowLoginPageEvent.Invoke();
-                }
-                else
-                {
-                    ShowMessageEvent.Invoke("ERROR", "UNKNOWN_SQL_SERVER_ERROR. Error Code: " + Ex.ErrorCode);
-                }
+                ExceptionHandlers.SqlExceptionHandler(Ex, ShowMessageEvent, ShowLoginPageEvent);
             }
         }
 

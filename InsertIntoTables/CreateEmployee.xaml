@@ -9,17 +9,83 @@
         <TextBlock Grid.Row="0" Text="Создание Сотрудника"></TextBlock>
         <Button Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Click="Button_Back_Click">Назад</Button>
         <Button Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center" Click="Button_Create_Click">Добавить</Button>
-        <DataGrid Grid.Row="3" Name="DataGrid_Table" AutoGenerateColumns="False" HeadersVisibility="Column" HorizontalAlignment="Left" VerticalAlignment="Top" ColumnWidth="Auto" CanUserAddRows="False">
+        <DataGrid Grid.Row="3" Name="DataGrid_Table" AutoGenerateColumns="False" HeadersVisibility="Column" HorizontalAlignment="Stretch" VerticalAlignment="Top" ColumnWidth="Auto" CanUserAddRows="False" CanUserDeleteRows="False" HorizontalScrollBarVisibility="Disabled">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Имя" Binding="{Binding Name}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Возраст" Binding="{Binding Age}"></DataGridTextColumn>
-                <DataGridComboBoxColumn xaml:Name="ColumnGender" Header="Пол" SelectedItemBinding="{Binding Gender}"></DataGridComboBoxColumn>
-                <DataGridTextColumn Header="Телефон" Binding="{Binding PhoneNumber}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Почта" Binding="{Binding Email}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Опыт" Binding="{Binding Experience}"></DataGridTextColumn>
-                <DataGridComboBoxColumn xaml:Name="ColumnPosition" Header="Должность" SelectedItemBinding="{Binding Position}"></DataGridComboBoxColumn>
-                <DataGridTextColumn Header="Логин" Binding="{Binding UserLogin}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Пароль" Binding="{Binding UserPassword}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Имя" Binding="{Binding Name}" Width="*">
+                    <DataGridTextColumn.EditingElementStyle>
+                        <Style TargetType="TextBox">
+                            <Setter Property="MaxLength" Value="100"></Setter>
+                            <Setter Property="TextWrapping" Value="Wrap"></Setter>
+                        </Style>
+                    </DataGridTextColumn.EditingElementStyle>
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="TextWrapping" Value="Wrap"></Setter>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Возраст" Binding="{Binding Age}" Width="Auto">
+                    <DataGridTextColumn.EditingElementStyle>
+                        <Style TargetType="TextBox">
+                            <Setter Property="MaxLength" Value="5"></Setter>
+                        </Style>
+                    </DataGridTextColumn.EditingElementStyle>
+                </DataGridTextColumn>
+                <DataGridComboBoxColumn xaml:Name="ColumnGender" Header="Пол" SelectedItemBinding="{Binding Gender}" Width="Auto"></DataGridComboBoxColumn>
+                <DataGridTextColumn Header="Телефон" Binding="{Binding PhoneNumber}" Width="Auto">
+                    <DataGridTextColumn.EditingElementStyle>
+                        <Style TargetType="TextBox">
+                            <Setter Property="MaxLength" Value="20"></Setter>
+                        </Style>
+                    </DataGridTextColumn.EditingElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Почта" Binding="{Binding Email}" Width="*">
+                    <DataGridTextColumn.EditingElementStyle>
+                        <Style TargetType="TextBox">
+                            <Setter Property="MaxLength" Value="100"></Setter>
+                            <Setter Property="TextWrapping" Value="Wrap"></Setter>
+                        </Style>
+                    </DataGridTextColumn.EditingElementStyle>
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="TextWrapping" Value="Wrap"></Setter>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Опыт" Binding="{Binding Experience}" Width="Auto">
+                    <DataGridTextColumn.EditingElementStyle>
+                        <Style TargetType="TextBox">
+                            <Setter Property="MaxLength" Value="5"></Setter>
+                        </Style>
+                    </DataGridTextColumn.EditingElementStyle>
+                </DataGridTextColumn>
+                <DataGridComboBoxColumn xaml:Name="ColumnPosition" Header="Должность" SelectedItemBinding="{Binding Position}" Width="*"></DataGridComboBoxColumn>
+                <DataGridTextColumn Header="Логин" Binding="{Binding UserLogin}" Width="*">
+                    <DataGridTextColumn.EditingElementStyle>
+                        <Style TargetType="TextBox">
+                            <Setter Property="MaxLength" Value="50"></Setter>
+                            <Setter Property="TextWrapping" Value="Wrap"></Setter>
+                        </Style>
+                    </DataGridTextColumn.EditingElementStyle>
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="TextWrapping" Value="Wrap"></Setter>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Пароль" Binding="{Binding UserPassword}" Width="*">
+                    <DataGridTextColumn.EditingElementStyle>
+                        <Style TargetType="TextBox">
+                            <Setter Property="MaxLength" Value="50"></Setter>
+                            <Setter Property="TextWrapping" Value="Wrap"></Setter>
+                        </Style>
+                    </DataGridTextColumn.EditingElementStyle>
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="TextWrapping" Value="Wrap"></Setter>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

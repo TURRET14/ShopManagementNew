@@ -6,26 +6,74 @@
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" Text="Состав Заказа"></TextBlock>
         <Button  Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Click="Button_Back_Click">Назад</Button>
         <Button Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center" Click="Button_Delete_Click">Удалить</Button>
-        <DataGrid Grid.Row="3" Name="DataGrid_Header" AutoGenerateColumns="False" HeadersVisibility="Column" HorizontalAlignment="Left" VerticalAlignment="Top" ColumnWidth="Auto" IsReadOnly="True">
+        <DataGrid Grid.Row="3" Name="DataGrid_Header" AutoGenerateColumns="False" HeadersVisibility="Column" HorizontalAlignment="Stretch" VerticalAlignment="Top" ColumnWidth="Auto" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True" HorizontalScrollBarVisibility="Disabled">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Binding="{Binding Id}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Клиент" Binding="{Binding Customer.NameId}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Сотрудник" Binding="{Binding Employee.NameId}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Дата" Binding="{Binding Date}"></DataGridTextColumn>
+                <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="Auto"></DataGridTextColumn>
+                <DataGridTextColumn Header="Клиент" Binding="{Binding Customer.NameId}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Сотрудник" Binding="{Binding Employee.NameId}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Дата" Binding="{Binding Date}" Width="Auto"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
         <Button  Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Center" Click="Button_Create_Click">Добавить</Button>
-        <DataGrid Grid.Row="5" Name="DataGrid_Table" AutoGenerateColumns="False" HeadersVisibility="Column" HorizontalAlignment="Left" VerticalAlignment="Top" ColumnWidth="Auto" IsReadOnly="True">
+
+        <Grid Grid.Row="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="500"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <CheckBox Name="CheckBox_ProductName" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Left" VerticalContentAlignment="Center">Продукт</CheckBox>
+            <TextBox Name="TextBox_ProductName" Grid.Row="0" Grid.Column="1" Width="500"></TextBox>
+
+            <CheckBox Name="CheckBox_Price" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Left" VerticalContentAlignment="Center">Цена</CheckBox>
+            <Grid Grid.Row="1" Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" HorizontalAlignment="Center">От</TextBlock>
+                <TextBox Name="TextBox_PriceBegin" Grid.Column="1"></TextBox>
+                <TextBlock Grid.Column="2" HorizontalAlignment="Center">До</TextBlock>
+                <TextBox Name="TextBox_PriceEnd" Grid.Column="3"></TextBox>
+            </Grid>
+
+            <CheckBox Name="CheckBox_Amount" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Left" VerticalContentAlignment="Center">Количество</CheckBox>
+            <Grid Grid.Row="2" Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" HorizontalAlignment="Center">От</TextBlock>
+                <TextBox Name="TextBox_AmountBegin" Grid.Column="1"></TextBox>
+                <TextBlock Grid.Column="2" HorizontalAlignment="Center">До</TextBlock>
+                <TextBox Name="TextBox_AmountEnd" Grid.Column="3"></TextBox>
+            </Grid>
+
+            <Button Grid.Row="3" Grid.ColumnSpan="2" Click="Button_Filter_Click">Найти</Button>
+        </Grid>
+
+        <DataGrid Grid.Row="6" Name="DataGrid_Table" AutoGenerateColumns="False" HeadersVisibility="Column" HorizontalAlignment="Stretch" VerticalAlignment="Top" ColumnWidth="Auto" IsReadOnly="True" HorizontalScrollBarVisibility="Disabled">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Binding="{Binding Id}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Продукт" Binding="{Binding Product.NameId}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Количество" Binding="{Binding Amount}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Цена" Binding="{Binding Price}"></DataGridTextColumn>
+                <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="Auto"></DataGridTextColumn>
+                <DataGridTextColumn Header="Продукт" Binding="{Binding Product.NameId}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Цена" Binding="{Binding Price}" Width="Auto"></DataGridTextColumn>
+                <DataGridTextColumn Header="Количество" Binding="{Binding Amount}" Width="Auto"></DataGridTextColumn>
             </DataGrid.Columns>
             <DataGrid.Resources>
                 <Style TargetType="DataGridCell">

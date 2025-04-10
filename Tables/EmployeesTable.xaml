@@ -3,21 +3,85 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" Text="Все Сотрудники"></TextBlock>
         <Button Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Click="Button_Create_Click">Добавить</Button>
-        <DataGrid Grid.Row="2" Name="DataGrid_Table" AutoGenerateColumns="False" HeadersVisibility="Column" HorizontalAlignment="Left" VerticalAlignment="Top" ColumnWidth="Auto" IsReadOnly="True">
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="500"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <CheckBox Name="CheckBox_Name" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Left" VerticalContentAlignment="Center">Имя</CheckBox>
+            <TextBox Name="TextBox_Name" Grid.Row="0" Grid.Column="1" Width="500"></TextBox>
+
+            <CheckBox Name="CheckBox_Age" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Left" VerticalContentAlignment="Center">Возраст</CheckBox>
+            <Grid Grid.Row="1" Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" HorizontalAlignment="Center">От</TextBlock>
+                <TextBox Name="TextBox_AgeBegin" Grid.Column="1"></TextBox>
+                <TextBlock Grid.Column="2" HorizontalAlignment="Center">До</TextBlock>
+                <TextBox Name="TextBox_AgeEnd" Grid.Column="3"></TextBox>
+            </Grid>
+
+            <CheckBox Name="CheckBox_Gender" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Left" VerticalContentAlignment="Center">Пол</CheckBox>
+            <ComboBox Name="ComboBox_Gender" Grid.Row="2" Grid.Column="1"></ComboBox>
+
+            <CheckBox Name="CheckBox_PhoneNumber" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Left" VerticalContentAlignment="Center">Телефон</CheckBox>
+            <TextBox Name="TextBox_PhoneNumber" Grid.Row="3" Grid.Column="1"></TextBox>
+
+            <CheckBox Name="CheckBox_Email" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Left" VerticalContentAlignment="Center">Почта</CheckBox>
+            <TextBox Name="TextBox_Email" Grid.Row="4" Grid.Column="1"></TextBox>
+
+            <CheckBox Name="CheckBox_Experience" Grid.Row="5" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Left" VerticalContentAlignment="Center">Опыт</CheckBox>
+            <Grid Grid.Row="5" Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" HorizontalAlignment="Center">От</TextBlock>
+                <TextBox Name="TextBox_ExperienceBegin" Grid.Column="1"></TextBox>
+                <TextBlock Grid.Column="2" HorizontalAlignment="Center">До</TextBlock>
+                <TextBox Name="TextBox_ExperienceEnd" Grid.Column="3"></TextBox>
+            </Grid>
+
+            <CheckBox Name="CheckBox_Position" Grid.Row="6" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Left" VerticalContentAlignment="Center">Должность</CheckBox>
+            <ComboBox Name="ComboBox_Position" Grid.Row="6" Grid.Column="1"></ComboBox>
+
+            <Button Grid.Row="7" Grid.ColumnSpan="2" Click="Button_Filter_Click">Найти</Button>
+        </Grid>
+
+        <DataGrid Grid.Row="3" Name="DataGrid_Table" AutoGenerateColumns="False" HeadersVisibility="Column" HorizontalAlignment="Stretch" VerticalAlignment="Top" ColumnWidth="Auto" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True" HorizontalScrollBarVisibility="Disabled">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Binding="{Binding Id}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Имя" Binding="{Binding Name}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Возраст" Binding="{Binding Age}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Пол" Binding="{Binding Gender}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Телефон" Binding="{Binding PhoneNumber}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Почта" Binding="{Binding Email}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Опыт" Binding="{Binding Experience}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Должность" Binding="{Binding Position}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Логин" Binding="{Binding UserLogin}"></DataGridTextColumn>
+                <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="Auto"></DataGridTextColumn>
+                <DataGridTextColumn Header="Имя" Binding="{Binding Name}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Возраст" Binding="{Binding Age}" Width="Auto"></DataGridTextColumn>
+                <DataGridTextColumn Header="Пол" Binding="{Binding Gender}" Width="Auto"></DataGridTextColumn>
+                <DataGridTextColumn Header="Телефон" Binding="{Binding PhoneNumber}" Width="Auto"></DataGridTextColumn>
+                <DataGridTextColumn Header="Почта" Binding="{Binding Email}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Опыт" Binding="{Binding Experience}" Width="Auto"></DataGridTextColumn>
+                <DataGridTextColumn Header="Должность" Binding="{Binding Position}" Width="Auto"></DataGridTextColumn>
+                <DataGridTextColumn Header="Логин" Binding="{Binding UserLogin}" Width="*"></DataGridTextColumn>
             </DataGrid.Columns>
             <DataGrid.Resources>
                 <Style TargetType="DataGridCell">

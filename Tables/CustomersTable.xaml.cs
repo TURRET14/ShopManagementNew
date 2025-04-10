@@ -20,6 +20,8 @@ namespace ShopManagement.Tables
 {
     public partial class CustomersTable : UserControl
     {
+        private List<Customer> CustomersList;
+
         public event Events.ShowMessageDelegate ShowMessageEvent;
         public event Events.ShowLoginPageDelegate ShowLoginPageEvent;
         public event Events.ShowAnotherTabDelegate ShowAnotherTabEvent;
@@ -31,19 +33,12 @@ namespace ShopManagement.Tables
             ShowLoginPageEvent = ShowLoginPage;
             try
             {
-                DataGrid_Table.ItemsSource = ShopManagementContext.GetContext().Customers.FromSqlRaw("EXEC GetCustomers @AdminLogin = {0}, @AdminPassword = {1}", UserData.Login, UserData.Password).AsNoTracking().AsEnumerable().ToList();
+                CustomersList = ShopManagementContext.GetContext().Customers.FromSqlRaw("EXEC GetCustomers @AdminLogin = {0}, @AdminPassword = {1}", UserData.Login, UserData.Password).AsNoTracking().AsEnumerable().ToList();
+                DataGrid_Table.ItemsSource = CustomersList;
             }
             catch (SqlException Ex)
             {
-                if (Ex.Message == "AUTHORIZATION_ERROR")
-                {
-                    ShowMessageEvent.Invoke("ERROR", "AUTHORIZATION_ERROR");
-                    ShowLoginPageEvent.Invoke();
-                }
-                else
-                {
-                    ShowMessageEvent.Invoke("ERROR", "UNKNOWN_SQL_SERVER_ERROR. Error Code: " + Ex.ErrorCode);
-                }
+                ExceptionHandlers.SqlExceptionHandler(Ex, ShowMessageEvent, ShowLoginPageEvent);
             }
         }
 
@@ -58,6 +53,51 @@ namespace ShopManagement.Tables
             {
                 ShowAnotherTabEvent.Invoke(new UpdateTables.UpdateCustomer(ShowAnotherTabEvent, (Customer)DataGrid_Table.SelectedItem, ShowMessageEvent, ShowLoginPageEvent));
             }
+        }
+
+        private void Button_Filter_Click(object sender, RoutedEventArgs e)
+        {
+            List<Customer> FilteredList = new List<Customer>(CustomersList);
+            if (CheckBox_Name.IsChecked == true)
+            {
+                if (TextBox_Name.Text.Length > 0)
+                {
+                    FilteredList = FilteredList.Where(Entry => Entry.Name.ToLower().Contains(TextBox_Name.Text.ToLower())).ToList();
+                }
+            }
+            if (CheckBox_PhoneNumber.IsChecked == true)
+            {
+                if (TextBox_PhoneNumber.Text.Length > 0)
+                {
+                    FilteredList = FilteredList.Where(Entry => {
+                        if (Entry.PhoneNumber is not null)
+                        {
+                            return Entry.PhoneNumber.ToLower().Contains(TextBox_PhoneNumber.Text.ToLower());
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }).ToList();
+                }
+            }
+            if (CheckBox_Email.IsChecked == true)
+            {
+                if (TextBox_Email.Text.Length > 0)
+                {
+                    FilteredList = FilteredList.Where(Entry => {
+                        if (Entry.Email is not null)
+                        {
+                            return Entry.Email.ToLower().Contains(TextBox_Email.Text.ToLower());
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }).ToList();
+                }
+            }
+            DataGrid_Table.ItemsSource = FilteredList;
         }
     }
 }

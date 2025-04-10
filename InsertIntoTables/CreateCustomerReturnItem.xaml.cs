@@ -42,20 +42,32 @@ namespace ShopManagement.InsertIntoTables
             try
             {
                 CustomerReturnItem Selected = ((List<CustomerReturnItem>)DataGrid_Table.ItemsSource)[0];
+
+                if (Selected.Amount < 1)
+                {
+                    ShowMessageEvent("Ошибка Записи", "Количество Возвращаемого Товара Не Может Быть Меньше 1!");
+                    return;
+                }
+
+                if (Selected.Reason is not null)
+                {
+                    if (Selected.Reason.Length > 150)
+                    {
+                        ShowMessageEvent("Ошибка Записи", "Длина Причины Возврата Не Может Быть Больше 150 Символов!");
+                        return;
+                    }
+                    else if (Selected.Reason.Length == 0)
+                    {
+                        Selected.Reason = null;
+                    }
+                }
+
                 ShopManagementContext.GetContext().Database.ExecuteSqlRaw("EXEC Dbo.CreateCustomerReturnItem @OrderItemID = {0},  @Amount = {1},  @Reason = {2}, @AdminLogin = {3}, @AdminPassword = {4}", OrderItem.Id, Selected.Amount, Selected.Reason, UserData.Login, UserData.Password);
                 ShowAnotherTabEvent.Invoke(new Tables.CustomerReturnItemsTable(ShowAnotherTabEvent, OrderItem, Order, ShowMessageEvent, ShowLoginPageEvent));
             }
             catch (SqlException Ex)
             {
-                if (Ex.Message == "AUTHORIZATION_ERROR")
-                {
-                    ShowMessageEvent.Invoke("ERROR", "AUTHORIZATION_ERROR");
-                    ShowLoginPageEvent.Invoke();
-                }
-                else
-                {
-                    ShowMessageEvent.Invoke("ERROR", "UNKNOWN_SQL_SERVER_ERROR. Error Code: " + Ex.ErrorCode);
-                }
+                ExceptionHandlers.SqlExceptionHandler(Ex, ShowMessageEvent, ShowLoginPageEvent);
             }
         }
 

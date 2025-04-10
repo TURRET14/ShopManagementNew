@@ -20,6 +20,8 @@ namespace ShopManagement.Tables
 {
     public partial class EmployeesTable : UserControl
     {
+        private List<Employee> EmployeesList;
+
         public event Events.ShowMessageDelegate ShowMessageEvent;
         public event Events.ShowLoginPageDelegate ShowLoginPageEvent;
         public event Events.ShowAnotherTabDelegate ShowAnotherTabEvent;
@@ -31,20 +33,16 @@ namespace ShopManagement.Tables
             ShowLoginPageEvent = ShowLoginPage;
             try
             {
-                DataGrid_Table.ItemsSource = ShopManagementContext.GetContext().Employees.FromSqlRaw("EXEC GetEmployees @AdminLogin = {0}, @AdminPassword = {1}", UserData.Login, UserData.Password).AsNoTracking().AsEnumerable().ToList();
+                EmployeesList = ShopManagementContext.GetContext().Employees.FromSqlRaw("EXEC GetEmployees @AdminLogin = {0}, @AdminPassword = {1}", UserData.Login, UserData.Password).AsNoTracking().AsEnumerable().ToList();
+                DataGrid_Table.ItemsSource = EmployeesList;
             }
             catch (SqlException Ex)
             {
-                if (Ex.Message == "AUTHORIZATION_ERROR")
-                {
-                    ShowMessageEvent.Invoke("ERROR", "AUTHORIZATION_ERROR");
-                    ShowLoginPageEvent.Invoke();
-                }
-                else
-                {
-                    ShowMessageEvent.Invoke("ERROR", "UNKNOWN_SQL_SERVER_ERROR. Error Code: " + Ex.ErrorCode);
-                }
+                ExceptionHandlers.SqlExceptionHandler(Ex, ShowMessageEvent, ShowLoginPageEvent);
             }
+
+            ComboBox_Gender.ItemsSource = new List<string> { "M", "F" };
+            ComboBox_Position.ItemsSource = new List<string> { "SYSTEM_ADMIN", "SHOP_ADMIN", "SHOP_MANAGER", "SHOP_CASHIER" };
         }
 
         private void Button_Create_Click(object sender, RoutedEventArgs e)
@@ -58,6 +56,139 @@ namespace ShopManagement.Tables
             {
                 ShowAnotherTabEvent.Invoke(new UpdateTables.UpdateEmployee(ShowAnotherTabEvent, (Employee)DataGrid_Table.SelectedItem, ShowMessageEvent, ShowLoginPageEvent));
             }
+        }
+
+        private void Button_Filter_Click(object sender, RoutedEventArgs e)
+        {
+            List<Employee> FilteredList = new List<Employee>(EmployeesList);
+            if (CheckBox_Name.IsChecked == true)
+            {
+                if (TextBox_Name.Text.Length > 0)
+                {
+                    FilteredList = FilteredList.Where(Entry => Entry.Name.ToLower().Contains(TextBox_Name.Text.ToLower())).ToList();
+                }
+            }
+            if (CheckBox_PhoneNumber.IsChecked == true)
+            {
+                if (TextBox_PhoneNumber.Text.Length > 0)
+                {
+                    FilteredList = FilteredList.Where(Entry => {
+                        if (Entry.PhoneNumber is not null)
+                        {
+                            return Entry.PhoneNumber.ToLower().Contains(TextBox_PhoneNumber.Text.ToLower());
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }).ToList();
+                }
+            }
+            if (CheckBox_Email.IsChecked == true)
+            {
+                if (TextBox_Email.Text.Length > 0)
+                {
+                    FilteredList = FilteredList.Where(Entry => {
+                        if (Entry.Email is not null)
+                        {
+                            return Entry.Email.ToLower().Contains(TextBox_Email.Text.ToLower());
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }).ToList();
+                }
+            }
+
+            if (CheckBox_Age.IsChecked == true)
+            {
+                try
+                {
+                    if (TextBox_AgeBegin.Text.Length > 0)
+                    {
+                        FilteredList = FilteredList.Where(Entry => Entry.Age >= Convert.ToInt32(TextBox_AgeBegin.Text)).ToList();
+                    }
+                }
+                catch { }
+                try
+                {
+                    if (TextBox_AgeEnd.Text.Length > 0)
+                    {
+                        FilteredList = FilteredList.Where(Entry => Entry.Age <= Convert.ToInt32(TextBox_AgeEnd.Text)).ToList();
+                    }
+                }
+                catch { }
+            }
+
+            if (CheckBox_Gender.IsChecked == true)
+            {
+                if (ComboBox_Gender.SelectedValue is not null)
+                {
+                    if (ComboBox_Gender.SelectedValue.ToString().Length > 0)
+                    {
+                        if (ComboBox_Gender.SelectedValue.ToString() == "M" || ComboBox_Gender.SelectedValue.ToString() == "F")
+                        {
+                            FilteredList = FilteredList.Where(Entry =>
+                            {
+                                if (Entry.Gender is not null)
+                                {
+                                    return Entry.Gender == ComboBox_Gender.SelectedValue.ToString();
+                                }
+                                else
+                                {
+                                    return false;
+                                }
+                            }).ToList();
+                        }
+                    }
+                }
+            }
+
+            if (CheckBox_Experience.IsChecked == true)
+            {
+                try
+                {
+                    if (TextBox_ExperienceBegin.Text.Length > 0)
+                    {
+                        FilteredList = FilteredList.Where(Entry => Entry.Experience >= Convert.ToInt32(TextBox_ExperienceBegin.Text)).ToList();
+                    }
+                }
+                catch { }
+                try
+                {
+                    if (TextBox_ExperienceEnd.Text.Length > 0)
+                    {
+                        FilteredList = FilteredList.Where(Entry => Entry.Experience <= Convert.ToInt32(TextBox_ExperienceEnd.Text)).ToList();
+                    }
+                }
+                catch { }
+            }
+
+            if (CheckBox_Position.IsChecked == true)
+            {
+                if (ComboBox_Position.SelectedValue is not null)
+                {
+                    if (ComboBox_Position.SelectedValue.ToString().Length > 0)
+                    {
+                        if (ComboBox_Position.SelectedValue.ToString() == "SYSTEM_ADMIN" || ComboBox_Position.SelectedValue.ToString() == "SHOP_ADMIN" || ComboBox_Position.SelectedValue.ToString() == "SHOP_MANAGER" || ComboBox_Position.SelectedValue.ToString() == "SHOP_CASHIER")
+                        {
+                            FilteredList = FilteredList.Where(Entry =>
+                            {
+                                if (Entry.Position is not null)
+                                {
+                                    return Entry.Position == ComboBox_Position.SelectedValue.ToString();
+                                }
+                                else
+                                {
+                                    return false;
+                                }
+                            }).ToList();
+                        }
+                    }
+                }
+            }
+            DataGrid_Table.ItemsSource = FilteredList;
         }
     }
 }

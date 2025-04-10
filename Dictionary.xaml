@@ -14,9 +14,34 @@
     <Style TargetType="TextBox">
         <Setter Property="FontFamily" Value="Bahnschrift"></Setter>
         <Setter Property="FontSize" Value="30"></Setter>
+        <Setter Property="ContextMenu">
+            <Setter.Value>
+                <ContextMenu HasDropShadow="False">
+                    <MenuItem Header="Вырезать" Command="Cut"/>
+                    <MenuItem Header="Копировать" Command="Copy"/>
+                    <MenuItem Header="Вставить" Command="Paste"/>
+                </ContextMenu>
+            </Setter.Value>
+        </Setter>
     </Style>
     <Style TargetType="PasswordBox">
         <Setter Property="FontFamily" Value="Bahnschrift"></Setter>
         <Setter Property="FontSize" Value="30"></Setter>
+        <Setter Property="ContextMenu">
+            <Setter.Value>
+                <ContextMenu HasDropShadow="False">
+                    <MenuItem Header="Вырезать" Command="Cut"/>
+                    <MenuItem Header="Копировать" Command="Copy"/>
+                    <MenuItem Header="Вставить" Command="Paste"/>
+                </ContextMenu>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style TargetType="ScrollBar">
+        <Setter Property="ContextMenu">
+            <Setter.Value>
+                <ContextMenu Visibility="Collapsed" />
+            </Setter.Value>
+        </Setter>
     </Style>
 </ResourceDictionary>

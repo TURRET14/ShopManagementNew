@@ -56,7 +56,7 @@ namespace ShopManagement
             }
             catch (SqlException Ex)
             {
-                ShowMessageEvent.Invoke("ERROR", "UNKNOWN_SQL_SERVER_ERROR. Error Code: " + Ex.ErrorCode);
+                ExceptionHandlers.SqlExceptionHandler(Ex, ShowMessageEvent, () => { });
             }
         }
     }

@@ -9,9 +9,9 @@
         <TextBlock Grid.Row="0" Text="Создание Заказа"></TextBlock>
         <Button Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Click="Button_Back_Click">Назад</Button>
         <Button Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center" Click="Button_Create_Click">Добавить</Button>
-        <DataGrid Grid.Row="3" Name="DataGrid_Table" AutoGenerateColumns="False" HeadersVisibility="Column" HorizontalAlignment="Left" VerticalAlignment="Top" ColumnWidth="Auto" CanUserAddRows="False">
+        <DataGrid Grid.Row="3" Name="DataGrid_Table" AutoGenerateColumns="False" HeadersVisibility="Column" HorizontalAlignment="Stretch" VerticalAlignment="Top" ColumnWidth="Auto" CanUserAddRows="False" CanUserDeleteRows="False" HorizontalScrollBarVisibility="Disabled">
             <DataGrid.Columns>
-                <DataGridComboBoxColumn xaml:Name="ColumnCustomer" Header="Клиент" SelectedItemBinding="{Binding Customer}" DisplayMemberPath="NameId">
+                <DataGridComboBoxColumn xaml:Name="ColumnCustomer" Header="Клиент" SelectedItemBinding="{Binding Customer}" DisplayMemberPath="NameId" Width="*">
                     <DataGridComboBoxColumn.EditingElementStyle>
                         <Style TargetType="ComboBox">
                             <Setter Property="IsEditable" Value="True"/>

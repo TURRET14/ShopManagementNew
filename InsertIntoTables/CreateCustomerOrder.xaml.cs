@@ -24,6 +24,7 @@ namespace ShopManagement.InsertIntoTables
         public event Events.ShowMessageDelegate ShowMessageEvent;
         public event Events.ShowLoginPageDelegate ShowLoginPageEvent;
         public event Events.ShowAnotherTabDelegate ShowAnotherTabEvent;
+        private List<Customer> CustomerList;
         public CreateCustomerOrder(Events.ShowAnotherTabDelegate ShowAnotherTab, Events.ShowMessageDelegate ShowMessage, Events.ShowLoginPageDelegate ShowLoginPage)
         {
             InitializeComponent();
@@ -32,20 +33,13 @@ namespace ShopManagement.InsertIntoTables
             ShowLoginPageEvent = ShowLoginPage;
             try
             {
-                ColumnCustomer.ItemsSource = ShopManagementContext.GetContext().Customers.FromSqlRaw("EXEC GetCustomers @AdminLogin = {0}, @AdminPassword = {1}", UserData.Login, UserData.Password).AsNoTracking().AsEnumerable().ToList().OrderBy(Row => Row.Name);
+                CustomerList = ShopManagementContext.GetContext().Customers.FromSqlRaw("EXEC GetCustomers @AdminLogin = {0}, @AdminPassword = {1}", UserData.Login, UserData.Password).AsNoTracking().AsEnumerable().OrderBy(Row => Row.Name).ToList();
+                ColumnCustomer.ItemsSource = CustomerList;
                 DataGrid_Table.ItemsSource = new List<CustomerOrder>() { new CustomerOrder() };
             }
             catch (SqlException Ex)
             {
-                if (Ex.Message == "AUTHORIZATION_ERROR")
-                {
-                    ShowMessageEvent.Invoke("ERROR", "AUTHORIZATION_ERROR");
-                    ShowLoginPageEvent.Invoke();
-                }
-                else
-                {
-                    ShowMessageEvent.Invoke("ERROR", "UNKNOWN_SQL_SERVER_ERROR. Error Code: " + Ex.ErrorCode);
-                }
+                ExceptionHandlers.SqlExceptionHandler(Ex, ShowMessageEvent, ShowLoginPageEvent);
             }
         }
 
@@ -54,20 +48,31 @@ namespace ShopManagement.InsertIntoTables
             try
             {
                 CustomerOrder Selected = ((List<CustomerOrder>)DataGrid_Table.ItemsSource)[0];
+                if (Selected.Customer is not null)
+                {
+                    if (Selected.Customer.Id < 0)
+                    {
+                        ShowMessageEvent("Ошибка Записи", "Такого Клиента Нет!");
+                        return;
+                    }
+                    else if (CustomerList.FirstOrDefault(Selected.Customer) is null)
+                    {
+                        ShowMessageEvent("Ошибка Записи", "Такого Клиента Нет!");
+                        return;
+                    }
+                }
+                else
+                {
+                    ShowMessageEvent("Ошибка Записи", "Клиент Не Может Быть Пустым!");
+                    return;
+                }
+
                 ShopManagementContext.GetContext().Database.ExecuteSqlRaw("EXEC Dbo.CreateCustomerOrder @CustomerID = {0}, @AdminLogin = {1}, @AdminPassword = {2}", Selected.Customer.Id, UserData.Login, UserData.Password);
                 ShowAnotherTabEvent.Invoke(new Tables.CustomerOrdersTable(ShowAnotherTabEvent, ShowMessageEvent, ShowLoginPageEvent));
             }
             catch (SqlException Ex)
             {
-                if (Ex.Message == "AUTHORIZATION_ERROR")
-                {
-                    ShowMessageEvent.Invoke("ERROR", "AUTHORIZATION_ERROR");
-                    ShowLoginPageEvent.Invoke();
-                }
-                else
-                {
-                    ShowMessageEvent.Invoke("ERROR", "UNKNOWN_SQL_SERVER_ERROR. Error Code: " + Ex.ErrorCode);
-                }
+                ExceptionHandlers.SqlExceptionHandler(Ex, ShowMessageEvent, ShowLoginPageEvent);
             }
         }
 

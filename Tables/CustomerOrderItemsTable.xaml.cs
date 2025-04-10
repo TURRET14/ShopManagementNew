@@ -21,6 +21,7 @@ namespace ShopManagement.Tables
 {
     public partial class CustomerOrderItemsTable : UserControl
     {
+        private List<CustomerOrderItem> OrderItemsList;
         public event Events.ShowMessageDelegate ShowMessageEvent;
         public event Events.ShowLoginPageDelegate ShowLoginPageEvent;
         public event Events.ShowAnotherTabDelegate ShowAnotherTabEvent;
@@ -35,25 +36,17 @@ namespace ShopManagement.Tables
             DataGrid_Header.ItemsSource = new List<CustomerOrder> { Order };
             try
             {
-                List<CustomerOrderItem> OrderItems = ShopManagementContext.GetContext().CustomerOrderItems.FromSqlRaw("EXEC GetCustomerOrderItems @AdminLogin = {0}, @AdminPassword = {1}", UserData.Login, UserData.Password).AsNoTracking().AsEnumerable().Where(Entry => Entry.OrderId == Order.Id).ToList();
+                OrderItemsList = ShopManagementContext.GetContext().CustomerOrderItems.FromSqlRaw("EXEC GetCustomerOrderItems @AdminLogin = {0}, @AdminPassword = {1}", UserData.Login, UserData.Password).AsNoTracking().AsEnumerable().Where(Entry => Entry.OrderId == Order.Id).ToList();
                 List<Product> Products = ShopManagementContext.GetContext().Products.FromSqlRaw("EXEC GetProducts @AdminLogin = {0}, @AdminPassword = {1}", UserData.Login, UserData.Password).AsNoTracking().AsEnumerable().ToList();
-                foreach (CustomerOrderItem OrderItem in OrderItems)
+                foreach (CustomerOrderItem OrderItem in OrderItemsList)
                 {
                     OrderItem.Product = Products.FirstOrDefault(Entry => Entry.Id == OrderItem.ProductId);
                 }
-                DataGrid_Table.ItemsSource = OrderItems;
+                DataGrid_Table.ItemsSource = OrderItemsList;
             }
             catch (SqlException Ex)
             {
-                if (Ex.Message == "AUTHORIZATION_ERROR")
-                {
-                    ShowMessageEvent.Invoke("ERROR", "AUTHORIZATION_ERROR");
-                    ShowLoginPageEvent.Invoke();
-                }
-                else
-                {
-                    ShowMessageEvent.Invoke("ERROR", "UNKNOWN_SQL_SERVER_ERROR. Error Code: " + Ex.ErrorCode);
-                }
+                ExceptionHandlers.SqlExceptionHandler(Ex, ShowMessageEvent, ShowLoginPageEvent);
             }
         }
 
@@ -79,26 +72,64 @@ namespace ShopManagement.Tables
             }
             catch (SqlException Ex)
             {
-                if (Ex.Message == "AUTHORIZATION_ERROR")
-                {
-                    ShowMessageEvent.Invoke("ERROR", "AUTHORIZATION_ERROR");
-                    ShowLoginPageEvent.Invoke();
-                }
-                else if (Ex.Message == "INVALID_ID")
-                {
-                    ShowMessageEvent.Invoke("ERROR", "INVALID_ID");
-                    ShowLoginPageEvent.Invoke();
-                }
-                else
-                {
-                    ShowMessageEvent.Invoke("ERROR", "UNKNOWN_SQL_SERVER_ERROR. Error Code: " + Ex.ErrorCode);
-                }
+                ExceptionHandlers.SqlExceptionHandler(Ex, ShowMessageEvent, ShowLoginPageEvent);
             }
         }
 
         private void Button_Back_Click(object sender, RoutedEventArgs e)
         {
             ShowAnotherTabEvent.Invoke(new Tables.CustomerOrdersTable(ShowAnotherTabEvent, ShowMessageEvent, ShowLoginPageEvent));
+        }
+
+        private void Button_Filter_Click(object sender, RoutedEventArgs e)
+        {
+            List<CustomerOrderItem> FilteredList = new List<CustomerOrderItem>(OrderItemsList);
+            if (CheckBox_ProductName.IsChecked == true)
+            {
+                if (TextBox_ProductName.Text.Length > 0)
+                {
+                    FilteredList = FilteredList.Where(Entry => Entry.Product.Name.ToLower().Contains(TextBox_ProductName.Text.ToLower())).ToList();
+                }
+            }
+            if (CheckBox_Price.IsChecked == true)
+            {
+                try
+                {
+                    if (TextBox_PriceBegin.Text.Length > 0)
+                    {
+                        FilteredList = FilteredList.Where(Entry => Entry.Price >= Convert.ToInt32(TextBox_PriceBegin.Text)).ToList();
+                    }
+                }
+                catch { }
+                try
+                {
+                    if (TextBox_PriceEnd.Text.Length > 0)
+                    {
+                        FilteredList = FilteredList.Where(Entry => Entry.Price <= Convert.ToInt32(TextBox_PriceEnd.Text)).ToList();
+                    }
+                }
+                catch { }
+            }
+            if (CheckBox_Amount.IsChecked == true)
+            {
+                try
+                {
+                    if (TextBox_AmountBegin.Text.Length > 0)
+                    {
+                        FilteredList = FilteredList.Where(Entry => Entry.Amount >= Convert.ToInt32(TextBox_AmountBegin.Text)).ToList();
+                    }
+                }
+                catch { }
+                try
+                {
+                    if (TextBox_AmountEnd.Text.Length > 0)
+                    {
+                        FilteredList = FilteredList.Where(Entry => Entry.Amount <= Convert.ToInt32(TextBox_AmountEnd.Text)).ToList();
+                    }
+                }
+                catch { }
+            }
+            DataGrid_Table.ItemsSource = FilteredList;
         }
     }
 }

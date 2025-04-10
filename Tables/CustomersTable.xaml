@@ -3,16 +3,47 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" Text="Все Клиенты"></TextBlock>
         <Button  Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Click="Button_Create_Click">Добавить</Button>
-        <DataGrid Grid.Row="2" Name="DataGrid_Table" AutoGenerateColumns="False" HeadersVisibility="Column" HorizontalAlignment="Left" VerticalAlignment="Top" ColumnWidth="Auto" IsReadOnly="True">
+        
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal">
+                <CheckBox Name="CheckBox_Name" HorizontalAlignment="Center" VerticalAlignment="Center"></CheckBox>
+                <TextBlock>Имя</TextBlock>
+            </StackPanel>
+            <TextBox Name="TextBox_Name" Grid.Row="0" Grid.Column="1" Width="500"></TextBox>
+            <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal">
+                <CheckBox Name="CheckBox_PhoneNumber" HorizontalAlignment="Center" VerticalAlignment="Center"></CheckBox>
+                <TextBlock>Телефон</TextBlock>
+            </StackPanel>
+            <TextBox Name="TextBox_PhoneNumber" Grid.Row="1" Grid.Column="1" Width="500"></TextBox>
+            <StackPanel Grid.Row="2" Grid.Column="0" Orientation="Horizontal">
+                <CheckBox Name="CheckBox_Email" HorizontalAlignment="Center" VerticalAlignment="Center"></CheckBox>
+                <TextBlock>Почта</TextBlock>
+            </StackPanel>
+            <TextBox Name="TextBox_Email" Grid.Row="2" Grid.Column="1" Width="500"></TextBox>
+            <Button Grid.Row="3" Grid.ColumnSpan="2" Click="Button_Filter_Click">Найти</Button>
+        </Grid>
+        
+        <DataGrid Grid.Row="3" Name="DataGrid_Table" AutoGenerateColumns="False" HeadersVisibility="Column" HorizontalAlignment="Stretch" VerticalAlignment="Top" ColumnWidth="Auto" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True" HorizontalScrollBarVisibility="Disabled">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Binding="{Binding Id}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Имя" Binding="{Binding Name}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Телефон" Binding="{Binding PhoneNumber}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Почта" Binding="{Binding Email}"></DataGridTextColumn>
+                <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="Auto"></DataGridTextColumn>
+                <DataGridTextColumn Header="Имя" Binding="{Binding Name}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Телефон" Binding="{Binding PhoneNumber}" Width="Auto"></DataGridTextColumn>
+                <DataGridTextColumn Header="Почта" Binding="{Binding Email}" Width="*"></DataGridTextColumn>
             </DataGrid.Columns>
             <DataGrid.Resources>
                 <Style TargetType="DataGridCell">

@@ -25,6 +25,7 @@ namespace ShopManagement.InsertIntoTables
         public event Events.ShowLoginPageDelegate ShowLoginPageEvent;
         public event Events.ShowAnotherTabDelegate ShowAnotherTabEvent;
         private CustomerOrder Order;
+        private List<Product> ProductList;
         public CreateCustomerOrderItem(Events.ShowAnotherTabDelegate ShowAnotherTab, CustomerOrder OrderObject, Events.ShowMessageDelegate ShowMessage, Events.ShowLoginPageDelegate ShowLoginPage)
         {
             InitializeComponent();
@@ -34,21 +35,13 @@ namespace ShopManagement.InsertIntoTables
             ShowLoginPageEvent = ShowLoginPage;
             try
             {
-                List<Product> Products = ShopManagementContext.GetContext().Products.FromSqlRaw("EXEC GetProducts @AdminLogin = {0}, @AdminPassword = {1}", UserData.Login, UserData.Password).AsNoTracking().AsEnumerable().OrderBy(Entry => Entry.Name).ToList();
-                ColumnProduct.ItemsSource = Products;
+                ProductList = ShopManagementContext.GetContext().Products.FromSqlRaw("EXEC GetProducts @AdminLogin = {0}, @AdminPassword = {1}", UserData.Login, UserData.Password).AsNoTracking().AsEnumerable().OrderBy(Entry => Entry.Name).ToList();
+                ColumnProduct.ItemsSource = ProductList;
                 DataGrid_Table.ItemsSource = new List<CustomerOrderItem>() { new CustomerOrderItem() };
             }
             catch (SqlException Ex)
             {
-                if (Ex.Message == "AUTHORIZATION_ERROR")
-                {
-                    ShowMessageEvent.Invoke("ERROR", "AUTHORIZATION_ERROR");
-                    ShowLoginPageEvent.Invoke();
-                }
-                else
-                {
-                    ShowMessageEvent.Invoke("ERROR", "UNKNOWN_SQL_SERVER_ERROR. Error Code: " + Ex.ErrorCode);
-                }
+                ExceptionHandlers.SqlExceptionHandler(Ex, ShowMessageEvent, ShowLoginPageEvent);
             }
         }
 
@@ -57,20 +50,38 @@ namespace ShopManagement.InsertIntoTables
             try
             {
                 CustomerOrderItem Selected = ((List<CustomerOrderItem>)DataGrid_Table.ItemsSource)[0];
+
+                if (Selected.Product is not null)
+                {
+                    if (Selected.Product.Id < 0)
+                    {
+                        ShowMessageEvent("Ошибка Записи", "Такого Товара Нет!");
+                        return;
+                    }
+                    else if (ProductList.FirstOrDefault(Selected.Product) is null)
+                    {
+                        ShowMessageEvent("Ошибка Записи", "Такого Товара Нет!");
+                        return;
+                    }
+                }
+                else
+                {
+                    ShowMessageEvent("Ошибка Записи", "Товар Не Может Быть Пустым!");
+                    return;
+                }
+
+                if (Selected.Amount < 1)
+                {
+                    ShowMessageEvent("Ошибка Записи", "Количество Товара Не Может Быть Меньше 1!");
+                    return;
+                }
+
                 ShopManagementContext.GetContext().Database.ExecuteSqlRaw("EXEC Dbo.CreateCustomerOrderItem @OrderID = {0},  @ProductID = {1}, @Amount = {2}, @AdminLogin = {3}, @AdminPassword = {4}", Order.Id, Selected.Product.Id, Selected.Amount, UserData.Login, UserData.Password);
                 ShowAnotherTabEvent.Invoke(new Tables.CustomerOrderItemsTable(ShowAnotherTabEvent, Order, ShowMessageEvent, ShowLoginPageEvent));
             }
             catch (SqlException Ex)
             {
-                if (Ex.Message == "AUTHORIZATION_ERROR")
-                {
-                    ShowMessageEvent.Invoke("ERROR", "AUTHORIZATION_ERROR");
-                    ShowLoginPageEvent.Invoke();
-                }
-                else
-                {
-                    ShowMessageEvent.Invoke("ERROR", "UNKNOWN_SQL_SERVER_ERROR. Error Code: " + Ex.ErrorCode);
-                }
+                ExceptionHandlers.SqlExceptionHandler(Ex, ShowMessageEvent, ShowLoginPageEvent);
             }
         }
 
