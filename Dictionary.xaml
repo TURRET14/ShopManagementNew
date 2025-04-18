@@ -1,5 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:xaml="http://schemas.microsoft.com/winfx/2006/xaml">
-
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/CalendarStyle.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
     <SolidColorBrush xaml:Key="Background_Primary" Color="#121212"/>
     <SolidColorBrush xaml:Key="Background_Secondary" Color="#1E1E1E"/>
     <SolidColorBrush xaml:Key="Background_Cards" Color="#2A2A2A"></SolidColorBrush>
@@ -195,6 +197,16 @@
             <Setter.Value>
                 <ContextMenu Visibility="Collapsed" />
             </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <Style TargetType="DatePicker">
+        <Setter Property="FontFamily" Value="{StaticResource Main_Font}"></Setter>
+        <Setter Property="FontSize" Value="20"></Setter>
+        <Setter Property="Foreground" Value="{StaticResource Main_Foreground}"></Setter>
+        <Setter Property="Background" Value="{StaticResource Input_Default}"></Setter>
+        <Setter Property="CalendarStyle" Value="{DynamicResource CalendarStyle}">
         </Setter>
     </Style>
 </ResourceDictionary>

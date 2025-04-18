@@ -17,8 +17,6 @@ namespace ShopManagement
         {
             InitializeComponent();
             ShowLoginPage();
-            //VisualTreeHelper.SetRootDpi(this, new DpiScale(5, 5));
-            //this.DpiChanged += (OldDPI, NewDPI) => { InvalidateVisual(); InvalidateMeasure(); InvalidateArrange(); };
         }
 
         public void ShowMessage(string Header, string Text)
@@ -39,6 +37,7 @@ namespace ShopManagement
         
         public void ShowLoginPage()
         {
+            MainGrid.Children.Clear();
             MainGrid.Children.Add(new LoginPage(ShowMessage, ShowMainPage));
         }
     }
