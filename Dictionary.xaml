@@ -2,6 +2,7 @@
 
     <SolidColorBrush xaml:Key="Background_Primary" Color="#121212"/>
     <SolidColorBrush xaml:Key="Background_Secondary" Color="#1E1E1E"/>
+    <SolidColorBrush xaml:Key="Background_Cards" Color="#2A2A2A"></SolidColorBrush>
     <SolidColorBrush xaml:Key="Main_Foreground" Color="#EAEAEA"/>
 
     <SolidColorBrush xaml:Key="Input_Default" Color="#272727"/>
@@ -24,16 +25,11 @@
         <MenuItem Header="Вставить" Command="Paste"/>
     </ContextMenu>
 
-    
-    <Style TargetType="Grid">
-        <Setter Property="Background" Value="{StaticResource Background_Primary}"></Setter>
-    </Style>
-
     <Style TargetType="Border">
         <Setter Property="Background" Value="{StaticResource Background_Secondary}"></Setter>
     </Style>
-    
-    
+
+
     <Style TargetType="Button">
         <Setter Property="FontFamily" Value="{StaticResource Main_Font}"></Setter>
         <Setter Property="FontSize" Value="30"></Setter>
@@ -64,6 +60,7 @@
     </Style>
 
     <Style xaml:Key="Button_Menu" TargetType="Button">
+        <Setter Property="Padding" Value="5"></Setter>
         <Setter Property="FontFamily" Value="{StaticResource Main_Font}"></Setter>
         <Setter Property="FontSize" Value="30"></Setter>
         <Setter Property="Foreground" Value="{StaticResource Main_Foreground}"></Setter>
@@ -94,10 +91,10 @@
 
 
     <Style TargetType="TextBlock">
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
         <Setter Property="FontFamily" Value="{StaticResource Main_Font}"></Setter>
         <Setter Property="FontSize" Value="30"></Setter>
         <Setter Property="Foreground" Value="{StaticResource Main_Foreground}"></Setter>
-        <Setter Property="TextOptions.TextFormattingMode" Value="Ideal"></Setter>
     </Style>
 
 
@@ -131,8 +128,8 @@
             </Setter.Value>
         </Setter>
     </Style>
-    
-    
+
+
     <Style TargetType="PasswordBox">
         <Setter Property="FontFamily" Value="{StaticResource Main_Font}"></Setter>
         <Setter Property="FontSize" Value="30"></Setter>
@@ -172,11 +169,27 @@
     </Style>
 
     <Style TargetType="DataGrid">
+        <Setter Property="Background" Value="#3C3C3C"></Setter>
+        <Setter Property="Foreground" Value="{StaticResource Main_Foreground}"></Setter>
+        <Setter Property="BorderBrush" Value="#707070"></Setter>
         <Setter Property="FontFamily" Value="{StaticResource Main_Font}"></Setter>
         <Setter Property="FontSize" Value="30"></Setter>
+        <Setter Property="RowBackground" Value="#3C3C3C"></Setter>
+        <Setter Property="AlternatingRowBackground" Value="#323232"></Setter>
+        <Setter Property="HorizontalGridLinesBrush" Value="#707070"></Setter>
+        <Setter Property="VerticalGridLinesBrush" Value="#707070"></Setter>
+        <Setter Property="ColumnHeaderStyle">
+            <Setter.Value>
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="Background" Value="#323232"></Setter>
+                    <Setter Property="BorderBrush" Value="#707070"></Setter>
+                    <Setter Property="BorderThickness" Value="1"></Setter>
+                </Style>
+            </Setter.Value>
+        </Setter>
     </Style>
 
-    
+
     <Style TargetType="ScrollBar">
         <Setter Property="ContextMenu">
             <Setter.Value>

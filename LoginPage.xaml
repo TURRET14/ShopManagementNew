@@ -8,12 +8,12 @@
     </UserControl.Resources>
     <Border Width="400" HorizontalAlignment="Center" VerticalAlignment="Center" CornerRadius="20" Padding="20">
         <StackPanel Orientation="Vertical">
-            <TextBlock Text="Вход" FontSize="50"></TextBlock>
+            <TextBlock Text="Вход" Margin="0" FontSize="50"></TextBlock>
             <TextBlock Text="Логин" Margin="0 5 0 0" FontSize="30"></TextBlock>
             <TextBox Name="TextBox_Login" Margin="0 5 0 0" FontSize="40"></TextBox>
             <TextBlock Text="Пароль" Margin="0 5 0 0" FontSize="30"></TextBlock>
             <PasswordBox Name="PasswordBox_Password" Margin="0 5 0 0" FontSize="40"></PasswordBox>
-            <Button Click="Button_Login_Click" Margin="0 20 0 0" FontSize="50">Войти</Button>
+            <Button Click="Button_Login_Click" Margin="0 20 0 0" FontSize="40">Войти</Button>
         </StackPanel>
     </Border>
 </UserControl>

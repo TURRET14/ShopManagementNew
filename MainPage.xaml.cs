@@ -82,7 +82,7 @@ namespace ShopManagement
 
         public void ShowAnotherTab(UserControl Tab)
         {
-            ContentControl_ForTables.Content = Tab;
+            ContentControl_ForTables.Child = Tab;
         }
     }
 }

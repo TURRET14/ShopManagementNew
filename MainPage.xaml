@@ -26,8 +26,8 @@
                 <Button Name="Button_Suppliers" Click="Button_Suppliers_Click" Style="{StaticResource Button_Menu}" Margin="0 10 0 0">Поставщики</Button>
                 <Button Name="Button_Employees" Click="Button_Employees_Click" Style="{StaticResource Button_Menu}" Margin="0 10 0 0">Сотрудники</Button>
             </StackPanel>
-            <ContentControl Name="ContentControl_ForTables" Grid.Row="0" Grid.Column="1">
-            </ContentControl>
+            <Border Name="ContentControl_ForTables" Grid.Row="0" Grid.Column="1" Background="{StaticResource Background_Cards}">
+            </Border>
         </Grid>
     </Grid>
 </UserControl>
