@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Windows.Controls.Primitives;
 
 namespace ShopManagement.Models;
 
@@ -21,6 +22,8 @@ public partial class Employee
 
     public string? Position { get; set; }
 
+    public int? Salary { get; set; }
+
     public string? UserLogin { get; set; }
 
     public string? UserPassword { get; set; }
@@ -34,4 +37,22 @@ public partial class Employee
     public virtual ICollection<SupplierReturnItem> SupplierReturnItems { get; set; } = new List<SupplierReturnItem>();
 
     public string NameId => $"{Name} ID_{Id}";
+
+    public string? ReadablePosition { get
+        {
+            switch (Position)
+            {
+                case "SYSTEM_ADMIN":
+                    return "Системный Администратор";
+                case "SHOP_ADMIN":
+                    return "Администратор";
+                case "SHOP_MANAGER":
+                    return "Менеджер";
+                case "SHOP_CASHIER":
+                    return "Кассир";
+                default:
+                    return null;
+            }
+        }
+    }
 }

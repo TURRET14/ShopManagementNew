@@ -28,7 +28,7 @@
                         <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="Auto"></DataGridTextColumn>
                         <DataGridTextColumn Header="Клиент" Binding="{Binding Customer.NameId}" Width="Auto"></DataGridTextColumn>
                         <DataGridTextColumn Header="Сотрудник" Binding="{Binding Employee.NameId}" Width="Auto"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Дата" Binding="{Binding Date}" Width="Auto"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Дата" Binding="{Binding LocalDate}" Width="Auto"></DataGridTextColumn>
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>
@@ -50,6 +50,9 @@
                     <DataGridTextColumn.EditingElementStyle>
                         <Style TargetType="TextBox">
                             <Setter Property="MaxLength" Value="10"></Setter>
+                            <Setter Property="Background" Value="{StaticResource Input_Focused}"></Setter>
+                            <Setter Property="BorderThickness" Value="0"></Setter>
+                            <Setter Property="Foreground" Value="{StaticResource Main_Foreground}"></Setter>
                         </Style>
                     </DataGridTextColumn.EditingElementStyle>
                 </DataGridTextColumn>

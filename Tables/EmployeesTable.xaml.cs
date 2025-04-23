@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -42,7 +43,7 @@ namespace ShopManagement.Tables
             }
 
             ComboBox_Gender.ItemsSource = new List<string> { "M", "F" };
-            ComboBox_Position.ItemsSource = new List<string> { "SYSTEM_ADMIN", "SHOP_ADMIN", "SHOP_MANAGER", "SHOP_CASHIER" };
+            ComboBox_Position.ItemsSource = new List<string>() { "Системный Администратор", "Администратор", "Менеджер", "Кассир" };
         }
 
         private void Button_Create_Click(object sender, RoutedEventArgs e)
@@ -171,13 +172,29 @@ namespace ShopManagement.Tables
                 {
                     if (ComboBox_Position.SelectedValue.ToString().Length > 0)
                     {
-                        if (ComboBox_Position.SelectedValue.ToString() == "SYSTEM_ADMIN" || ComboBox_Position.SelectedValue.ToString() == "SHOP_ADMIN" || ComboBox_Position.SelectedValue.ToString() == "SHOP_MANAGER" || ComboBox_Position.SelectedValue.ToString() == "SHOP_CASHIER")
+                        string SelectedPosition = "";
+                        switch (ComboBox_Position.SelectedValue)
+                        {
+                            case "Системный Администратор":
+                                SelectedPosition = "SYSTEM_ADMIN";
+                                break;
+                            case "Администратор":
+                                SelectedPosition = "SHOP_ADMIN";
+                                break;
+                            case "Менеджер":
+                                SelectedPosition = "SHOP_MANAGER";
+                                break;
+                            case "Кассир":
+                                SelectedPosition = "SHOP_CASHIER";
+                                break;
+                        }
+                        if (SelectedPosition == "SYSTEM_ADMIN" || SelectedPosition == "SHOP_ADMIN" || SelectedPosition == "SHOP_MANAGER" || SelectedPosition == "SHOP_CASHIER")
                         {
                             FilteredList = FilteredList.Where(Entry =>
                             {
                                 if (Entry.Position is not null)
                                 {
-                                    return Entry.Position == ComboBox_Position.SelectedValue.ToString();
+                                    return Entry.Position == SelectedPosition;
                                 }
                                 else
                                 {

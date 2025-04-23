@@ -14,7 +14,7 @@
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <Button Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center" Click="Button_Back_Click" Style="{StaticResource Button_Menu}">←Назад</Button>
-        <TextBlock Grid.Row="1" Text="Изменение Поставщика" Margin="0 10 0 0"></TextBlock>
+        <TextBlock Grid.Row="1" Text="Поставщик" Margin="0 10 0 0"></TextBlock>
         <Border Grid.Row="2" Padding="10" Margin="0 10 0 0" CornerRadius="10" HorizontalAlignment="Left">
             <StackPanel Orientation="Horizontal">
                 <Button HorizontalAlignment="Left" VerticalAlignment="Center" Click="Button_Update_Click" Cursor="Hand">Сохранить</Button>

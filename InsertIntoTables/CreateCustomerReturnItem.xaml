@@ -42,6 +42,9 @@
                     <DataGridTextColumn.EditingElementStyle>
                         <Style TargetType="TextBox">
                             <Setter Property="MaxLength" Value="10"></Setter>
+                            <Setter Property="Background" Value="{StaticResource Input_Focused}"></Setter>
+                            <Setter Property="BorderThickness" Value="0"></Setter>
+                            <Setter Property="Foreground" Value="{StaticResource Main_Foreground}"></Setter>
                         </Style>
                     </DataGridTextColumn.EditingElementStyle>
                 </DataGridTextColumn>
@@ -50,6 +53,9 @@
                         <Style TargetType="TextBox">
                             <Setter Property="MaxLength" Value="150"></Setter>
                             <Setter Property="TextWrapping" Value="Wrap"></Setter>
+                            <Setter Property="Background" Value="{StaticResource Input_Focused}"></Setter>
+                            <Setter Property="BorderThickness" Value="0"></Setter>
+                            <Setter Property="Foreground" Value="{StaticResource Main_Foreground}"></Setter>
                         </Style>
                     </DataGridTextColumn.EditingElementStyle>
                     <DataGridTextColumn.ElementStyle>

@@ -26,6 +26,10 @@ namespace ShopManagement.UpdateTables
         public UpdateCustomer(Events.ShowAnotherTabDelegate ShowAnotherTab, Customer Selected, Events.ShowMessageDelegate ShowMessage, Events.ShowLoginPageDelegate ShowLoginPage)
         {
             InitializeComponent();
+            if (UserData.AccessLevel != "SYSTEM_ADMIN" && UserData.AccessLevel != "SHOP_ADMIN")
+            {
+                ActionsPanel.Visibility = Visibility.Collapsed;
+            }
             ShowAnotherTabEvent = ShowAnotherTab;
             ShowMessageEvent = ShowMessage;
             ShowLoginPageEvent = ShowLoginPage;

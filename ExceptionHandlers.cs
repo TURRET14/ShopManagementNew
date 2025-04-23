@@ -13,32 +13,28 @@ namespace ShopManagement
         {
             if (Ex.Message == "AUTHORIZATION_ERROR")
             {
-                ShowMessageEvent.Invoke("ERROR", "AUTHORIZATION_ERROR");
                 ShowLoginPageEvent.Invoke();
+                ShowMessageEvent.Invoke("Ошибка", "Ваша должность не позволяет совершить данную операцию!");
             }
             else if (Ex.Message == "INVALID_ID")
             {
-                ShowMessageEvent.Invoke("ERROR", "INVALID_ID");
-                ShowLoginPageEvent.Invoke();
+                ShowMessageEvent.Invoke("Ошибка", "Неверный ID!");
             }
             else if (Ex.Message == "INVALID_POSITION_ERROR")
             {
-                ShowMessageEvent.Invoke("ERROR", "INVALID_POSITION_ERROR");
-                ShowLoginPageEvent.Invoke();
+                ShowMessageEvent.Invoke("Ошибка", "Указана недопустимая должность!");
             }
             else if (Ex.Message == "NOT_ENOUGH_PRODUCT")
             {
-                ShowMessageEvent.Invoke("ERROR", "NOT_ENOUGH_PRODUCT");
-                ShowLoginPageEvent.Invoke();
+                ShowMessageEvent.Invoke("Ошибка", "Продуктов на складе не хватает!");
             }
             else if (Ex.Message == "AMOUNT_TOO_BIG")
             {
-                ShowMessageEvent.Invoke("ERROR", "AMOUNT_TOO_BIG");
-                ShowLoginPageEvent.Invoke();
+                ShowMessageEvent.Invoke("Ошибка", "Количество возвращаемых продуктов не должно превышать количество заказанных!");
             }
             else
             {
-                ShowMessageEvent.Invoke("ERROR", "UNKNOWN_SQL_SERVER_ERROR. Error Code: " + Ex.ErrorCode);
+                ShowMessageEvent.Invoke("Ошибка", Ex.Message);
             }
         }
     }

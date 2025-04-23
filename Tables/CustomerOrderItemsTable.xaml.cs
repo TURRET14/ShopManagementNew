@@ -29,6 +29,10 @@ namespace ShopManagement.Tables
         public CustomerOrderItemsTable(Events.ShowAnotherTabDelegate ShowAnotherTab, CustomerOrder OrderObject, Events.ShowMessageDelegate ShowMessage, Events.ShowLoginPageDelegate ShowLoginPage)
         {
             InitializeComponent();
+            if (UserData.AccessLevel != "SYSTEM_ADMIN" || UserData.AccessLevel != "SHOP_ADMIN")
+            {
+                ActionsPanel.Visibility = Visibility.Collapsed;
+            }
             ShowAnotherTabEvent = ShowAnotherTab;
             Order = OrderObject;
             ShowMessageEvent = ShowMessage;

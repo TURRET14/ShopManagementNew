@@ -31,7 +31,7 @@ namespace ShopManagement.InsertIntoTables
             ShowMessageEvent = ShowMessage;
             ShowLoginPageEvent = ShowLoginPage;
             ColumnGender.ItemsSource = new List<string>() { "M", "F" };
-            ColumnPosition.ItemsSource = new List<string>() { "SHOP_ADMIN", "SHOP_MANAGER", "SHOP_CASHIER" };
+            ColumnPosition.ItemsSource = new List<string>() { "Администратор", "Менеджер", "Кассир" };
             DataGrid_Table.ItemsSource = new List<Employee>() { new Employee()};
         }
 
@@ -111,23 +111,20 @@ namespace ShopManagement.InsertIntoTables
                     return;
                 }
 
-                if (Selected.Position != "SYSTEM_ADMIN" && Selected.Position != "SHOP_ADMIN" && Selected.Position != "SHOP_MANAGER" && Selected.Position != "SHOP_CASHIER")
+                switch (Selected.Position)
                 {
-                    ShowMessageEvent("Ошибка Записи", "Такой Должности Нет!");
-                    return;
-                }
-
-                if (Selected.UserLogin is not null)
-                {
-                    if (Selected.UserLogin.Length > 50)
-                    {
-                        ShowMessageEvent("Ошибка Записи", "Длина Логина Не Может Быть Больше 50 Символов!");
+                    case "Администратор":
+                        Selected.Position = "SHOP_ADMIN";
+                        break;
+                    case "Менеджер":
+                        Selected.Position = "SHOP_MANAGER";
+                        break;
+                    case "Кассир":
+                        Selected.Position = "SHOP_CASHIER";
+                        break;
+                    default:
+                        ShowMessageEvent("Ошибка Записи", "Указана недопустимая должность!");
                         return;
-                    }
-                    if (Selected.UserLogin.Length == 0)
-                    {
-                        Selected.UserLogin = null;
-                    }
                 }
 
                 if (Selected.UserPassword is not null)
@@ -143,7 +140,26 @@ namespace ShopManagement.InsertIntoTables
                     }
                 }
 
-                ShopManagementContext.GetContext().Database.ExecuteSqlRaw("EXEC Dbo.CreateEmployee @Name = {0},  @Age = {1}, @Gender = {2}, @PhoneNumber = {3}, @Email = {4}, @Experience = {5}, @Position = {6}, @UserLogin = {7}, @UserPassword = {8}, @AdminLogin = {9}, @AdminPassword = {10}", Selected.Name, Selected.Age, Selected.Gender, Selected.PhoneNumber, Selected.Email, Selected.Experience, Selected.Position, Selected.UserLogin, Selected.UserPassword, UserData.Login, UserData.Password);
+                if (Selected.UserLogin is not null)
+                {
+                    if (Selected.UserLogin.Length > 50)
+                    {
+                        ShowMessageEvent("Ошибка Записи", "Длина Логина Не Может Быть Больше 50 Символов!");
+                        return;
+                    }
+                    if (Selected.UserLogin.Length == 0)
+                    {
+                        ShowMessageEvent("Ошибка Записи", "Логин Не Может Быть Пустым!");
+                        return;
+                    }
+                }
+                else
+                {
+                    ShowMessageEvent("Ошибка Записи", "Логин Не Может Быть Пустым!");
+                    return;
+                }
+
+                ShopManagementContext.GetContext().Database.ExecuteSqlRaw("EXEC Dbo.CreateEmployee @Name = {0},  @Age = {1}, @Gender = {2}, @PhoneNumber = {3}, @Email = {4}, @Experience = {5}, @Position = {6}, @Salary = {7}, @UserLogin = {8}, @UserPassword = {9}, @AdminLogin = {10}, @AdminPassword = {11}", Selected.Name, Selected.Age, Selected.Gender, Selected.PhoneNumber, Selected.Email, Selected.Experience, Selected.Position, Selected.Salary, Selected.UserLogin, Selected.UserPassword, UserData.Login, UserData.Password);
                 ShowAnotherTabEvent.Invoke(new Tables.EmployeesTable(ShowAnotherTabEvent, ShowMessageEvent, ShowLoginPageEvent));
             }
             catch (SqlException Ex)

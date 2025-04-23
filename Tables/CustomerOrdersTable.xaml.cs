@@ -100,11 +100,11 @@ namespace ShopManagement.Tables
             {
                 if (DatePicker_DateBegin.SelectedDate is not null)
                 {
-                    FilteredList = FilteredList.Where(Entry => Entry.Date.ToDateTime(new TimeOnly()) >= DatePicker_DateBegin.SelectedDate).ToList();
+                    FilteredList = FilteredList.Where(Entry => Entry.Date.DateTime >= DatePicker_DateBegin.SelectedDate).ToList();
                 }
                 if (DatePicker_DateEnd.SelectedDate is not null)
                 {
-                    FilteredList = FilteredList.Where(Entry => Entry.Date.ToDateTime(new TimeOnly()) <= DatePicker_DateEnd.SelectedDate).ToList();
+                    FilteredList = FilteredList.Where(Entry => Entry.Date.DateTime <= DatePicker_DateEnd.SelectedDate.Value.AddDays(1)).ToList();
                 }
             }
             DataGrid_Table.ItemsSource = FilteredList;

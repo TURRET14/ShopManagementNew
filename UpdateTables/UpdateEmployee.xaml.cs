@@ -20,17 +20,37 @@ namespace ShopManagement.UpdateTables
 {
     public partial class UpdateEmployee : UserControl
     {
+        private bool IsCurrentUser = false;
         public event Events.ShowMessageDelegate ShowMessageEvent;
         public event Events.ShowLoginPageDelegate ShowLoginPageEvent;
         public event Events.ShowAnotherTabDelegate ShowAnotherTabEvent;
         public UpdateEmployee(Events.ShowAnotherTabDelegate ShowAnotherTab, Employee Selected, Events.ShowMessageDelegate ShowMessage, Events.ShowLoginPageDelegate ShowLoginPage)
         {
             InitializeComponent();
+            if (Selected.UserLogin == UserData.Login)
+            {
+                IsCurrentUser = true;
+            }
             ShowAnotherTabEvent = ShowAnotherTab;
             ShowMessageEvent = ShowMessage;
             ShowLoginPageEvent = ShowLoginPage;
             ColumnGender.ItemsSource = new List<string>() { "M", "F"};
-            ColumnPosition.ItemsSource = new List<string>() { "SYSTEM_ADMIN", "SHOP_ADMIN", "SHOP_MANAGER", "SHOP_CASHIER"};
+            switch (Selected.Position)
+            {
+                case "SYSTEM_ADMIN":
+                    Selected.Position = "Системный Администратор";
+                    break;
+                case "SHOP_ADMIN":
+                    Selected.Position = "Администратор";
+                    break;
+                case "SHOP_MANAGER":
+                    Selected.Position = "Менеджер";
+                    break;
+                case "SHOP_CASHIER":
+                    Selected.Position = "Кассир";
+                    break;
+            }
+            ColumnPosition.ItemsSource = new List<string>() {"Системный Администратор", "Администратор", "Менеджер", "Кассир" };
             DataGrid_Table.ItemsSource = new List<Employee> { Selected };
         }
 
@@ -104,23 +124,29 @@ namespace ShopManagement.UpdateTables
                     return;
                 }
 
-                if (Selected.Position != "SYSTEM_ADMIN" && Selected.Position != "SHOP_ADMIN" && Selected.Position != "SHOP_MANAGER" && Selected.Position != "SHOP_CASHIER")
+                switch (Selected.Position)
                 {
-                    ShowMessageEvent("Ошибка Записи", "Такой Должности Нет!");
-                    return;
+                    case "Системный Администратор":
+                        Selected.Position = "SYSTEM_ADMIN";
+                        break;
+                    case "Администратор":
+                        Selected.Position = "SHOP_ADMIN";
+                        break;
+                    case "Менеджер":
+                        Selected.Position = "SHOP_MANAGER";
+                        break;
+                    case "Кассир":
+                        Selected.Position = "SHOP_CASHIER";
+                        break;
+                    default:
+                        ShowMessageEvent("Ошибка Записи", "Указана недопустимая должность!");
+                        return;
                 }
 
-                if (Selected.UserLogin is not null)
+                if (Selected.Salary < 0)
                 {
-                    if (Selected.UserLogin.Length > 50)
-                    {
-                        ShowMessageEvent("Ошибка Записи", "Длина Логина Не Может Быть Больше 50 Символов!");
-                        return;
-                    }
-                    if (Selected.UserLogin.Length == 0)
-                    {
-                        Selected.UserLogin = null;
-                    }
+                    ShowMessageEvent("Ошибка Записи", "Зарплата Не Может Быть Меньше 0!");
+                    return;
                 }
 
                 if (Selected.UserPassword is not null)
@@ -136,8 +162,38 @@ namespace ShopManagement.UpdateTables
                     }
                 }
 
-                ShopManagementContext.GetContext().Database.ExecuteSqlRaw("EXEC Dbo.UpdateEmployee @ID = {0}, @Name = {1},  @Age = {2}, @Gender = {3}, @PhoneNumber = {4}, @Email = {5}, @Experience = {6}, @Position = {7}, @UserLogin = {8}, @UserPassword = {9}, @AdminLogin = {10}, @AdminPassword = {11}", Selected.Id, Selected.Name, Selected.Age, Selected.Gender, Selected.PhoneNumber, Selected.Email, Selected.Experience, Selected.Position, Selected.UserLogin, Selected.UserPassword, UserData.Login, UserData.Password);
+                if (Selected.UserLogin is not null)
+                {
+                    if (Selected.UserLogin.Length > 50)
+                    {
+                        ShowMessageEvent("Ошибка Записи", "Длина Логина Не Может Быть Больше 50 Символов!");
+                        return;
+                    }
+                    if (Selected.UserLogin.Length == 0)
+                    {
+                        ShowMessageEvent("Ошибка Записи", "Логин Не Может Быть Пустым!");
+                        return;
+                    }
+                }
+                else
+                {
+                    ShowMessageEvent("Ошибка Записи", "Логин Не Может Быть Пустым!");
+                    return;
+                }
+
+                if (CheckBox_ChangePassword.IsChecked == false)
+                {
+                    Selected.UserPassword = null;
+                }
+
+                ShopManagementContext.GetContext().Database.ExecuteSqlRaw("EXEC Dbo.UpdateEmployee @ID = {0}, @Name = {1},  @Age = {2}, @Gender = {3}, @PhoneNumber = {4}, @Email = {5}, @Experience = {6}, @Position = {7}, @Salary = {8}, @UserLogin = {9}, @UserPassword = {10}, @ChangePassword = {11}, @AdminLogin = {12}, @AdminPassword = {13}", Selected.Id, Selected.Name, Selected.Age, Selected.Gender, Selected.PhoneNumber, Selected.Email, Selected.Experience, Selected.Position, Selected.Salary, Selected.UserLogin, Selected.UserPassword, CheckBox_ChangePassword.IsChecked, UserData.Login, UserData.Password);
                 ShowAnotherTabEvent.Invoke(new Tables.EmployeesTable(ShowAnotherTabEvent, ShowMessageEvent, ShowLoginPageEvent));
+
+                if (IsCurrentUser == true)
+                {
+                    UserData.Login = Selected.UserLogin;
+                    UserData.Password = Selected.UserPassword;
+                }
             }
             catch (SqlException Ex)
             {

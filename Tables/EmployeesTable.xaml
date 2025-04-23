@@ -4,6 +4,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Dictionary.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
+            
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid Margin="10">
@@ -91,7 +92,8 @@
                 <DataGridTextColumn Header="Телефон" Binding="{Binding PhoneNumber}" Width="Auto"></DataGridTextColumn>
                 <DataGridTextColumn Header="Почта" Binding="{Binding Email}" Width="*"></DataGridTextColumn>
                 <DataGridTextColumn Header="Опыт" Binding="{Binding Experience}" Width="Auto"></DataGridTextColumn>
-                <DataGridTextColumn Header="Должность" Binding="{Binding Position}" Width="Auto"></DataGridTextColumn>
+                <DataGridTextColumn Header="Должность" Binding="{Binding ReadablePosition}" Width="Auto"></DataGridTextColumn>
+                <DataGridTextColumn Header="Зарплата" Binding="{Binding Salary}" Width="Auto"></DataGridTextColumn>
                 <DataGridTextColumn Header="Логин" Binding="{Binding UserLogin}" Width="*"></DataGridTextColumn>
             </DataGrid.Columns>
             <DataGrid.Resources>

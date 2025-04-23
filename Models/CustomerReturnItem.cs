@@ -15,9 +15,17 @@ public partial class CustomerReturnItem
 
     public string? Reason { get; set; }
 
-    public DateOnly Date { get; set; }
+    public DateTimeOffset Date { get; set; }
 
     public virtual Employee? Employee { get; set; }
 
     public virtual CustomerOrderItem OrderItem { get; set; } = null!;
+
+    public string LocalDate
+    {
+        get
+        {
+            return Date.DateTime.ToShortDateString() + " " + Date.DateTime.ToShortTimeString();
+        }
+    }
 }

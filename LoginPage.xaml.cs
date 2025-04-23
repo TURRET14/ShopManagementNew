@@ -36,7 +36,12 @@ namespace ShopManagement
             {
                 if (TextBox_Login.Text.Length > 50 || PasswordBox_Password.Password.Length > 50)
                 {
-                    ShowMessageEvent.Invoke("ERROR", "ERROR_TOO_LONG");
+                    ShowMessageEvent.Invoke("Ошибка", "Пароль или логин слишком длинные!");
+                    return;
+                }
+                if (TextBox_Login.Text.Length == 0 || PasswordBox_Password.Password.Length == 0)
+                {
+                    ShowMessageEvent.Invoke("Ошибка", "Пароль или логин не могут быть пустыми!");
                     return;
                 }
                 string Login = TextBox_Login.Text;
@@ -51,7 +56,7 @@ namespace ShopManagement
                 }
                 else
                 {
-                    ShowMessageEvent("ERROR", "INVALID_LOGIN_OR_PASSWORD");
+                    ShowMessageEvent("Ошибка", "Неверный логин или пароль!");
                 }
             }
             catch (SqlException Ex)

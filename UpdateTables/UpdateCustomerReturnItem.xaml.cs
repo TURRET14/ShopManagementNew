@@ -28,6 +28,10 @@ namespace ShopManagement.UpdateTables
         public UpdateCustomerReturnItem(Events.ShowAnotherTabDelegate ShowAnotherTab, CustomerReturnItem Selected, CustomerOrderItem OrderItemObject, CustomerOrder OrderObject, Events.ShowMessageDelegate ShowMessage, Events.ShowLoginPageDelegate ShowLoginPage)
         {
             InitializeComponent();
+            if (UserData.AccessLevel != "SYSTEM_ADMIN" && UserData.AccessLevel != "SHOP_ADMIN")
+            {
+                ActionsPanel.Visibility = Visibility.Collapsed;
+            }
             ShowAnotherTabEvent = ShowAnotherTab;
             OrderItem = OrderItemObject;
             Order = OrderObject;

@@ -14,8 +14,8 @@
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <Button Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center" Click="Button_Back_Click" Style="{StaticResource Button_Menu}">←Назад</Button>
-        <TextBlock Grid.Row="1" Text="Изменение Клиента" Margin="0 10 0 0"></TextBlock>
-        <Border Grid.Row="2" Padding="10" Margin="0 10 0 0" CornerRadius="10" HorizontalAlignment="Left">
+        <TextBlock Grid.Row="1" Text="Клиент" Margin="0 10 0 0"></TextBlock>
+        <Border Name="ActionsPanel" Grid.Row="2" Padding="10" Margin="0 10 0 0" CornerRadius="10" HorizontalAlignment="Left">
             <StackPanel Orientation="Horizontal">
                 <Button HorizontalAlignment="Left" VerticalAlignment="Center" Click="Button_Update_Click" Cursor="Hand">Сохранить</Button>
                 <Button HorizontalAlignment="Left" VerticalAlignment="Center" Click="Button_Delete_Click" Margin="10 0 0 0" Cursor="Hand">Удалить</Button>
@@ -29,6 +29,9 @@
                         <Style TargetType="TextBox">
                             <Setter Property="MaxLength" Value="100"></Setter>
                             <Setter Property="TextWrapping" Value="Wrap"></Setter>
+                            <Setter Property="Background" Value="{StaticResource Input_Focused}"></Setter>
+                            <Setter Property="BorderThickness" Value="0"></Setter>
+                            <Setter Property="Foreground" Value="{StaticResource Main_Foreground}"></Setter>
                         </Style>
                     </DataGridTextColumn.EditingElementStyle>
                     <DataGridTextColumn.ElementStyle>
@@ -41,6 +44,9 @@
                     <DataGridTextColumn.EditingElementStyle>
                         <Style TargetType="TextBox">
                             <Setter Property="MaxLength" Value="20"></Setter>
+                            <Setter Property="Background" Value="{StaticResource Input_Focused}"></Setter>
+                            <Setter Property="BorderThickness" Value="0"></Setter>
+                            <Setter Property="Foreground" Value="{StaticResource Main_Foreground}"></Setter>
                         </Style>
                     </DataGridTextColumn.EditingElementStyle>
                 </DataGridTextColumn>
@@ -49,6 +55,9 @@
                         <Style TargetType="TextBox">
                             <Setter Property="MaxLength" Value="100"></Setter>
                             <Setter Property="TextWrapping" Value="Wrap"></Setter>
+                            <Setter Property="Background" Value="{StaticResource Input_Focused}"></Setter>
+                            <Setter Property="BorderThickness" Value="0"></Setter>
+                            <Setter Property="Foreground" Value="{StaticResource Main_Foreground}"></Setter>
                         </Style>
                     </DataGridTextColumn.EditingElementStyle>
                     <DataGridTextColumn.ElementStyle>

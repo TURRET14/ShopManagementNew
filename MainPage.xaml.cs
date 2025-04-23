@@ -25,6 +25,23 @@ namespace ShopManagement
         public MainPage(Events.ShowMessageDelegate ShowMessage, Events.ShowLoginPageDelegate ShowLoginPage)
         {
             InitializeComponent();
+            string AccessLevel = "Сотрудник";
+            switch (UserData.AccessLevel)
+            {
+                case "SYSTEM_ADMIN":
+                    AccessLevel =  "Системный Администратор";
+                    break;
+                case "SHOP_ADMIN":
+                    AccessLevel = "Администратор";
+                    break;
+                case "SHOP_MANAGER":
+                    AccessLevel = "Менеджер";
+                    break;
+                case "SHOP_CASHIER":
+                    AccessLevel = "Кассир";
+                    break;
+            }
+            Button_UserInfo.Content = AccessLevel + " " + UserData.Login;
             ShowMessageEvent = ShowMessage;
             ShowLoginPageEvent = ShowLoginPage;
             switch (UserData.AccessLevel)
@@ -83,6 +100,16 @@ namespace ShopManagement
         public void ShowAnotherTab(UserControl Tab)
         {
             ContentControl_ForTables.Child = Tab;
+        }
+
+        private void TextBlock_UserInfo_Click(object sender, RoutedEventArgs e)
+        {
+            Popup_UserInfo.IsOpen = true;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            ShowLoginPageEvent.Invoke();
         }
     }
 }

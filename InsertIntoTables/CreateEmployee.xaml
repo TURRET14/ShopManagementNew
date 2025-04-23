@@ -23,6 +23,9 @@
                         <Style TargetType="TextBox">
                             <Setter Property="MaxLength" Value="100"></Setter>
                             <Setter Property="TextWrapping" Value="Wrap"></Setter>
+                            <Setter Property="Background" Value="{StaticResource Input_Focused}"></Setter>
+                            <Setter Property="BorderThickness" Value="0"></Setter>
+                            <Setter Property="Foreground" Value="{StaticResource Main_Foreground}"></Setter>
                         </Style>
                     </DataGridTextColumn.EditingElementStyle>
                     <DataGridTextColumn.ElementStyle>
@@ -35,14 +38,24 @@
                     <DataGridTextColumn.EditingElementStyle>
                         <Style TargetType="TextBox">
                             <Setter Property="MaxLength" Value="5"></Setter>
+                            <Setter Property="Background" Value="{StaticResource Input_Focused}"></Setter>
+                            <Setter Property="BorderThickness" Value="0"></Setter>
+                            <Setter Property="Foreground" Value="{StaticResource Main_Foreground}"></Setter>
                         </Style>
                     </DataGridTextColumn.EditingElementStyle>
                 </DataGridTextColumn>
-                <DataGridComboBoxColumn xaml:Name="ColumnGender" Header="Пол" SelectedItemBinding="{Binding Gender}" Width="Auto"></DataGridComboBoxColumn>
+                <DataGridComboBoxColumn xaml:Name="ColumnGender" Header="Пол" SelectedItemBinding="{Binding Gender}" Width="Auto">
+                    <DataGridComboBoxColumn.EditingElementStyle>
+                        <Style TargetType="ComboBox" BasedOn="{StaticResource ComboBoxStyle}"></Style>
+                    </DataGridComboBoxColumn.EditingElementStyle>
+                </DataGridComboBoxColumn>
                 <DataGridTextColumn Header="Телефон" Binding="{Binding PhoneNumber}" Width="Auto">
                     <DataGridTextColumn.EditingElementStyle>
                         <Style TargetType="TextBox">
                             <Setter Property="MaxLength" Value="20"></Setter>
+                            <Setter Property="Background" Value="{StaticResource Input_Focused}"></Setter>
+                            <Setter Property="BorderThickness" Value="0"></Setter>
+                            <Setter Property="Foreground" Value="{StaticResource Main_Foreground}"></Setter>
                         </Style>
                     </DataGridTextColumn.EditingElementStyle>
                 </DataGridTextColumn>
@@ -51,6 +64,9 @@
                         <Style TargetType="TextBox">
                             <Setter Property="MaxLength" Value="100"></Setter>
                             <Setter Property="TextWrapping" Value="Wrap"></Setter>
+                            <Setter Property="Background" Value="{StaticResource Input_Focused}"></Setter>
+                            <Setter Property="BorderThickness" Value="0"></Setter>
+                            <Setter Property="Foreground" Value="{StaticResource Main_Foreground}"></Setter>
                         </Style>
                     </DataGridTextColumn.EditingElementStyle>
                     <DataGridTextColumn.ElementStyle>
@@ -63,15 +79,31 @@
                     <DataGridTextColumn.EditingElementStyle>
                         <Style TargetType="TextBox">
                             <Setter Property="MaxLength" Value="5"></Setter>
+                            <Setter Property="Background" Value="{StaticResource Input_Focused}"></Setter>
+                            <Setter Property="BorderThickness" Value="0"></Setter>
+                            <Setter Property="Foreground" Value="{StaticResource Main_Foreground}"></Setter>
                         </Style>
                     </DataGridTextColumn.EditingElementStyle>
                 </DataGridTextColumn>
                 <DataGridComboBoxColumn xaml:Name="ColumnPosition" Header="Должность" SelectedItemBinding="{Binding Position}" Width="*"></DataGridComboBoxColumn>
+                <DataGridTextColumn Header="Зарплата" Binding="{Binding Salary}" Width="Auto">
+                    <DataGridTextColumn.EditingElementStyle>
+                        <Style TargetType="TextBox">
+                            <Setter Property="MaxLength" Value="5"></Setter>
+                            <Setter Property="Background" Value="{StaticResource Input_Focused}"></Setter>
+                            <Setter Property="BorderThickness" Value="0"></Setter>
+                            <Setter Property="Foreground" Value="{StaticResource Main_Foreground}"></Setter>
+                        </Style>
+                    </DataGridTextColumn.EditingElementStyle>
+                </DataGridTextColumn>
                 <DataGridTextColumn Header="Логин" Binding="{Binding UserLogin}" Width="*">
                     <DataGridTextColumn.EditingElementStyle>
                         <Style TargetType="TextBox">
                             <Setter Property="MaxLength" Value="50"></Setter>
                             <Setter Property="TextWrapping" Value="Wrap"></Setter>
+                            <Setter Property="Background" Value="{StaticResource Input_Focused}"></Setter>
+                            <Setter Property="BorderThickness" Value="0"></Setter>
+                            <Setter Property="Foreground" Value="{StaticResource Main_Foreground}"></Setter>
                         </Style>
                     </DataGridTextColumn.EditingElementStyle>
                     <DataGridTextColumn.ElementStyle>
@@ -85,6 +117,9 @@
                         <Style TargetType="TextBox">
                             <Setter Property="MaxLength" Value="50"></Setter>
                             <Setter Property="TextWrapping" Value="Wrap"></Setter>
+                            <Setter Property="Background" Value="{StaticResource Input_Focused}"></Setter>
+                            <Setter Property="BorderThickness" Value="0"></Setter>
+                            <Setter Property="Foreground" Value="{StaticResource Main_Foreground}"></Setter>
                         </Style>
                     </DataGridTextColumn.EditingElementStyle>
                     <DataGridTextColumn.ElementStyle>

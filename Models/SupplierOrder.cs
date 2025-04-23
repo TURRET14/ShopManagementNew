@@ -11,11 +11,19 @@ public partial class SupplierOrder
 
     public int? EmployeeId { get; set; }
 
-    public DateOnly Date { get; set; }
+    public DateTimeOffset Date { get; set; }
 
     public virtual Employee? Employee { get; set; }
 
     public virtual Supplier? Supplier { get; set; }
 
     public virtual ICollection<SupplierOrderItem> SupplierOrderItems { get; set; } = new List<SupplierOrderItem>();
+
+    public string LocalDate
+    {
+        get
+        {
+            return Date.DateTime.ToShortDateString() + " " + Date.DateTime.ToShortTimeString();
+        }
+    }
 }
