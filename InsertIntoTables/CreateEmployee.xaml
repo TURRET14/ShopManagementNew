@@ -85,7 +85,11 @@
                         </Style>
                     </DataGridTextColumn.EditingElementStyle>
                 </DataGridTextColumn>
-                <DataGridComboBoxColumn xaml:Name="ColumnPosition" Header="Должность" SelectedItemBinding="{Binding Position}" Width="*"></DataGridComboBoxColumn>
+                <DataGridComboBoxColumn xaml:Name="ColumnPosition" Header="Должность" SelectedItemBinding="{Binding Position}" Width="*">
+                    <DataGridComboBoxColumn.EditingElementStyle>
+                        <Style TargetType="ComboBox" BasedOn="{StaticResource ComboBoxStyle}"></Style>
+                    </DataGridComboBoxColumn.EditingElementStyle>
+                </DataGridComboBoxColumn>
                 <DataGridTextColumn Header="Зарплата" Binding="{Binding Salary}" Width="Auto">
                     <DataGridTextColumn.EditingElementStyle>
                         <Style TargetType="TextBox">

@@ -52,7 +52,11 @@
                         </Style>
                     </DataGridTextColumn.EditingElementStyle>
                 </DataGridTextColumn>
-                <DataGridComboBoxColumn xaml:Name="ColumnGender" Header="Пол" SelectedItemBinding="{Binding Gender}" Width="Auto"></DataGridComboBoxColumn>
+                <DataGridComboBoxColumn xaml:Name="ColumnGender" Header="Пол" SelectedItemBinding="{Binding Gender}" Width="Auto">
+                    <DataGridComboBoxColumn.EditingElementStyle>
+                        <Style TargetType="ComboBox" BasedOn="{StaticResource ComboBoxStyle}"></Style>
+                    </DataGridComboBoxColumn.EditingElementStyle>
+                </DataGridComboBoxColumn>
                 <DataGridTextColumn Header="Телефон" Binding="{Binding PhoneNumber}" Width="Auto">
                     <DataGridTextColumn.EditingElementStyle>
                         <Style TargetType="TextBox">
@@ -89,7 +93,11 @@
                         </Style>
                     </DataGridTextColumn.EditingElementStyle>
                 </DataGridTextColumn>
-                <DataGridComboBoxColumn xaml:Name="ColumnPosition" Header="Должность" SelectedItemBinding="{Binding Position}" Width="Auto"></DataGridComboBoxColumn>
+                <DataGridComboBoxColumn xaml:Name="ColumnPosition" Header="Должность" SelectedItemBinding="{Binding Position}" Width="Auto">
+                    <DataGridComboBoxColumn.EditingElementStyle>
+                        <Style TargetType="ComboBox" BasedOn="{StaticResource ComboBoxStyle}"></Style>
+                    </DataGridComboBoxColumn.EditingElementStyle>
+                </DataGridComboBoxColumn>
                 <DataGridTextColumn Header="Зарплата" Binding="{Binding Salary}" Width="Auto">
                     <DataGridTextColumn.EditingElementStyle>
                         <Style TargetType="TextBox">

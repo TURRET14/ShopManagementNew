@@ -285,7 +285,7 @@
                 <ControlTemplate TargetType="{xaml:Type ToggleButton}">
                     <Border xaml:Name="templateRoot" Background="{StaticResource ComboBox.Static.Background}" BorderBrush="{StaticResource ComboBox.Static.Border}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="true">
                         <Border xaml:Name="splitBorder" BorderBrush="Transparent" BorderThickness="1" HorizontalAlignment="Right" Margin="0" SnapsToDevicePixels="true" Width="{DynamicResource {xaml:Static SystemParameters.VerticalScrollBarWidthKey}}">
-                            <TextBlock xaml:Name="arrow" Text="▼" FontSize="20" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center"/>
+                            <TextBlock xaml:Name="arrow" Text="▼" FontSize="10" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center"/>
                         </Border>
                     </Border>
                     <ControlTemplate.Triggers>

@@ -20,7 +20,7 @@
             <DataGrid.Columns>
                 <DataGridComboBoxColumn xaml:Name="ColumnCustomer" Header="Клиент" SelectedItemBinding="{Binding Customer}" DisplayMemberPath="NameId" Width="*">
                     <DataGridComboBoxColumn.EditingElementStyle>
-                        <Style TargetType="ComboBox">
+                        <Style TargetType="ComboBox" BasedOn="{StaticResource ComboBoxStyle}">
                             <Setter Property="IsEditable" Value="True"/>
                             <Setter Property="StaysOpenOnEdit" Value="True"></Setter>
                         </Style>
