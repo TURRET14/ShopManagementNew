@@ -18,40 +18,36 @@ using System.Windows.Shapes;
 
 namespace ShopManagement.Tables
 {
-    public partial class CustomerReturnItemsTable : UserControl
+    public partial class SupplierReturnItemsTable : UserControl
     {
-        private List<CustomerReturnItem> CustomerReturnItemsList;
+        private List<SupplierReturnItem> SupplierReturnItemsList;
         public event Events.ShowMessageDelegate ShowMessageEvent;
         public event Events.ShowLoginPageDelegate ShowLoginPageEvent;
         public event Events.ShowAnotherTabDelegate ShowAnotherTabEvent;
-        private CustomerOrderItem OrderItem;
-        private CustomerOrder Order;
-        public CustomerReturnItemsTable(Events.ShowAnotherTabDelegate ShowAnotherTab, CustomerOrderItem OrderItemObject, CustomerOrder OrderObject, Events.ShowMessageDelegate ShowMessage, Events.ShowLoginPageDelegate ShowLoginPage)
+        private SupplierOrderItem OrderItem;
+        private SupplierOrder Order;
+        public SupplierReturnItemsTable(Events.ShowAnotherTabDelegate ShowAnotherTab, SupplierOrderItem OrderItemObject, SupplierOrder OrderObject, Events.ShowMessageDelegate ShowMessage, Events.ShowLoginPageDelegate ShowLoginPage)
         {
             InitializeComponent();
-            if (UserData.AccessLevel != "SYSTEM_ADMIN" && UserData.AccessLevel != "SHOP_ADMIN")
-            {
-                ActionsPanel.Visibility = Visibility.Collapsed;
-            }
             if (UserData.AccessLevel != "SYSTEM_ADMIN" && UserData.AccessLevel != "SHOP_ADMIN" && UserData.AccessLevel != "SHOP_MANAGER")
             {
-                Button_Create.Visibility = Visibility.Collapsed;
+                ActionsPanel.Visibility = Visibility.Collapsed;
             }
             ShowAnotherTabEvent = ShowAnotherTab;
             OrderItem = OrderItemObject;
             Order = OrderObject;
             ShowMessageEvent = ShowMessage;
             ShowLoginPageEvent = ShowLoginPage;
-            DataGrid_Header.ItemsSource = new List<CustomerOrderItem>() { OrderItem };
+            DataGrid_Header.ItemsSource = new List<SupplierOrderItem>() { OrderItem };
             try
             {
-                CustomerReturnItemsList = ShopManagementContext.GetContext().CustomerReturnItems.FromSqlRaw("EXEC GetCustomerReturnItems @AdminLogin = {0}, @AdminPassword = {1}", UserData.Login, UserData.Password).AsNoTracking().AsEnumerable().Where(Entry => Entry.OrderItemId == OrderItem.Id).ToList();
+                SupplierReturnItemsList = ShopManagementContext.GetContext().SupplierReturnItems.FromSqlRaw("EXEC GetSupplierReturnItems @AdminLogin = {0}, @AdminPassword = {1}", UserData.Login, UserData.Password).AsNoTracking().AsEnumerable().Where(Entry => Entry.OrderItemId == OrderItem.Id).ToList();
                 List<Employee> Employees = ShopManagementContext.GetContext().Employees.FromSqlRaw("EXEC GetEmployeesIDAndNames @AdminLogin = {0}, @AdminPassword = {1}", UserData.Login, UserData.Password).AsNoTracking().AsEnumerable().ToList();
-                foreach (CustomerReturnItem ReturnItem in CustomerReturnItemsList)
+                foreach (SupplierReturnItem ReturnItem in SupplierReturnItemsList)
                 {
                     ReturnItem.Employee = Employees.FirstOrDefault(Entry => Entry.Id == ReturnItem.EmployeeId);
                 }
-                DataGrid_Table.ItemsSource = CustomerReturnItemsList;
+                DataGrid_Table.ItemsSource = SupplierReturnItemsList;
             }
             catch (SqlException Ex)
             {
@@ -61,14 +57,14 @@ namespace ShopManagement.Tables
 
         private void Button_Create_Click(object sender, RoutedEventArgs e)
         {
-            ShowAnotherTabEvent.Invoke(new InsertIntoTables.CreateCustomerReturnItem(ShowAnotherTabEvent, OrderItem, Order, ShowMessageEvent, ShowLoginPageEvent));
+            ShowAnotherTabEvent.Invoke(new InsertIntoTables.CreateSupplierReturnItem(ShowAnotherTabEvent, OrderItem, Order, ShowMessageEvent, ShowLoginPageEvent));
         }
 
         private void DataGrid_Table_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             if (DataGrid_Table.SelectedItem != null)
             {
-                ShowAnotherTabEvent.Invoke(new UpdateTables.UpdateCustomerReturnItem(ShowAnotherTabEvent, (CustomerReturnItem)DataGrid_Table.SelectedItem, OrderItem, Order, ShowMessageEvent, ShowLoginPageEvent));
+                ShowAnotherTabEvent.Invoke(new UpdateTables.UpdateSupplierReturnItem(ShowAnotherTabEvent, (SupplierReturnItem)DataGrid_Table.SelectedItem, OrderItem, Order, ShowMessageEvent, ShowLoginPageEvent));
             }
         }
 
@@ -76,8 +72,8 @@ namespace ShopManagement.Tables
         {
             try
             {
-                ShopManagementContext.GetContext().Database.ExecuteSqlRaw("EXEC Dbo.DeleteCustomerOrderItem @ID = {0}, @AdminLogin = {1}, @AdminPassword = {2}", OrderItem.Id, UserData.Login, UserData.Password);
-                ShowAnotherTabEvent.Invoke(new Tables.CustomerOrderItemsTable(ShowAnotherTabEvent, Order, ShowMessageEvent, ShowLoginPageEvent));
+                ShopManagementContext.GetContext().Database.ExecuteSqlRaw("EXEC Dbo.DeleteSupplierOrderItem @ID = {0}, @AdminLogin = {1}, @AdminPassword = {2}", OrderItem.Id, UserData.Login, UserData.Password);
+                ShowAnotherTabEvent.Invoke(new Tables.SupplierOrderItemsTable(ShowAnotherTabEvent, Order, ShowMessageEvent, ShowLoginPageEvent));
             }
             catch (SqlException Ex)
             {
@@ -87,12 +83,12 @@ namespace ShopManagement.Tables
 
         private void Button_Back_Click(object sender, RoutedEventArgs e)
         {
-            ShowAnotherTabEvent.Invoke(new Tables.CustomerOrderItemsTable(ShowAnotherTabEvent, Order, ShowMessageEvent, ShowLoginPageEvent));
+            ShowAnotherTabEvent.Invoke(new Tables.SupplierOrderItemsTable(ShowAnotherTabEvent, Order, ShowMessageEvent, ShowLoginPageEvent));
         }
 
         private void Button_Filter_Click(object sender, RoutedEventArgs e)
         {
-            List<CustomerReturnItem> FilteredList = new List<CustomerReturnItem>(CustomerReturnItemsList);
+            List<SupplierReturnItem> FilteredList = new List<SupplierReturnItem>(SupplierReturnItemsList);
             if (CheckBox_EmployeeName.IsChecked == true)
             {
                 if (TextBox_EmployeeName.Text.Length > 0)

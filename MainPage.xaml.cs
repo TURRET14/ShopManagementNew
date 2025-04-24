@@ -111,5 +111,10 @@ namespace ShopManagement
         {
             ShowLoginPageEvent.Invoke();
         }
+
+        private void Button_SupplierOrders_Click(object sender, RoutedEventArgs e)
+        {
+            ShowAnotherTab(new Tables.SupplierOrdersTable(ShowAnotherTab, ShowMessageEvent, ShowLoginPageEvent));
+        }
     }
 }

@@ -19,14 +19,14 @@ using System.Windows.Shapes;
 
 namespace ShopManagement.Tables
 {
-    public partial class CustomerOrderItemsTable : UserControl
+    public partial class SupplierOrderItemsTable : UserControl
     {
-        private List<CustomerOrderItem> OrderItemsList;
+        private List<SupplierOrderItem> OrderItemsList;
         public event Events.ShowMessageDelegate ShowMessageEvent;
         public event Events.ShowLoginPageDelegate ShowLoginPageEvent;
         public event Events.ShowAnotherTabDelegate ShowAnotherTabEvent;
-        private CustomerOrder Order;
-        public CustomerOrderItemsTable(Events.ShowAnotherTabDelegate ShowAnotherTab, CustomerOrder OrderObject, Events.ShowMessageDelegate ShowMessage, Events.ShowLoginPageDelegate ShowLoginPage)
+        private SupplierOrder Order;
+        public SupplierOrderItemsTable(Events.ShowAnotherTabDelegate ShowAnotherTab, SupplierOrder OrderObject, Events.ShowMessageDelegate ShowMessage, Events.ShowLoginPageDelegate ShowLoginPage)
         {
             InitializeComponent();
             if (UserData.AccessLevel != "SYSTEM_ADMIN" && UserData.AccessLevel != "SHOP_ADMIN")
@@ -37,12 +37,12 @@ namespace ShopManagement.Tables
             Order = OrderObject;
             ShowMessageEvent = ShowMessage;
             ShowLoginPageEvent = ShowLoginPage;
-            DataGrid_Header.ItemsSource = new List<CustomerOrder> { Order };
+            DataGrid_Header.ItemsSource = new List<SupplierOrder> { Order };
             try
             {
-                OrderItemsList = ShopManagementContext.GetContext().CustomerOrderItems.FromSqlRaw("EXEC GetCustomerOrderItems @AdminLogin = {0}, @AdminPassword = {1}", UserData.Login, UserData.Password).AsNoTracking().AsEnumerable().Where(Entry => Entry.OrderId == Order.Id).ToList();
+                OrderItemsList = ShopManagementContext.GetContext().SupplierOrderItems.FromSqlRaw("EXEC GetSupplierOrderItems @AdminLogin = {0}, @AdminPassword = {1}", UserData.Login, UserData.Password).AsNoTracking().AsEnumerable().Where(Entry => Entry.OrderId == Order.Id).ToList();
                 List<Product> Products = ShopManagementContext.GetContext().Products.FromSqlRaw("EXEC GetProducts @AdminLogin = {0}, @AdminPassword = {1}", UserData.Login, UserData.Password).AsNoTracking().AsEnumerable().ToList();
-                foreach (CustomerOrderItem OrderItem in OrderItemsList)
+                foreach (SupplierOrderItem OrderItem in OrderItemsList)
                 {
                     OrderItem.Product = Products.FirstOrDefault(Entry => Entry.Id == OrderItem.ProductId);
                 }
@@ -56,14 +56,14 @@ namespace ShopManagement.Tables
 
         private void Button_Create_Click(object sender, RoutedEventArgs e)
         {
-            ShowAnotherTabEvent.Invoke(new InsertIntoTables.CreateCustomerOrderItem(ShowAnotherTabEvent, Order, ShowMessageEvent, ShowLoginPageEvent));
+            ShowAnotherTabEvent.Invoke(new InsertIntoTables.CreateSupplierOrderItem(ShowAnotherTabEvent, Order, ShowMessageEvent, ShowLoginPageEvent));
         }
 
         private void DataGrid_Table_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             if (DataGrid_Table.SelectedItem != null)
             {
-                ShowAnotherTabEvent.Invoke(new Tables.CustomerReturnItemsTable(ShowAnotherTabEvent, (CustomerOrderItem)DataGrid_Table.SelectedItem, Order, ShowMessageEvent, ShowLoginPageEvent));
+                ShowAnotherTabEvent.Invoke(new Tables.SupplierReturnItemsTable(ShowAnotherTabEvent, (SupplierOrderItem)DataGrid_Table.SelectedItem, Order, ShowMessageEvent, ShowLoginPageEvent));
             }
         }
 
@@ -71,8 +71,8 @@ namespace ShopManagement.Tables
         {
             try
             {
-                ShopManagementContext.GetContext().Database.ExecuteSqlRaw("EXEC Dbo.DeleteCustomerOrder @ID = {0}, @AdminLogin = {1}, @AdminPassword = {2}", Order.Id, UserData.Login, UserData.Password);
-                ShowAnotherTabEvent.Invoke(new Tables.CustomerOrdersTable(ShowAnotherTabEvent, ShowMessageEvent, ShowLoginPageEvent));
+                ShopManagementContext.GetContext().Database.ExecuteSqlRaw("EXEC Dbo.DeleteSupplierOrder @ID = {0}, @AdminLogin = {1}, @AdminPassword = {2}", Order.Id, UserData.Login, UserData.Password);
+                ShowAnotherTabEvent.Invoke(new Tables.SupplierOrdersTable(ShowAnotherTabEvent, ShowMessageEvent, ShowLoginPageEvent));
             }
             catch (SqlException Ex)
             {
@@ -82,12 +82,12 @@ namespace ShopManagement.Tables
 
         private void Button_Back_Click(object sender, RoutedEventArgs e)
         {
-            ShowAnotherTabEvent.Invoke(new Tables.CustomerOrdersTable(ShowAnotherTabEvent, ShowMessageEvent, ShowLoginPageEvent));
+            ShowAnotherTabEvent.Invoke(new Tables.SupplierOrdersTable(ShowAnotherTabEvent, ShowMessageEvent, ShowLoginPageEvent));
         }
 
         private void Button_Filter_Click(object sender, RoutedEventArgs e)
         {
-            List<CustomerOrderItem> FilteredList = new List<CustomerOrderItem>(OrderItemsList);
+            List<SupplierOrderItem> FilteredList = new List<SupplierOrderItem>(OrderItemsList);
             if (CheckBox_ProductName.IsChecked == true)
             {
                 if (TextBox_ProductName.Text.Length > 0)

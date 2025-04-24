@@ -250,7 +250,7 @@
 
     <SolidColorBrush xaml:Key="ComboBox.Static.Border" Color="#FFACACAC"/>
     <SolidColorBrush xaml:Key="ComboBox.Static.Glyph" Color="#FF606060"/>
-    <SolidColorBrush xaml:Key="ComboBox.Static.Editable.Background" Color="#FFFFFFFF"/>
+    <SolidColorBrush xaml:Key="ComboBox.Static.Editable.Background" Color="{StaticResource Color_Input_Focused}"/>
     <SolidColorBrush xaml:Key="ComboBox.Static.Editable.Border" Color="#FFABADB3"/>
     <SolidColorBrush xaml:Key="ComboBox.Static.Editable.Button.Background" Color="Transparent"/>
     <SolidColorBrush xaml:Key="ComboBox.Static.Editable.Button.Border" Color="Transparent"/>
@@ -268,10 +268,10 @@
     <SolidColorBrush xaml:Key="ComboBox.Pressed.Editable.Border" Color="#FF569DE5"/>
     <SolidColorBrush xaml:Key="ComboBox.Pressed.Editable.Button.Background" Color="{StaticResource Color_Input_Focused}"/>
     <SolidColorBrush xaml:Key="ComboBox.Pressed.Editable.Button.Border" Color="#FF569DE5"/>
-    <SolidColorBrush xaml:Key="ComboBox.Disabled.Background" Color="#FFF0F0F0"/>
+    <SolidColorBrush xaml:Key="ComboBox.Disabled.Background" Color="{StaticResource Color_Input_Focused}"/>
     <SolidColorBrush xaml:Key="ComboBox.Disabled.Border" Color="#FFD9D9D9"/>
     <SolidColorBrush xaml:Key="ComboBox.Disabled.Glyph" Color="#FFBFBFBF"/>
-    <SolidColorBrush xaml:Key="ComboBox.Disabled.Editable.Background" Color="#FFFFFFFF"/>
+    <SolidColorBrush xaml:Key="ComboBox.Disabled.Editable.Background" Color="{StaticResource Color_Input_Default}"/>
     <SolidColorBrush xaml:Key="ComboBox.Disabled.Editable.Border" Color="#FFBFBFBF"/>
     <SolidColorBrush xaml:Key="ComboBox.Disabled.Editable.Button.Background" Color="Transparent"/>
     <SolidColorBrush xaml:Key="ComboBox.Disabled.Editable.Button.Border" Color="Transparent"/>
@@ -384,8 +384,20 @@
             </Popup>
             <ToggleButton xaml:Name="toggleButton" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Grid.ColumnSpan="2" IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource Mode=TemplatedParent}}" Style="{StaticResource ComboBoxToggleButton}"/>
             <ContentPresenter xaml:Name="contentPresenter" ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}" ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}" Content="{TemplateBinding SelectionBoxItem}" ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" IsHitTestVisible="false" Margin="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+            <TextBox xaml:Name="PART_EditableTextBox"
+                 Background="{TemplateBinding Background}"
+                 HorizontalAlignment="Stretch"
+                 VerticalAlignment="Stretch"
+                 Margin="{TemplateBinding Padding}"
+                 Focusable="True"
+                 Visibility="Hidden"
+                 IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource TemplatedParent}}"/>
         </Grid>
         <ControlTemplate.Triggers>
+            <Trigger Property="IsEditable" Value="True">
+                <Setter TargetName="contentPresenter" Property="Visibility" Value="Hidden"/>
+                <Setter TargetName="PART_EditableTextBox" Property="Visibility" Value="Visible"/>
+            </Trigger>
             <Trigger Property="HasDropShadow" SourceName="PART_Popup" Value="false">
                 <Setter Property="Margin" TargetName="shadow" Value="0,0,5,5"/>
                 <Setter Property="Color" TargetName="shadow" Value="#71000000"/>

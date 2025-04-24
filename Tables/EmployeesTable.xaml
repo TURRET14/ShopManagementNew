@@ -4,7 +4,6 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Dictionary.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
-            
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid Margin="10">

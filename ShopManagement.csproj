@@ -23,6 +23,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="InsertIntoTables\CreateSupplierReturnItem.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="InsertIntoTables\CreateSupplierOrderItem.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="InsertIntoTables\CreateSupplierOrder.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="InsertIntoTables\CreateCustomerReturnItem.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -41,13 +50,25 @@
     <Compile Update="InsertIntoTables\CreateProduct.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Tables\SupplierReturnItemsTable.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Tables\SupplierOrderItemsTable.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Tables\CustomerOrderItemsTable.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Tables\SupplierOrdersTable.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Tables\CustomerReturnItemsTable.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Tables\CustomerOrdersTable.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UpdateTables\UpdateSupplierReturnItem.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="UpdateTables\UpdateCustomerReturnItem.xaml.cs">

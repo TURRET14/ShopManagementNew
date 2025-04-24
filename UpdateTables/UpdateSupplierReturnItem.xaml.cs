@@ -18,14 +18,14 @@ using System.Windows.Shapes;
 
 namespace ShopManagement.UpdateTables
 {
-    public partial class UpdateCustomerReturnItem : UserControl
+    public partial class UpdateSupplierReturnItem : UserControl
     {
         public event Events.ShowMessageDelegate ShowMessageEvent;
         public event Events.ShowLoginPageDelegate ShowLoginPageEvent;
         public event Events.ShowAnotherTabDelegate ShowAnotherTabEvent;
-        private CustomerOrderItem OrderItem;
-        private CustomerOrder Order;
-        public UpdateCustomerReturnItem(Events.ShowAnotherTabDelegate ShowAnotherTab, CustomerReturnItem Selected, CustomerOrderItem OrderItemObject, CustomerOrder OrderObject, Events.ShowMessageDelegate ShowMessage, Events.ShowLoginPageDelegate ShowLoginPage)
+        private SupplierOrderItem OrderItem;
+        private SupplierOrder Order;
+        public UpdateSupplierReturnItem(Events.ShowAnotherTabDelegate ShowAnotherTab, SupplierReturnItem Selected, SupplierOrderItem OrderItemObject, SupplierOrder OrderObject, Events.ShowMessageDelegate ShowMessage, Events.ShowLoginPageDelegate ShowLoginPage)
         {
             InitializeComponent();
             if (UserData.AccessLevel != "SYSTEM_ADMIN" && UserData.AccessLevel != "SHOP_ADMIN")
@@ -41,7 +41,7 @@ namespace ShopManagement.UpdateTables
             {
                 List<Employee> Employees = ShopManagementContext.GetContext().Employees.FromSqlRaw("EXEC GetEmployeesIDAndNames @AdminLogin = {0}, @AdminPassword = {1}", UserData.Login, UserData.Password).AsNoTracking().AsEnumerable().ToList();
                 Selected.Employee = Employees.FirstOrDefault(Entry => Entry.Id == Selected.EmployeeId);
-                DataGrid_Table.ItemsSource = new List<CustomerReturnItem>() { Selected };
+                DataGrid_Table.ItemsSource = new List<SupplierReturnItem>() { Selected };
             }
             catch (SqlException Ex)
             {
@@ -53,9 +53,9 @@ namespace ShopManagement.UpdateTables
         {
             try
             {
-                CustomerReturnItem Selected = ((List<CustomerReturnItem>)DataGrid_Table.ItemsSource)[0];
-                ShopManagementContext.GetContext().Database.ExecuteSqlRaw("EXEC Dbo.DeleteCustomerReturnItem @ID = {0}, @AdminLogin = {1}, @AdminPassword = {2}", Selected.Id, UserData.Login, UserData.Password);
-                ShowAnotherTabEvent.Invoke(new Tables.CustomerReturnItemsTable(ShowAnotherTabEvent, OrderItem, Order, ShowMessageEvent, ShowLoginPageEvent));
+                SupplierReturnItem Selected = ((List<SupplierReturnItem>)DataGrid_Table.ItemsSource)[0];
+                ShopManagementContext.GetContext().Database.ExecuteSqlRaw("EXEC Dbo.DeleteSupplierReturnItem @ID = {0}, @AdminLogin = {1}, @AdminPassword = {2}", Selected.Id, UserData.Login, UserData.Password);
+                ShowAnotherTabEvent.Invoke(new Tables.SupplierOrdersTable(ShowAnotherTabEvent, ShowMessageEvent, ShowLoginPageEvent));
             }
             catch (SqlException Ex)
             {
@@ -65,7 +65,7 @@ namespace ShopManagement.UpdateTables
 
         private void Button_Back_Click(object sender, RoutedEventArgs e)
         {
-            ShowAnotherTabEvent.Invoke(new Tables.CustomerReturnItemsTable(ShowAnotherTabEvent, OrderItem, Order, ShowMessageEvent, ShowLoginPageEvent));
+            ShowAnotherTabEvent.Invoke(new Tables.SupplierReturnItemsTable(ShowAnotherTabEvent, OrderItem, Order, ShowMessageEvent, ShowLoginPageEvent));
         }
     }
 }

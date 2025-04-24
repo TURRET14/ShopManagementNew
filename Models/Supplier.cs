@@ -16,4 +16,6 @@ public partial class Supplier
     public string? AccountNumber { get; set; }
 
     public virtual ICollection<SupplierOrder> SupplierOrders { get; set; } = new List<SupplierOrder>();
+
+    public string NameId => $"{Name} ID_{Id}"; 
 }
