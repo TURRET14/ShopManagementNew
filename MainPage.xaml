@@ -16,8 +16,8 @@
                 <ColumnDefinition Width="Auto"></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Row="0" Grid.Column="0" Text="Магазин" FontSize="40" Margin="10 0 0 0"></TextBlock>
-            <Button Name="Button_UserInfo" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" FontSize="40" Margin="0 0 10 0" Style="{StaticResource Button_Menu}" Click="TextBlock_UserInfo_Click"></Button>
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="Магазин" FontSize="40" Margin="10"></TextBlock>
+            <Button Name="Button_UserInfo" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" FontSize="40" Margin="10" Style="{StaticResource Button_Menu}" Click="TextBlock_UserInfo_Click"></Button>
             <Popup Name="Popup_UserInfo" PlacementTarget="{Binding ElementName=Button_UserInfo}" StaysOpen="False" Placement="Bottom" Width="{Binding ElementName=Button_UserInfo, Path=ActualWidth}" AllowsTransparency="True">
                 <Border Padding="10" CornerRadius="10" BorderThickness="1" BorderBrush="{StaticResource Background_Cards}">
                     <Button Click="Button_Click">Выйти</Button>

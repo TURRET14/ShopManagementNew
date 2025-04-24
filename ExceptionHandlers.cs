@@ -16,6 +16,10 @@ namespace ShopManagement
                 ShowLoginPageEvent.Invoke();
                 ShowMessageEvent.Invoke("Ошибка", "Ваша должность не позволяет совершить данную операцию!");
             }
+            else if (Ex.Message == "INVALID_DATA_ERROR")
+            {
+                ShowMessageEvent.Invoke("Ошибка", "Введенные данные не прошли валидацию!");
+            }
             else if (Ex.Message == "INVALID_ID")
             {
                 ShowMessageEvent.Invoke("Ошибка", "Неверный ID!");
