@@ -55,7 +55,7 @@ namespace ShopManagement.UpdateTables
             {
                 SupplierReturnItem Selected = ((List<SupplierReturnItem>)DataGrid_Table.ItemsSource)[0];
                 ShopManagementContext.GetContext().Database.ExecuteSqlRaw("EXEC Dbo.DeleteSupplierReturnItem @ID = {0}, @AdminLogin = {1}, @AdminPassword = {2}", Selected.Id, UserData.Login, UserData.Password);
-                ShowAnotherTabEvent.Invoke(new Tables.SupplierOrdersTable(ShowAnotherTabEvent, ShowMessageEvent, ShowLoginPageEvent));
+                ShowAnotherTabEvent.Invoke(new Tables.SupplierReturnItemsTable(ShowAnotherTabEvent, OrderItem, Order, ShowMessageEvent, ShowLoginPageEvent));
             }
             catch (SqlException Ex)
             {

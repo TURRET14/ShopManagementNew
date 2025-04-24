@@ -29,10 +29,6 @@ namespace ShopManagement.Tables
         public SupplierReturnItemsTable(Events.ShowAnotherTabDelegate ShowAnotherTab, SupplierOrderItem OrderItemObject, SupplierOrder OrderObject, Events.ShowMessageDelegate ShowMessage, Events.ShowLoginPageDelegate ShowLoginPage)
         {
             InitializeComponent();
-            if (UserData.AccessLevel != "SYSTEM_ADMIN" && UserData.AccessLevel != "SHOP_ADMIN" && UserData.AccessLevel != "SHOP_MANAGER")
-            {
-                ActionsPanel.Visibility = Visibility.Collapsed;
-            }
             ShowAnotherTabEvent = ShowAnotherTab;
             OrderItem = OrderItemObject;
             Order = OrderObject;
