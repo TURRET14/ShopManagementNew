@@ -101,7 +101,7 @@
                 <DataGridTextColumn Header="Зарплата" Binding="{Binding Salary}" Width="Auto">
                     <DataGridTextColumn.EditingElementStyle>
                         <Style TargetType="TextBox">
-                            <Setter Property="MaxLength" Value="5"></Setter>
+                            <Setter Property="MaxLength" Value="10"></Setter>
                             <Setter Property="Background" Value="{StaticResource Input_Focused}"></Setter>
                             <Setter Property="BorderThickness" Value="0"></Setter>
                             <Setter Property="Foreground" Value="{StaticResource Main_Foreground}"></Setter>

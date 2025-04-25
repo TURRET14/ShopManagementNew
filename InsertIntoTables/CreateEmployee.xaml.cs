@@ -111,6 +111,12 @@ namespace ShopManagement.InsertIntoTables
                     return;
                 }
 
+                if (Selected.Salary < 0)
+                {
+                    ShowMessageEvent("Ошибка Записи", "Зарплата Не Может Быть Меньше 0!");
+                    return;
+                }
+
                 switch (Selected.Position)
                 {
                     case "Администратор":

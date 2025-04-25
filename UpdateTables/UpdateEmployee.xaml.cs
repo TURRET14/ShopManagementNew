@@ -124,6 +124,12 @@ namespace ShopManagement.UpdateTables
                     return;
                 }
 
+                if (Selected.Salary < 0)
+                {
+                    ShowMessageEvent("Ошибка Записи", "Зарплата Не Может Быть Меньше 0!");
+                    return;
+                }
+
                 switch (Selected.Position)
                 {
                     case "Системный Администратор":
@@ -141,12 +147,6 @@ namespace ShopManagement.UpdateTables
                     default:
                         ShowMessageEvent("Ошибка Записи", "Указана недопустимая должность!");
                         return;
-                }
-
-                if (Selected.Salary < 0)
-                {
-                    ShowMessageEvent("Ошибка Записи", "Зарплата Не Может Быть Меньше 0!");
-                    return;
                 }
 
                 if (Selected.UserPassword is not null)
@@ -189,7 +189,7 @@ namespace ShopManagement.UpdateTables
                 ShopManagementContext.GetContext().Database.ExecuteSqlRaw("EXEC Dbo.UpdateEmployee @ID = {0}, @Name = {1},  @Age = {2}, @Gender = {3}, @PhoneNumber = {4}, @Email = {5}, @Experience = {6}, @Position = {7}, @Salary = {8}, @UserLogin = {9}, @UserPassword = {10}, @ChangePassword = {11}, @AdminLogin = {12}, @AdminPassword = {13}", Selected.Id, Selected.Name, Selected.Age, Selected.Gender, Selected.PhoneNumber, Selected.Email, Selected.Experience, Selected.Position, Selected.Salary, Selected.UserLogin, Selected.UserPassword, CheckBox_ChangePassword.IsChecked, UserData.Login, UserData.Password);
                 ShowAnotherTabEvent.Invoke(new Tables.EmployeesTable(ShowAnotherTabEvent, ShowMessageEvent, ShowLoginPageEvent));
 
-                if (IsCurrentUser == true)
+                if (IsCurrentUser == true && CheckBox_ChangePassword.IsChecked == true)
                 {
                     UserData.Login = Selected.UserLogin;
                     UserData.Password = Selected.UserPassword;
