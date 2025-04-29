@@ -50,6 +50,15 @@
     <Compile Update="InsertIntoTables\CreateProduct.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Reports\SupplierOrdersGroupByEmployeeReport.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Reports\SupplierOrdersGroupBySupplierReport.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Reports\CustomerOrdersGroupByEmployeeReport.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Tables\SupplierReturnItemsTable.xaml.cs">
       <SubType>Code</SubType>
     </Compile>

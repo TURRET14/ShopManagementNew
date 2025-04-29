@@ -55,11 +55,13 @@ namespace ShopManagement
                     Button_Employees.Visibility = Visibility.Collapsed;
                     Button_Suppliers.Visibility = Visibility.Collapsed;
                     Button_SupplierOrders.Visibility = Visibility.Collapsed;
+                    MenuItem_SupplierOrders.Visibility = Visibility.Collapsed;
                     break;
                 case "SHOP_CASHIER":
                     Button_Employees.Visibility = Visibility.Collapsed;
                     Button_Suppliers.Visibility = Visibility.Collapsed;
                     Button_SupplierOrders.Visibility = Visibility.Collapsed;
+                    MenuItem_SupplierOrders.Visibility = Visibility.Collapsed;
                     break;
                 default:
                     Button_Employees.Visibility = Visibility.Collapsed;
@@ -68,6 +70,8 @@ namespace ShopManagement
                     Button_Products.Visibility = Visibility.Collapsed;
                     Button_Orders.Visibility = Visibility.Collapsed;
                     Button_SupplierOrders.Visibility = Visibility.Collapsed;
+                    MenuItem_SupplierOrders.Visibility = Visibility.Collapsed;
+                    MenuItem_CustomerOrders.Visibility = Visibility.Collapsed;
                     break;
             }
         }
@@ -115,6 +119,26 @@ namespace ShopManagement
         private void Button_SupplierOrders_Click(object sender, RoutedEventArgs e)
         {
             ShowAnotherTab(new Tables.SupplierOrdersTable(ShowAnotherTab, ShowMessageEvent, ShowLoginPageEvent));
+        }
+
+        private void MenuItem_CustomerOrdersGroupByCustomer_Click(object sender, RoutedEventArgs e)
+        {
+            ShowAnotherTab(new Reports.CustomerOrdersGroupByCustomerReport(ShowMessageEvent, ShowLoginPageEvent));
+        }
+
+        private void MenuItem_CustomerOrdersGroupByEmployee_Click(object sender, RoutedEventArgs e)
+        {
+            ShowAnotherTab(new Reports.CustomerOrdersGroupByEmployeeReport(ShowMessageEvent, ShowLoginPageEvent));
+        }
+
+        private void MenuItem_SupplierOrdersGroupBySupplier_Click(object sender, RoutedEventArgs e)
+        {
+            ShowAnotherTab(new Reports.SupplierOrdersGroupBySupplierReport(ShowMessageEvent, ShowLoginPageEvent));
+        }
+
+        private void MenuItem_SupplierOrdersGroupByEmployee_Click(object sender, RoutedEventArgs e)
+        {
+            ShowAnotherTab(new Reports.SupplierOrdersGroupByEmployeeReport(ShowMessageEvent, ShowLoginPageEvent));
         }
     }
 }
