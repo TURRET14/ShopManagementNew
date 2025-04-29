@@ -36,6 +36,20 @@
                 <Button Name="Button_Customers" Click="Button_Customers_Click" Style="{StaticResource Button_Menu}" Margin="0 10 0 0" HorizontalContentAlignment="Left">Клиенты</Button>
                 <Button Name="Button_Suppliers" Click="Button_Suppliers_Click" Style="{StaticResource Button_Menu}" Margin="0 10 0 0" HorizontalContentAlignment="Left">Поставщики</Button>
                 <Button Name="Button_Employees" Click="Button_Employees_Click" Style="{StaticResource Button_Menu}" Margin="0 10 0 0" HorizontalContentAlignment="Left">Сотрудники</Button>
+                <Button Name="Button_Reports" Style="{StaticResource Button_Menu}" Margin="0 10 0 0" HorizontalContentAlignment="Left" Visibility="Hidden">
+                    <Menu HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Transparent">
+                        <MenuItem Header="Отчеты" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Transparent" Foreground="{StaticResource Main_Foreground}">
+                            <MenuItem Header="По Заказам">
+                                <MenuItem Header="По Клиентам"></MenuItem>
+                                <MenuItem Header="По Сотрудникам"></MenuItem>
+                            </MenuItem>
+                            <MenuItem Header="По Закупкам">
+                                <MenuItem Header="По Клиентам"></MenuItem>
+                                <MenuItem Header="По Сотрудникам"></MenuItem>
+                            </MenuItem>
+                        </MenuItem>
+                    </Menu>
+                </Button>
             </StackPanel>
             <Border Name="ContentControl_ForTables" Grid.Row="0" Grid.Column="1" Background="{StaticResource Background_Cards}" CornerRadius="20 0 0 0">
             </Border>

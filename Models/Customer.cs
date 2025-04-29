@@ -14,6 +14,6 @@ public partial class Customer
     public string? Email { get; set; }
 
     public virtual ICollection<CustomerOrder> CustomerOrders { get; set; } = new List<CustomerOrder>();
-
+    
     public string NameId => $"{Name} ID_{Id}";
 }

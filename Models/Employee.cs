@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Windows.Controls.Primitives;
 
 namespace ShopManagement.Models;
 
@@ -38,7 +37,9 @@ public partial class Employee
 
     public string NameId => $"{Name} ID_{Id}";
 
-    public string? ReadablePosition { get
+    public string? ReadablePosition
+    {
+        get
         {
             switch (Position)
             {

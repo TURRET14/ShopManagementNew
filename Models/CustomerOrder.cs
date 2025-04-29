@@ -19,7 +19,9 @@ public partial class CustomerOrder
 
     public virtual Employee? Employee { get; set; }
 
-    public string LocalDate { get
+    public string LocalDate
+    {
+        get
         {
             return Date.DateTime.ToShortDateString() + " " + Date.DateTime.ToShortTimeString();
         }
