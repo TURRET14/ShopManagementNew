@@ -18,7 +18,7 @@
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Row="0" Grid.Column="0" Text="Магазин" FontSize="40" Margin="10"></TextBlock>
             <Button Name="Button_UserInfo" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" FontSize="40" Margin="10" Style="{StaticResource Button_Menu}" Click="TextBlock_UserInfo_Click"></Button>
-            <Popup Name="Popup_UserInfo" PlacementTarget="{Binding ElementName=Button_UserInfo}" StaysOpen="False" Placement="Bottom" Width="{Binding ElementName=Button_UserInfo, Path=ActualWidth}" AllowsTransparency="True">
+            <Popup Name="Popup_UserInfo" PlacementTarget="{Binding ElementName=Button_UserInfo}" StaysOpen="False" Placement="Bottom" Width="{Binding ElementName=Button_UserInfo, Path=ActualWidth}" AllowsTransparency="True" PopupAnimation="Slide">
                 <Border Padding="10" CornerRadius="10" BorderThickness="1" BorderBrush="{StaticResource Background_Cards}">
                     <Button Click="Button_Click">Выйти</Button>
                 </Border>
@@ -36,9 +36,9 @@
                 <Button Name="Button_Customers" Click="Button_Customers_Click" Style="{StaticResource Button_Menu}" Margin="0 10 0 0" HorizontalContentAlignment="Left">Клиенты</Button>
                 <Button Name="Button_Suppliers" Click="Button_Suppliers_Click" Style="{StaticResource Button_Menu}" Margin="0 10 0 0" HorizontalContentAlignment="Left">Поставщики</Button>
                 <Button Name="Button_Employees" Click="Button_Employees_Click" Style="{StaticResource Button_Menu}" Margin="0 10 0 0" HorizontalContentAlignment="Left">Сотрудники</Button>
-                <Button Name="Button_Reports" Style="{StaticResource Button_Menu}" Margin="0 10 0 0" HorizontalContentAlignment="Left">
-                    <Menu HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Transparent">
-                        <MenuItem Header="Отчеты" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Transparent" Foreground="{StaticResource Main_Foreground}">
+                <Button Name="Button_Reports" Style="{StaticResource Button_Menu}" Margin="0 10 0 0" HorizontalContentAlignment="Stretch" Padding="0 5 5 5">
+                    <Menu Background="Transparent" Margin="0" Padding="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                        <MenuItem Header="Отчеты" Width="{Binding RelativeSource={RelativeSource AncestorType=Menu}, Path=ActualWidth}" Background="Transparent" Foreground="{StaticResource Main_Foreground}" Style="{StaticResource Root_MenuItemStyle}" Cursor="">
                             <MenuItem Name="MenuItem_CustomerOrders" Header="По Заказам">
                                 <MenuItem Header="По Клиентам" Click="MenuItem_CustomerOrdersGroupByCustomer_Click"></MenuItem>
                                 <MenuItem Header="По Сотрудникам" Click="MenuItem_CustomerOrdersGroupByEmployee_Click"></MenuItem>
