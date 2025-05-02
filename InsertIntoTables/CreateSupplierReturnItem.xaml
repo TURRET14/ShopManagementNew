@@ -22,7 +22,7 @@
                     <RowDefinition Height="Auto"></RowDefinition>
                     <RowDefinition Height="Auto"></RowDefinition>
                 </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0" Text="Деталь Закупки"></TextBlock>
+                <TextBlock Grid.Row="0" Text="Деталь Закупки" FontSize="30"></TextBlock>
                 <DataGrid Grid.Row="1" Name="DataGrid_Table_Info" AutoGenerateColumns="False" HeadersVisibility="Column" HorizontalAlignment="Stretch" VerticalAlignment="Top" ColumnWidth="Auto" IsReadOnly="True" HorizontalScrollBarVisibility="Disabled">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="Auto"></DataGridTextColumn>
@@ -34,7 +34,7 @@
             </Grid>
         </Border>
 
-        <TextBlock Grid.Row="2" Text="Деталь Возврата Закупки (Создание)" Margin="0 10 0 0"></TextBlock>
+        <TextBlock Grid.Row="2" Text="Деталь Возврата Закупки (Создание)" Margin="0 10 0 0" FontSize="30"></TextBlock>
         <Button Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center" Click="Button_Create_Click" Margin="0 10 0 0">+Создать</Button>
         <DataGrid Grid.Row="4" Name="DataGrid_Table" AutoGenerateColumns="False" HeadersVisibility="Column" HorizontalAlignment="Stretch" VerticalAlignment="Top" ColumnWidth="Auto" CanUserAddRows="False" CanUserDeleteRows="False" HorizontalScrollBarVisibility="Disabled" Margin="0 10 0 0">
             <DataGrid.Columns>

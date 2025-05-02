@@ -1,4 +1,4 @@
-﻿<Window xaml:Class="ShopManagement.MainWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:xaml="http://schemas.microsoft.com/winfx/2006/xaml" Title="ShopManagement">
+﻿<Window xaml:Class="ShopManagement.MainWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:xaml="http://schemas.microsoft.com/winfx/2006/xaml" Title="Управление Магазином" RenderOptions.BitmapScalingMode="HighQuality" Icon="/Images/ShoppingBag.ico" MinWidth="1000" MinHeight="750" Width="1000" Height="750">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

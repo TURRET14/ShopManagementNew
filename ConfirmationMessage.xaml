@@ -1,0 +1,25 @@
+﻿<Popup xaml:Class="ShopManagement.ConfirmationMessage" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:xaml="http://schemas.microsoft.com/winfx/2006/xaml" PopupAnimation="Fade" AllowsTransparency="True" StaysOpen="False">
+    <Popup.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Dictionary.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Popup.Resources>
+    <Grid>
+        <Border HorizontalAlignment="Center" VerticalAlignment="Center" Background="{StaticResource Background_Secondary}" CornerRadius="20" BorderThickness="1" BorderBrush="{StaticResource Background_Cards}" Padding="20" MaxWidth="800">
+            <StackPanel>
+                <TextBlock Name="TextBlock_DialogHeader" TextWrapping="Wrap" FontSize="30"></TextBlock>
+                <TextBlock Name="TextBlock_DialogText" TextWrapping="Wrap" Margin="0 10 0 0"></TextBlock>
+                <Grid HorizontalAlignment="Stretch" Margin="0 10 0 0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="0" Name="Button_Yes" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Padding="5">Да</Button>
+                    <Button Grid.Column="1" Name="Button_No" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Padding="5" Margin="10 0 0 0">Нет</Button>
+                </Grid>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Popup>

@@ -21,9 +21,9 @@ namespace ShopManagement.InsertIntoTables
 {
     public partial class CreateCustomerOrderItem: UserControl
     {
-        public event Events.ShowMessageDelegate ShowMessageEvent;
-        public event Events.ShowLoginPageDelegate ShowLoginPageEvent;
-        public event Events.ShowAnotherTabDelegate ShowAnotherTabEvent;
+        private event Events.ShowMessageDelegate ShowMessageEvent;
+        private event Events.ShowLoginPageDelegate ShowLoginPageEvent;
+        private event Events.ShowAnotherTabDelegate ShowAnotherTabEvent;
         private CustomerOrder Order;
         private List<Product> ProductList;
         public CreateCustomerOrderItem(Events.ShowAnotherTabDelegate ShowAnotherTab, CustomerOrder OrderObject, Events.ShowMessageDelegate ShowMessage, Events.ShowLoginPageDelegate ShowLoginPage)

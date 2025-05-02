@@ -36,9 +36,13 @@ namespace ShopManagement
             {
                 ShowMessageEvent.Invoke("Ошибка", "Количество возвращаемых продуктов не должно превышать количество заказанных!");
             }
+            else if (Ex.Message == "ALREADY_TAKEN_LOGIN_ERROR")
+            {
+                ShowMessageEvent.Invoke("Ошибка", "Этот логин уже занят!");
+            }
             else
             {
-                ShowMessageEvent.Invoke("Ошибка", Ex.Message);
+                ShowMessageEvent.Invoke("Ошибка", "Неизвестная ошибка. Пожалуйста, перезапустите приложение!");
             }
         }
     }

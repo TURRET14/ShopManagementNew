@@ -13,13 +13,13 @@
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" Text="Все Сотрудники"></TextBlock>
+        <TextBlock Grid.Row="0" Text="Все Сотрудники" FontSize="30"></TextBlock>
         <Button Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Click="Button_Create_Click" Margin="0 10 0 0">+Создать</Button>
-        <Border Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center" CornerRadius="20" Padding="10" Margin="0 10 0 0">
+        <Border Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" CornerRadius="20" Padding="10" Margin="0 10 0 0">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"></ColumnDefinition>
-                    <ColumnDefinition Width="500"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"></RowDefinition>
@@ -33,50 +33,50 @@
                     <RowDefinition Height="Auto"></RowDefinition>
                 </Grid.RowDefinitions>
 
-                <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="Поиск"></TextBlock>
+                <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="Поиск" FontSize="30"></TextBlock>
 
-                <CheckBox Name="CheckBox_Name" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Left" VerticalContentAlignment="Center">Имя</CheckBox>
-                <TextBox Name="TextBox_Name" Grid.Row="1" Grid.Column="1"></TextBox>
+                <CheckBox Name="CheckBox_Name" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Margin="0 10 0 0">Имя</CheckBox>
+                <TextBox Name="TextBox_Name" Grid.Row="1" Grid.Column="1" Margin="10 10 0 0"></TextBox>
 
                 <CheckBox Name="CheckBox_Age" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Margin="0 10 0 0">Возраст</CheckBox>
-                <Grid Grid.Row="2" Grid.Column="1" Margin="0 10 0 0">
+                <Grid Grid.Row="2" Grid.Column="1" Margin="10 10 0 0">
                     <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
                         <ColumnDefinition></ColumnDefinition>
-                        <ColumnDefinition></ColumnDefinition>
-                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
                         <ColumnDefinition></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Column="0" HorizontalAlignment="Center">От</TextBlock>
-                    <TextBox Name="TextBox_AgeBegin" Grid.Column="1"></TextBox>
-                    <TextBlock Grid.Column="2" HorizontalAlignment="Center">До</TextBlock>
-                    <TextBox Name="TextBox_AgeEnd" Grid.Column="3"></TextBox>
+                    <TextBox Name="TextBox_AgeBegin" Grid.Column="1" Margin="10 0 0 0"></TextBox>
+                    <TextBlock Grid.Column="2" HorizontalAlignment="Center" Margin="10 0 0 0">До</TextBlock>
+                    <TextBox Name="TextBox_AgeEnd" Grid.Column="3" Margin="10 0 0 0"></TextBox>
                 </Grid>
 
                 <CheckBox Name="CheckBox_Gender" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Margin="0 10 0 0">Пол</CheckBox>
-                <ComboBox Name="ComboBox_Gender" Grid.Row="3" Grid.Column="1" Margin="0 10 0 0"></ComboBox>
+                <ComboBox Name="ComboBox_Gender" Grid.Row="3" Grid.Column="1" Margin="10 10 0 0"></ComboBox>
 
                 <CheckBox Name="CheckBox_PhoneNumber" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Margin="0 10 0 0">Телефон</CheckBox>
-                <TextBox Name="TextBox_PhoneNumber" Grid.Row="4" Grid.Column="1" Margin="0 10 0 0"></TextBox>
+                <TextBox Name="TextBox_PhoneNumber" Grid.Row="4" Grid.Column="1" Margin="10 10 0 0"></TextBox>
 
                 <CheckBox Name="CheckBox_Email" Grid.Row="5" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Margin="0 10 0 0">Почта</CheckBox>
-                <TextBox Name="TextBox_Email" Grid.Row="5" Grid.Column="1" Margin="0 10 0 0"></TextBox>
+                <TextBox Name="TextBox_Email" Grid.Row="5" Grid.Column="1" Margin="10 10 0 0"></TextBox>
 
                 <CheckBox Name="CheckBox_Experience" Grid.Row="6" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Margin="0 10 0 0">Опыт</CheckBox>
-                <Grid Grid.Row="6" Grid.Column="1" Margin="0 10 0 0">
+                <Grid Grid.Row="6" Grid.Column="1" Margin="10 10 0 0">
                     <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
                         <ColumnDefinition></ColumnDefinition>
-                        <ColumnDefinition></ColumnDefinition>
-                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
                         <ColumnDefinition></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Column="0" HorizontalAlignment="Center">От</TextBlock>
-                    <TextBox Name="TextBox_ExperienceBegin" Grid.Column="1"></TextBox>
-                    <TextBlock Grid.Column="2" HorizontalAlignment="Center">До</TextBlock>
-                    <TextBox Name="TextBox_ExperienceEnd" Grid.Column="3"></TextBox>
+                    <TextBox Name="TextBox_ExperienceBegin" Grid.Column="1" Margin="10 0 0 0"></TextBox>
+                    <TextBlock Grid.Column="2" HorizontalAlignment="Center" Margin="10 0 0 0">До</TextBlock>
+                    <TextBox Name="TextBox_ExperienceEnd" Grid.Column="3" Margin="10 0 0 0"></TextBox>
                 </Grid>
 
                 <CheckBox Name="CheckBox_Position" Grid.Row="7" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Margin="0 10 0 0">Должность</CheckBox>
-                <ComboBox Name="ComboBox_Position" Grid.Row="7" Grid.Column="1" Margin="0 10 0 0"></ComboBox>
+                <ComboBox Name="ComboBox_Position" Grid.Row="7" Grid.Column="1" Margin="10 10 0 0"></ComboBox>
 
                 <Button Grid.Row="8" Grid.ColumnSpan="2" Click="Button_Filter_Click" Margin="0 10 0 0">Найти</Button>
             </Grid>

@@ -53,7 +53,7 @@ public partial class ShopManagementContext : DbContext
     public virtual DbSet<SupplierReturnItem> SupplierReturnItems { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseSqlServer("Server=MYPC\\SQLDEVELOPER;Database=ShopManagement;User=Admin;Password=29072006;TrustServerCertificate=True");
+        => optionsBuilder.UseSqlServer("Server=SEMYONDESKTOP;Database=ShopManagement;User=sa;Password=12345;TrustServerCertificate=True");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

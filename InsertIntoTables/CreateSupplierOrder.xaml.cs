@@ -21,9 +21,9 @@ namespace ShopManagement.InsertIntoTables
 {
     public partial class CreateSupplierOrder: UserControl
     {
-        public event Events.ShowMessageDelegate ShowMessageEvent;
-        public event Events.ShowLoginPageDelegate ShowLoginPageEvent;
-        public event Events.ShowAnotherTabDelegate ShowAnotherTabEvent;
+        private event Events.ShowMessageDelegate ShowMessageEvent;
+        private event Events.ShowLoginPageDelegate ShowLoginPageEvent;
+        private event Events.ShowAnotherTabDelegate ShowAnotherTabEvent;
         private List<Supplier> SupplierList;
         public CreateSupplierOrder(Events.ShowAnotherTabDelegate ShowAnotherTab, Events.ShowMessageDelegate ShowMessage, Events.ShowLoginPageDelegate ShowLoginPage)
         {
@@ -52,18 +52,18 @@ namespace ShopManagement.InsertIntoTables
                 {
                     if (Selected.Supplier.Id < 0)
                     {
-                        ShowMessageEvent("Ошибка Записи", "Такого Клиента Нет!");
+                        ShowMessageEvent("Ошибка Записи", "Такого Поставщика Нет!");
                         return;
                     }
                     else if (SupplierList.FirstOrDefault(Selected.Supplier) is null)
                     {
-                        ShowMessageEvent("Ошибка Записи", "Такого Клиента Нет!");
+                        ShowMessageEvent("Ошибка Записи", "Такого Поставщика Нет!");
                         return;
                     }
                 }
                 else
                 {
-                    ShowMessageEvent("Ошибка Записи", "Клиент Не Может Быть Пустым!");
+                    ShowMessageEvent("Ошибка Записи", "Поставщик Не Может Быть Пустым!");
                     return;
                 }
 

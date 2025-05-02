@@ -20,9 +20,10 @@ namespace ShopManagement.UpdateTables
 {
     public partial class UpdateCustomerReturnItem : UserControl
     {
-        public event Events.ShowMessageDelegate ShowMessageEvent;
-        public event Events.ShowLoginPageDelegate ShowLoginPageEvent;
-        public event Events.ShowAnotherTabDelegate ShowAnotherTabEvent;
+        private event Events.ShowMessageDelegate ShowMessageEvent;
+        private event Events.ShowLoginPageDelegate ShowLoginPageEvent;
+        private event Events.ShowAnotherTabDelegate ShowAnotherTabEvent;
+
         private CustomerOrderItem OrderItem;
         private CustomerOrder Order;
         public UpdateCustomerReturnItem(Events.ShowAnotherTabDelegate ShowAnotherTab, CustomerReturnItem Selected, CustomerOrderItem OrderItemObject, CustomerOrder OrderObject, Events.ShowMessageDelegate ShowMessage, Events.ShowLoginPageDelegate ShowLoginPage)
@@ -51,16 +52,36 @@ namespace ShopManagement.UpdateTables
 
         private void Button_Delete_Click(object sender, RoutedEventArgs e)
         {
-            try
+            ConfirmationMessage Msg = new ConfirmationMessage("Удаление", "Вы уверены, что хотите удалить запись?");
+            Msg.PlacementTarget = ActionsPanel;
+            Msg.IsOpen = true;
+            void Confirm(object sender, RoutedEventArgs e)
             {
-                CustomerReturnItem Selected = ((List<CustomerReturnItem>)DataGrid_Table.ItemsSource)[0];
-                ShopManagementContext.GetContext().Database.ExecuteSqlRaw("EXEC Dbo.DeleteCustomerReturnItem @ID = {0}, @AdminLogin = {1}, @AdminPassword = {2}", Selected.Id, UserData.Login, UserData.Password);
-                ShowAnotherTabEvent.Invoke(new Tables.CustomerReturnItemsTable(ShowAnotherTabEvent, OrderItem, Order, ShowMessageEvent, ShowLoginPageEvent));
+                try
+                {
+                    Msg.IsOpen = false;
+                    CustomerReturnItem Selected = ((List<CustomerReturnItem>)DataGrid_Table.ItemsSource)[0];
+                    ShopManagementContext.GetContext().Database.ExecuteSqlRaw("EXEC Dbo.DeleteCustomerReturnItem @ID = {0}, @AdminLogin = {1}, @AdminPassword = {2}", Selected.Id, UserData.Login, UserData.Password);
+                    ShowAnotherTabEvent.Invoke(new Tables.CustomerReturnItemsTable(ShowAnotherTabEvent, OrderItem, Order, ShowMessageEvent, ShowLoginPageEvent));
+                }
+                catch (SqlException Ex)
+                {
+                    ExceptionHandlers.SqlExceptionHandler(Ex, ShowMessageEvent, ShowLoginPageEvent);
+                }
             }
-            catch (SqlException Ex)
+            void Deny(object sender, RoutedEventArgs e)
             {
-                ExceptionHandlers.SqlExceptionHandler(Ex, ShowMessageEvent, ShowLoginPageEvent);
+                try
+                {
+                    Msg.IsOpen = false;
+                }
+                catch (SqlException Ex)
+                {
+                    ExceptionHandlers.SqlExceptionHandler(Ex, ShowMessageEvent, ShowLoginPageEvent);
+                }
             }
+            Msg.Button_Yes.Click += new RoutedEventHandler(Confirm);
+            Msg.Button_No.Click += new RoutedEventHandler(Deny);
         }
 
         private void Button_Back_Click(object sender, RoutedEventArgs e)

@@ -21,9 +21,9 @@ namespace ShopManagement.InsertIntoTables
 {
     public partial class CreateCustomerReturnItem: UserControl
     {
-        public event Events.ShowMessageDelegate ShowMessageEvent;
-        public event Events.ShowLoginPageDelegate ShowLoginPageEvent;
-        public event Events.ShowAnotherTabDelegate ShowAnotherTabEvent;
+        private event Events.ShowMessageDelegate ShowMessageEvent;
+        private event Events.ShowLoginPageDelegate ShowLoginPageEvent;
+        private event Events.ShowAnotherTabDelegate ShowAnotherTabEvent;
         private CustomerOrderItem OrderItem;
         private CustomerOrder Order;
         public CreateCustomerReturnItem(Events.ShowAnotherTabDelegate ShowAnotherTab, CustomerOrderItem OrderItemObject, CustomerOrder OrderObject, Events.ShowMessageDelegate ShowMessage, Events.ShowLoginPageDelegate ShowLoginPage)

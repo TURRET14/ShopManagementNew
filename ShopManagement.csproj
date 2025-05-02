@@ -7,7 +7,15 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
     <ApplicationManifest>App.manifest</ApplicationManifest>
+    <ApplicationIcon>Images\ShoppingBag.ico</ApplicationIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Images\ShopIcon.png" />
+    <None Remove="Images\ShoppingBag.ico" />
+    <None Remove="Images\ShoppingBag.png" />
+    <None Remove="Images\ShoppingCart.png" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.3" />
@@ -20,6 +28,13 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\ShopIcon.png" />
+    <Resource Include="Images\ShoppingBag.ico" />
+    <Resource Include="Images\ShoppingBag.png" />
+    <Resource Include="Images\ShoppingCart.png" />
   </ItemGroup>
 
   <ItemGroup>

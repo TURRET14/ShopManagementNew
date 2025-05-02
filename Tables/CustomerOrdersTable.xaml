@@ -13,14 +13,14 @@
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" Text="Все Заказы"></TextBlock>
+        <TextBlock Grid.Row="0" Text="Все Заказы" FontSize="30"></TextBlock>
         <Button Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Click="Button_Create_Click" Margin="0 10 0 0">+Создать</Button>
 
-        <Border Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center" CornerRadius="20" Padding="10" Margin="0 10 0 0">
+        <Border Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" CornerRadius="20" Padding="10" Margin="0 10 0 0">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"></ColumnDefinition>
-                    <ColumnDefinition Width="500"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"></RowDefinition>
@@ -30,26 +30,26 @@
                     <RowDefinition Height="Auto"></RowDefinition>
                 </Grid.RowDefinitions>
 
-                <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="Поиск"></TextBlock>
+                <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="Поиск" FontSize="30"></TextBlock>
 
                 <CheckBox Name="CheckBox_CustomerName" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Margin="0 10 0 0">Клиент</CheckBox>
-                <TextBox Name="TextBox_CustomerName" Grid.Row="1" Grid.Column="1" Width="500" Margin="0 10 0 0"></TextBox>
+                <TextBox Name="TextBox_CustomerName" Grid.Row="1" Grid.Column="1" Margin="10 10 0 0"></TextBox>
 
                 <CheckBox Name="CheckBox_EmployeeName" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Margin="0 10 0 0">Сотрудник</CheckBox>
-                <TextBox Name="TextBox_EmployeeName" Grid.Row="2" Grid.Column="1" Width="500" Margin="0 10 0 0"></TextBox>
+                <TextBox Name="TextBox_EmployeeName" Grid.Row="2" Grid.Column="1" Margin="10 10 0 0"></TextBox>
 
                 <CheckBox Name="CheckBox_Date" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Margin="0 10 0 0">Дата</CheckBox>
-                <Grid Grid.Row="3" Grid.Column="1" Margin="0 10 0 0">
+                <Grid Grid.Row="3" Grid.Column="1" Margin="10 10 0 0">
                     <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
                         <ColumnDefinition></ColumnDefinition>
-                        <ColumnDefinition></ColumnDefinition>
-                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
                         <ColumnDefinition></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Column="0" HorizontalAlignment="Center">От</TextBlock>
-                    <DatePicker Name="DatePicker_DateBegin" Grid.Column="1"></DatePicker>
-                    <TextBlock Grid.Column="2" HorizontalAlignment="Center">До</TextBlock>
-                    <DatePicker Name="DatePicker_DateEnd" Grid.Column="3"></DatePicker>
+                    <DatePicker Name="DatePicker_DateBegin" Grid.Column="1" Margin="10 0 0 0"></DatePicker>
+                    <TextBlock Grid.Column="2" HorizontalAlignment="Center" Margin="10 0 0 0">До</TextBlock>
+                    <DatePicker Name="DatePicker_DateEnd" Grid.Column="3" Margin="10 0 0 0"></DatePicker>
                 </Grid>
 
                 <Button Grid.Row="4" Grid.ColumnSpan="2" Click="Button_Filter_Click" Margin="0 10 0 0">Найти</Button>

@@ -16,11 +16,14 @@
                 <ColumnDefinition Width="Auto"></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Row="0" Grid.Column="0" Text="Магазин" FontSize="40" Margin="10"></TextBlock>
+            <StackPanel Grid.Row="0" Grid.Column="0" Margin="10" Orientation="Horizontal">
+                <Image Width="50" Source="/Images/ShoppingBag.png"></Image>
+                <TextBlock Text="Магазин" FontSize="40" Margin="10"></TextBlock>
+            </StackPanel>
             <Button Name="Button_UserInfo" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" FontSize="40" Margin="10" Style="{StaticResource Button_Menu}" Click="TextBlock_UserInfo_Click"></Button>
             <Popup Name="Popup_UserInfo" PlacementTarget="{Binding ElementName=Button_UserInfo}" StaysOpen="False" Placement="Bottom" Width="{Binding ElementName=Button_UserInfo, Path=ActualWidth}" AllowsTransparency="True" PopupAnimation="Slide">
                 <Border Padding="10" CornerRadius="10" BorderThickness="1" BorderBrush="{StaticResource Background_Cards}">
-                    <Button Click="Button_Click">Выйти</Button>
+                    <Button Click="Button_Click" FontSize="30">Выйти</Button>
                 </Border>
             </Popup>
         </Grid>
@@ -30,15 +33,51 @@
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Row="0" Grid.Column="0" Margin="10">
-                <Button Name="Button_Orders" Click="Button_Orders_Click" Style="{StaticResource Button_Menu}" HorizontalContentAlignment="Left">Заказы</Button>
-                <Button Name="Button_SupplierOrders" Click="Button_SupplierOrders_Click" Style="{StaticResource Button_Menu}" Margin="0 10 0 0" HorizontalContentAlignment="Left">Закупки</Button>
-                <Button Name="Button_Products" Click="Button_Products_Click" Style="{StaticResource Button_Menu}" Margin="0 10 0 0" HorizontalContentAlignment="Left">Товары</Button>
-                <Button Name="Button_Customers" Click="Button_Customers_Click" Style="{StaticResource Button_Menu}" Margin="0 10 0 0" HorizontalContentAlignment="Left">Клиенты</Button>
-                <Button Name="Button_Suppliers" Click="Button_Suppliers_Click" Style="{StaticResource Button_Menu}" Margin="0 10 0 0" HorizontalContentAlignment="Left">Поставщики</Button>
-                <Button Name="Button_Employees" Click="Button_Employees_Click" Style="{StaticResource Button_Menu}" Margin="0 10 0 0" HorizontalContentAlignment="Left">Сотрудники</Button>
+                <Button Name="Button_Orders" Click="Button_Orders_Click" Style="{StaticResource Button_Menu}" HorizontalContentAlignment="Left">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Width="30" Margin="0 0 10 0" Source="/Images/ShopIcon.png"/>
+                        <TextBlock Text="Заказы" FontSize="30"></TextBlock>
+                    </StackPanel>
+                </Button>
+                <Button Name="Button_SupplierOrders" Click="Button_SupplierOrders_Click" Style="{StaticResource Button_Menu}" Margin="0 10 0 0" HorizontalContentAlignment="Left">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Width="30" Margin="0 0 10 0" Source="/Images/ShopIcon.png"/>
+                        <TextBlock Text="Закупки" FontSize="30"></TextBlock>
+                    </StackPanel>
+                </Button>
+                <Button Name="Button_Products" Click="Button_Products_Click" Style="{StaticResource Button_Menu}" Margin="0 10 0 0" HorizontalContentAlignment="Left">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Width="30" Margin="0 0 10 0" Source="/Images/ShopIcon.png"/>
+                        <TextBlock Text="Товары" FontSize="30"></TextBlock>
+                    </StackPanel>
+                </Button>
+                <Button Name="Button_Customers" Click="Button_Customers_Click" Style="{StaticResource Button_Menu}" Margin="0 10 0 0" HorizontalContentAlignment="Left">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Width="30" Margin="0 0 10 0" Source="/Images/ShopIcon.png"/>
+                        <TextBlock Text="Клиенты" FontSize="30"></TextBlock>
+                    </StackPanel>
+                </Button>
+                <Button Name="Button_Suppliers" Click="Button_Suppliers_Click" Style="{StaticResource Button_Menu}" Margin="0 10 0 0" HorizontalContentAlignment="Left">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Width="30" Margin="0 0 10 0" Source="/Images/ShopIcon.png"/>
+                        <TextBlock Text="Поставщики" FontSize="30"></TextBlock>
+                    </StackPanel>
+                </Button>
+                <Button Name="Button_Employees" Click="Button_Employees_Click" Style="{StaticResource Button_Menu}" Margin="0 10 0 0" HorizontalContentAlignment="Left">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Width="30" Margin="0 0 10 0" Source="/Images/ShopIcon.png"/>
+                        <TextBlock Text="Сотрудники" FontSize="30"></TextBlock>
+                    </StackPanel>
+                </Button>
                 <Button Name="Button_Reports" Style="{StaticResource Button_Menu}" Margin="0 10 0 0" HorizontalContentAlignment="Stretch" Padding="0 5 5 5">
                     <Menu Background="Transparent" Margin="0" Padding="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                        <MenuItem Header="Отчеты" Width="{Binding RelativeSource={RelativeSource AncestorType=Menu}, Path=ActualWidth}" Background="Transparent" Foreground="{StaticResource Main_Foreground}" Style="{StaticResource Root_MenuItemStyle}" Cursor="">
+                        <MenuItem Width="{Binding RelativeSource={RelativeSource AncestorType=Menu}, Path=ActualWidth}" Background="Transparent" Foreground="{StaticResource Main_Foreground}" Style="{StaticResource Root_MenuItemStyle}">
+                            <MenuItem.Header>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Width="30" Margin="0 0 10 0" Source="/Images/ShopIcon.png"/>
+                                    <TextBlock Text="Отчеты" FontSize="30"></TextBlock>
+                                </StackPanel>
+                            </MenuItem.Header>
                             <MenuItem Name="MenuItem_CustomerOrders" Header="По Заказам">
                                 <MenuItem Header="По Клиентам" Click="MenuItem_CustomerOrdersGroupByCustomer_Click"></MenuItem>
                                 <MenuItem Header="По Сотрудникам" Click="MenuItem_CustomerOrdersGroupByEmployee_Click"></MenuItem>
@@ -51,8 +90,11 @@
                     </Menu>
                 </Button>
             </StackPanel>
-            <Border Name="ContentControl_ForTables" Grid.Row="0" Grid.Column="1" Background="{StaticResource Background_Cards}" CornerRadius="20 0 0 0">
-            </Border>
+            <ScrollViewer Grid.Row="0" Grid.Column="1" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                <Border Name="ContentControl_ForTables" Background="{StaticResource Background_Cards}" CornerRadius="20 0 0 0">
+                    <Image MaxWidth="300" Source="/Images/ShoppingCart.png"></Image>
+                </Border>
+            </ScrollViewer>
         </Grid>
     </Grid>
 </UserControl>

@@ -34,8 +34,9 @@
 
 
     <Style TargetType="Button">
+        <Setter Property="Padding" Value="5"></Setter>
         <Setter Property="FontFamily" Value="{StaticResource Main_Font}"></Setter>
-        <Setter Property="FontSize" Value="30"></Setter>
+        <Setter Property="FontSize" Value="20"></Setter>
         <Setter Property="Foreground" Value="{StaticResource Button_Accent_Foreground}"></Setter>
         <Setter Property="Background" Value="{StaticResource Button_Accent_Default}"></Setter>
         <Setter Property="Cursor" Value="Hand"></Setter>
@@ -96,14 +97,14 @@
     <Style TargetType="TextBlock">
         <Setter Property="VerticalAlignment" Value="Center"></Setter>
         <Setter Property="FontFamily" Value="{StaticResource Main_Font}"></Setter>
-        <Setter Property="FontSize" Value="30"></Setter>
+        <Setter Property="FontSize" Value="20"></Setter>
         <Setter Property="Foreground" Value="{StaticResource Main_Foreground}"></Setter>
     </Style>
 
 
     <Style TargetType="TextBox">
         <Setter Property="FontFamily" Value="{StaticResource Main_Font}"></Setter>
-        <Setter Property="FontSize" Value="30"></Setter>
+        <Setter Property="FontSize" Value="20"></Setter>
         <Setter Property="Padding" Value="5"></Setter>
         <Setter Property="Foreground" Value="{StaticResource Main_Foreground}"></Setter>
         <Setter Property="BorderThickness" Value="0"></Setter>
@@ -135,7 +136,7 @@
 
     <Style TargetType="PasswordBox">
         <Setter Property="FontFamily" Value="{StaticResource Main_Font}"></Setter>
-        <Setter Property="FontSize" Value="30"></Setter>
+        <Setter Property="FontSize" Value="20"></Setter>
         <Setter Property="Padding" Value="5"></Setter>
         <Setter Property="Foreground" Value="{StaticResource Main_Foreground}"></Setter>
         <Setter Property="BorderThickness" Value="0"></Setter>
@@ -167,7 +168,7 @@
 
     <Style TargetType="CheckBox">
         <Setter Property="FontFamily" Value="{StaticResource Main_Font}"></Setter>
-        <Setter Property="FontSize" Value="30"></Setter>
+        <Setter Property="FontSize" Value="20"></Setter>
         <Setter Property="Foreground" Value="{StaticResource Main_Foreground}"></Setter>
     </Style>
 
@@ -176,7 +177,7 @@
         <Setter Property="Foreground" Value="{StaticResource Main_Foreground}"></Setter>
         <Setter Property="BorderBrush" Value="#707070"></Setter>
         <Setter Property="FontFamily" Value="{StaticResource Main_Font}"></Setter>
-        <Setter Property="FontSize" Value="30"></Setter>
+        <Setter Property="FontSize" Value="20"></Setter>
         <Setter Property="RowBackground" Value="#3C3C3C"></Setter>
         <Setter Property="AlternatingRowBackground" Value="#323232"></Setter>
         <Setter Property="HorizontalGridLinesBrush" Value="#707070"></Setter>
@@ -247,34 +248,33 @@
     </Style>
 
     <SolidColorBrush xaml:Key="ComboBox.Static.Background" Color="{StaticResource Color_Input_Default}" />
-
-    <SolidColorBrush xaml:Key="ComboBox.Static.Border" Color="#FFACACAC"/>
+    <SolidColorBrush xaml:Key="ComboBox.Static.Border" Color="{StaticResource Color_Main_Foreground}"/>
     <SolidColorBrush xaml:Key="ComboBox.Static.Glyph" Color="#FF606060"/>
     <SolidColorBrush xaml:Key="ComboBox.Static.Editable.Background" Color="{StaticResource Color_Input_Focused}"/>
-    <SolidColorBrush xaml:Key="ComboBox.Static.Editable.Border" Color="#FFABADB3"/>
+    <SolidColorBrush xaml:Key="ComboBox.Static.Editable.Border" Color="{StaticResource Color_Main_Foreground}"/>
     <SolidColorBrush xaml:Key="ComboBox.Static.Editable.Button.Background" Color="Transparent"/>
-    <SolidColorBrush xaml:Key="ComboBox.Static.Editable.Button.Border" Color="Transparent"/>
+    <SolidColorBrush xaml:Key="ComboBox.Static.Editable.Button.Border" Color="{StaticResource Color_Main_Foreground}"/>
     <SolidColorBrush xaml:Key="ComboBox.MouseOver.Background" Color="{StaticResource Color_Input_Hover}"></SolidColorBrush>
-    <SolidColorBrush xaml:Key="ComboBox.MouseOver.Border" Color="#FF7EB4EA"/>
+    <SolidColorBrush xaml:Key="ComboBox.MouseOver.Border" Color="{StaticResource Color_Main_Foreground}"/>
     <SolidColorBrush xaml:Key="ComboBox.MouseOver.Glyph" Color="#FF000000"/>
     <SolidColorBrush xaml:Key="ComboBox.MouseOver.Editable.Background" Color="{StaticResource Color_Input_Hover}"/>
-    <SolidColorBrush xaml:Key="ComboBox.MouseOver.Editable.Border" Color="#FF7EB4EA"/>
+    <SolidColorBrush xaml:Key="ComboBox.MouseOver.Editable.Border" Color="{StaticResource Color_Main_Foreground}"/>
     <SolidColorBrush xaml:Key="ComboBox.MouseOver.Editable.Button.Background" Color="{StaticResource Color_Input_Hover}"/>
-    <SolidColorBrush xaml:Key="ComboBox.MouseOver.Editable.Button.Border" Color="#FF7EB4EA"/>
+    <SolidColorBrush xaml:Key="ComboBox.MouseOver.Editable.Button.Border" Color="{StaticResource Color_Main_Foreground}"/>
     <SolidColorBrush xaml:Key="ComboBox.Pressed.Background" Color="{StaticResource Color_Input_Focused}"/>
-    <SolidColorBrush xaml:Key="ComboBox.Pressed.Border" Color="#FF569DE5"/>
+    <SolidColorBrush xaml:Key="ComboBox.Pressed.Border" Color="{StaticResource Color_Main_Foreground}"/>
     <SolidColorBrush xaml:Key="ComboBox.Pressed.Glyph" Color="#FF000000"/>
     <SolidColorBrush xaml:Key="ComboBox.Pressed.Editable.Background" Color="{StaticResource Color_Input_Focused}"/>
-    <SolidColorBrush xaml:Key="ComboBox.Pressed.Editable.Border" Color="#FF569DE5"/>
+    <SolidColorBrush xaml:Key="ComboBox.Pressed.Editable.Border" Color="{StaticResource Color_Main_Foreground}"/>
     <SolidColorBrush xaml:Key="ComboBox.Pressed.Editable.Button.Background" Color="{StaticResource Color_Input_Focused}"/>
-    <SolidColorBrush xaml:Key="ComboBox.Pressed.Editable.Button.Border" Color="#FF569DE5"/>
+    <SolidColorBrush xaml:Key="ComboBox.Pressed.Editable.Button.Border" Color="{StaticResource Color_Main_Foreground}"/>
     <SolidColorBrush xaml:Key="ComboBox.Disabled.Background" Color="{StaticResource Color_Input_Focused}"/>
-    <SolidColorBrush xaml:Key="ComboBox.Disabled.Border" Color="#FFD9D9D9"/>
+    <SolidColorBrush xaml:Key="ComboBox.Disabled.Border" Color="{StaticResource Color_Main_Foreground}"/>
     <SolidColorBrush xaml:Key="ComboBox.Disabled.Glyph" Color="#FFBFBFBF"/>
     <SolidColorBrush xaml:Key="ComboBox.Disabled.Editable.Background" Color="{StaticResource Color_Input_Default}"/>
-    <SolidColorBrush xaml:Key="ComboBox.Disabled.Editable.Border" Color="#FFBFBFBF"/>
+    <SolidColorBrush xaml:Key="ComboBox.Disabled.Editable.Border" Color="{StaticResource Color_Main_Foreground}"/>
     <SolidColorBrush xaml:Key="ComboBox.Disabled.Editable.Button.Background" Color="Transparent"/>
-    <SolidColorBrush xaml:Key="ComboBox.Disabled.Editable.Button.Border" Color="Transparent"/>
+    <SolidColorBrush xaml:Key="ComboBox.Disabled.Editable.Button.Border" Color="{StaticResource Color_Main_Foreground}"/>
     <Style xaml:Key="ComboBoxToggleButton" TargetType="{xaml:Type ToggleButton}">
         <Setter Property="OverridesDefaultStyle" Value="true"/>
         <Setter Property="IsTabStop" Value="false"/>
@@ -284,8 +284,8 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{xaml:Type ToggleButton}">
                     <Border xaml:Name="templateRoot" Background="{StaticResource ComboBox.Static.Background}" BorderBrush="{StaticResource ComboBox.Static.Border}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="true">
-                        <Border xaml:Name="splitBorder" BorderBrush="Transparent" BorderThickness="1" HorizontalAlignment="Right" Margin="0" SnapsToDevicePixels="true" Width="{DynamicResource {xaml:Static SystemParameters.VerticalScrollBarWidthKey}}">
-                            <TextBlock xaml:Name="arrow" Text="▼" FontSize="10" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center"/>
+                        <Border xaml:Name="splitBorder" BorderBrush="{StaticResource ComboBox.Static.Border}" BorderThickness="1 0 0 0" HorizontalAlignment="Right" Margin="0" SnapsToDevicePixels="true" Padding="10">
+                            <TextBlock xaml:Name="arrow" Text="▼" FontSize="20" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center"/>
                         </Border>
                     </Border>
                     <ControlTemplate.Triggers>
@@ -363,36 +363,49 @@
         </Setter>
     </Style>
     <ControlTemplate xaml:Key="ComboBoxTemplate1" TargetType="{xaml:Type ComboBox}">
-        <Grid xaml:Name="templateRoot" SnapsToDevicePixels="true">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition MinWidth="{DynamicResource {xaml:Static SystemParameters.VerticalScrollBarWidthKey}}" Width="0"/>
-            </Grid.ColumnDefinitions>
-            <Popup xaml:Name="PART_Popup" AllowsTransparency="true" Grid.ColumnSpan="2" IsOpen="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource Mode=TemplatedParent}}" Margin="1" Placement="Bottom" PopupAnimation="{DynamicResource {xaml:Static SystemParameters.ComboBoxPopupAnimationKey}}">
-                <theme:SystemDropShadowChrome xaml:Name="shadow" Color="Transparent" MinWidth="{Binding ActualWidth, ElementName=templateRoot}" MaxHeight="{TemplateBinding MaxDropDownHeight}">
-                    <Border xaml:Name="dropDownBorder" Background="{DynamicResource {xaml:Static SystemColors.WindowBrushKey}}" BorderBrush="{DynamicResource {xaml:Static SystemColors.WindowFrameBrushKey}}" BorderThickness="1">
-                        <ScrollViewer xaml:Name="DropDownScrollViewer">
-                            <Grid xaml:Name="grid" RenderOptions.ClearTypeHint="Enabled">
-                                <Canvas xaml:Name="canvas" HorizontalAlignment="Left" Height="0" VerticalAlignment="Top" Width="0">
-                                    <Rectangle xaml:Name="opaqueRect" Fill="{Binding Background, ElementName=dropDownBorder}" Height="{Binding ActualHeight, ElementName=dropDownBorder}" Width="{Binding ActualWidth, ElementName=dropDownBorder}"/>
-                                </Canvas>
-                                <ItemsPresenter xaml:Name="ItemsPresenter" KeyboardNavigation.DirectionalNavigation="Contained" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
-                            </Grid>
-                        </ScrollViewer>
-                    </Border>
-                </theme:SystemDropShadowChrome>
-            </Popup>
-            <ToggleButton xaml:Name="toggleButton" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Grid.ColumnSpan="2" IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource Mode=TemplatedParent}}" Style="{StaticResource ComboBoxToggleButton}"/>
-            <ContentPresenter xaml:Name="contentPresenter" ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}" ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}" Content="{TemplateBinding SelectionBoxItem}" ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" IsHitTestVisible="false" Margin="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-            <TextBox xaml:Name="PART_EditableTextBox"
+        <Border Background="{TemplateBinding Background}" CornerRadius="10">
+            <Grid xaml:Name="templateRoot" SnapsToDevicePixels="true">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Popup xaml:Name="PART_Popup" AllowsTransparency="true" Grid.ColumnSpan="2" IsOpen="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource Mode=TemplatedParent}}" Margin="1" Placement="Bottom" PopupAnimation="{DynamicResource {xaml:Static SystemParameters.ComboBoxPopupAnimationKey}}">
+                    <theme:SystemDropShadowChrome xaml:Name="shadow" Color="Transparent" MinWidth="{Binding ActualWidth, ElementName=templateRoot}" MaxHeight="{TemplateBinding MaxDropDownHeight}">
+                        <Border xaml:Name="dropDownBorder" Background="{DynamicResource {xaml:Static SystemColors.WindowBrushKey}}" BorderBrush="{DynamicResource {xaml:Static SystemColors.WindowFrameBrushKey}}" BorderThickness="1">
+                            <ScrollViewer xaml:Name="DropDownScrollViewer">
+                                <Grid xaml:Name="grid" RenderOptions.ClearTypeHint="Enabled">
+                                    <Canvas xaml:Name="canvas" HorizontalAlignment="Left" Height="0" VerticalAlignment="Top" Width="0">
+                                        <Rectangle xaml:Name="opaqueRect" Fill="{Binding Background, ElementName=dropDownBorder}" Height="{Binding ActualHeight, ElementName=dropDownBorder}" Width="{Binding ActualWidth, ElementName=dropDownBorder}"/>
+                                    </Canvas>
+                                    <ItemsPresenter xaml:Name="ItemsPresenter" KeyboardNavigation.DirectionalNavigation="Contained" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                                </Grid>
+                            </ScrollViewer>
+                        </Border>
+                    </theme:SystemDropShadowChrome>
+                </Popup>
+                <ToggleButton Grid.Column="1" xaml:Name="toggleButton" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Grid.ColumnSpan="2" IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource Mode=TemplatedParent}}" Style="{StaticResource ComboBoxToggleButton}"/>
+                <ContentPresenter xaml:Name="contentPresenter" ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}" ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}" Content="{TemplateBinding SelectionBoxItem}" ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" IsHitTestVisible="false" Margin="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                <TextBox Grid.Column="0" xaml:Name="PART_EditableTextBox"
+                 Margin="0"
                  Background="{TemplateBinding Background}"
                  HorizontalAlignment="Stretch"
                  VerticalAlignment="Stretch"
-                 Margin="{TemplateBinding Padding}"
+                 VerticalContentAlignment="Center"
                  Focusable="True"
                  Visibility="Hidden"
-                 IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource TemplatedParent}}"/>
-        </Grid>
+                 IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource TemplatedParent}}">
+                    <TextBox.Template>
+                        <ControlTemplate TargetType="TextBox">
+                            <Border Name="MainBorder" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="0">
+                                <ScrollViewer Margin="0" Name="PART_ContentHost"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </TextBox.Template>
+                </TextBox>
+            </Grid>
+        </Border>
         <ControlTemplate.Triggers>
             <Trigger Property="IsEditable" Value="True">
                 <Setter TargetName="contentPresenter" Property="Visibility" Value="Hidden"/>
@@ -422,17 +435,18 @@
 
     <Style xaml:Key="ComboBoxStyle" TargetType="ComboBox">
         <Setter Property="FontFamily" Value="{StaticResource Main_Font}"></Setter>
-        <Setter Property="FontSize" Value="30"></Setter>
+        <Setter Property="FontSize" Value="20"></Setter>
         <Setter Property="Foreground" Value="{StaticResource Main_Foreground}"></Setter>
         <Setter Property="Background" Value="{StaticResource Input_Default}"></Setter>
         <Setter Property="BorderThickness" Value="0"></Setter>
-        <Setter Property="ItemContainerStyle">
+        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+        <Setter Property="ItemContainerStyle"> 
             <Setter.Value>
                 <Style TargetType="ComboBoxItem">
                     <Setter Property="Background" Value="{StaticResource Input_Default}"></Setter>
                     <Setter Property="Foreground" Value="{StaticResource Main_Foreground}"></Setter>
                     <Setter Property="FontFamily" Value="{StaticResource Main_Font}"></Setter>
-                    <Setter Property="FontSize" Value="30"></Setter>
+                    <Setter Property="FontSize" Value="20"></Setter>
                     <Setter Property="Padding" Value="5"></Setter>
                     <Setter Property="BorderThickness" Value="0"></Setter>
                     <Setter Property="Template">
@@ -756,17 +770,23 @@
             </Trigger>
         </Style.Triggers>
     </Style>
+
+    <Style TargetType="ContextMenu">
+        <Setter Property="Padding" Value="0"></Setter>
+        <Setter Property="Background" Value="Transparent"></Setter>
+    </Style>
     
     <Style TargetType="Menu">
+        <Setter Property="Padding" Value="0"></Setter>
         <Setter Property="Background" Value="Transparent"></Setter>
         <Setter Property="FontFamily" Value="{StaticResource Main_Font}"></Setter>
         <Setter Property="FontSize" Value="30"></Setter>
         <Setter Property="Foreground" Value="{StaticResource Button_Accent_Foreground}"></Setter>
         <Setter Property="BorderThickness" Value="0"></Setter>
     </Style>
-    
+
     <Style xaml:Key="Main_MenuItemStyle" TargetType="MenuItem" BasedOn="{StaticResource MenuItemStyle1}">
-        <Setter Property="Background" Value="{StaticResource Background_Primary}"></Setter>
+        <Setter Property="Background" Value="{StaticResource Background_Secondary}"></Setter>
         <Setter Property="FontFamily" Value="{StaticResource Main_Font}"></Setter>
         <Setter Property="FontSize" Value="30"></Setter>
         <Setter Property="Foreground" Value="{StaticResource Main_Foreground}"></Setter>

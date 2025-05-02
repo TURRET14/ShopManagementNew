@@ -21,9 +21,9 @@ namespace ShopManagement.InsertIntoTables
 {
     public partial class CreateSupplierReturnItem: UserControl
     {
-        public event Events.ShowMessageDelegate ShowMessageEvent;
-        public event Events.ShowLoginPageDelegate ShowLoginPageEvent;
-        public event Events.ShowAnotherTabDelegate ShowAnotherTabEvent;
+        private event Events.ShowMessageDelegate ShowMessageEvent;
+        private event Events.ShowLoginPageDelegate ShowLoginPageEvent;
+        private event Events.ShowAnotherTabDelegate ShowAnotherTabEvent;
         private SupplierOrderItem OrderItem;
         private SupplierOrder Order;
         public CreateSupplierReturnItem(Events.ShowAnotherTabDelegate ShowAnotherTab, SupplierOrderItem OrderItemObject, SupplierOrder OrderObject, Events.ShowMessageDelegate ShowMessage, Events.ShowLoginPageDelegate ShowLoginPage)

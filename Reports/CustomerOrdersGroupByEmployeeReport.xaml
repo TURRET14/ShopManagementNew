@@ -12,8 +12,8 @@
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" Text="Отчет"></TextBlock>
-        <TextBlock Grid.Row="1" Text="Заказы, Группировка По Сотрудникам"></TextBlock>
+        <TextBlock Grid.Row="0" Text="Отчет" FontSize="30"></TextBlock>
+        <TextBlock Grid.Row="1" Text="Заказы, Группировка По Сотрудникам" FontSize="30"></TextBlock>
         
         <DataGrid Grid.Row="2" Name="DataGrid_Table" AutoGenerateColumns="False" HeadersVisibility="Column" HorizontalAlignment="Stretch" VerticalAlignment="Top" ColumnWidth="Auto" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True" HorizontalScrollBarVisibility="Disabled" Margin="0 10 0 10" SelectionUnit="FullRow" EnableRowVirtualization="False">
             <DataGrid.Columns>

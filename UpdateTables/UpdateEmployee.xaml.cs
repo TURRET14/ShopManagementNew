@@ -21,9 +21,10 @@ namespace ShopManagement.UpdateTables
     public partial class UpdateEmployee : UserControl
     {
         private bool IsCurrentUser = false;
-        public event Events.ShowMessageDelegate ShowMessageEvent;
-        public event Events.ShowLoginPageDelegate ShowLoginPageEvent;
-        public event Events.ShowAnotherTabDelegate ShowAnotherTabEvent;
+
+        private event Events.ShowMessageDelegate ShowMessageEvent;
+        private event Events.ShowLoginPageDelegate ShowLoginPageEvent;
+        private event Events.ShowAnotherTabDelegate ShowAnotherTabEvent;
         public UpdateEmployee(Events.ShowAnotherTabDelegate ShowAnotherTab, Employee Selected, Events.ShowMessageDelegate ShowMessage, Events.ShowLoginPageDelegate ShowLoginPage)
         {
             InitializeComponent();
@@ -145,8 +146,8 @@ namespace ShopManagement.UpdateTables
                         Selected.Position = "SHOP_CASHIER";
                         break;
                     default:
-                        ShowMessageEvent("Ошибка Записи", "Указана недопустимая должность!");
-                        return;
+                        Selected.Position = null;
+                        break;
                 }
 
                 if (Selected.UserPassword is not null)
@@ -158,8 +159,14 @@ namespace ShopManagement.UpdateTables
                     }
                     if (Selected.UserPassword.Length == 0)
                     {
-                        Selected.UserPassword = null;
+                        ShowMessageEvent("Ошибка Записи", "Пароль Не Может Быть Пустым!");
+                        return;
                     }
+                }
+                else
+                {
+                    ShowMessageEvent("Ошибка Записи", "Пароль Не Может Быть Пустым!");
+                    return;
                 }
 
                 if (Selected.UserLogin is not null)
@@ -203,16 +210,36 @@ namespace ShopManagement.UpdateTables
 
         private void Button_Delete_Click(object sender, RoutedEventArgs e)
         {
-            try
+            ConfirmationMessage Msg = new ConfirmationMessage("Удаление", "Вы уверены, что хотите удалить запись?");
+            Msg.PlacementTarget = Button_Delete;
+            Msg.IsOpen = true;
+            void Confirm(object sender, RoutedEventArgs e)
             {
-                Employee Selected = ((List<Employee>)DataGrid_Table.ItemsSource)[0];
-                ShopManagementContext.GetContext().Database.ExecuteSqlRaw("EXEC Dbo.DeleteEmployee @ID = {0}, @AdminLogin = {1}, @AdminPassword = {2}", Selected.Id, UserData.Login, UserData.Password);
-                ShowAnotherTabEvent.Invoke(new Tables.EmployeesTable(ShowAnotherTabEvent, ShowMessageEvent, ShowLoginPageEvent));
+                try
+                {
+                    Msg.IsOpen = false;
+                    Employee Selected = ((List<Employee>)DataGrid_Table.ItemsSource)[0];
+                    ShopManagementContext.GetContext().Database.ExecuteSqlRaw("EXEC Dbo.DeleteEmployee @ID = {0}, @AdminLogin = {1}, @AdminPassword = {2}", Selected.Id, UserData.Login, UserData.Password);
+                    ShowAnotherTabEvent.Invoke(new Tables.EmployeesTable(ShowAnotherTabEvent, ShowMessageEvent, ShowLoginPageEvent));
+                }
+                catch (SqlException Ex)
+                {
+                    ExceptionHandlers.SqlExceptionHandler(Ex, ShowMessageEvent, ShowLoginPageEvent);
+                }
             }
-            catch (SqlException Ex)
+            void Deny(object sender, RoutedEventArgs e)
             {
-                ExceptionHandlers.SqlExceptionHandler(Ex, ShowMessageEvent, ShowLoginPageEvent);
+                try
+                {
+                    Msg.IsOpen = false;
+                }
+                catch (SqlException Ex)
+                {
+                    ExceptionHandlers.SqlExceptionHandler(Ex, ShowMessageEvent, ShowLoginPageEvent);
+                }
             }
+            Msg.Button_Yes.Click += new RoutedEventHandler(Confirm);
+            Msg.Button_No.Click += new RoutedEventHandler(Deny);
         }
 
         private void Button_Back_Click(object sender, RoutedEventArgs e)

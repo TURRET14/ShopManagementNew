@@ -21,9 +21,9 @@ namespace ShopManagement.InsertIntoTables
 {
     public partial class CreateEmployee : UserControl
     {
-        public event Events.ShowMessageDelegate ShowMessageEvent;
-        public event Events.ShowLoginPageDelegate ShowLoginPageEvent;
-        public event Events.ShowAnotherTabDelegate ShowAnotherTabEvent;
+        private event Events.ShowMessageDelegate ShowMessageEvent;
+        private event Events.ShowLoginPageDelegate ShowLoginPageEvent;
+        private event Events.ShowAnotherTabDelegate ShowAnotherTabEvent;
         public CreateEmployee(Events.ShowAnotherTabDelegate ShowAnotherTab, Events.ShowMessageDelegate ShowMessage, Events.ShowLoginPageDelegate ShowLoginPage)
         {
             InitializeComponent();
@@ -129,8 +129,8 @@ namespace ShopManagement.InsertIntoTables
                         Selected.Position = "SHOP_CASHIER";
                         break;
                     default:
-                        ShowMessageEvent("Ошибка Записи", "Указана недопустимая должность!");
-                        return;
+                        Selected.Position = null;
+                        break;
                 }
 
                 if (Selected.UserPassword is not null)
@@ -142,8 +142,14 @@ namespace ShopManagement.InsertIntoTables
                     }
                     if (Selected.UserPassword.Length == 0)
                     {
-                        Selected.UserPassword = null;
+                        ShowMessageEvent("Ошибка Записи", "Пароль Не Может Быть Пустым!");
+                        return;
                     }
+                }
+                else
+                {
+                    ShowMessageEvent("Ошибка Записи", "Пароль Не Может Быть Пустым!");
+                    return;
                 }
 
                 if (Selected.UserLogin is not null)

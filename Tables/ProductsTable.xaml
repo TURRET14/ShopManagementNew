@@ -13,13 +13,13 @@
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" Text="Все Товары"></TextBlock>
+        <TextBlock Grid.Row="0" Text="Все Товары" FontSize="30"></TextBlock>
         <Button Name="ActionsPanel" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Click="Button_Create_Click" Margin="0 10 0 0">+Создать</Button>
-        <Border Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center" CornerRadius="20" Padding="10" Margin="0 10 0 0">
+        <Border Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" CornerRadius="20" Padding="10" Margin="0 10 0 0">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"></ColumnDefinition>
-                    <ColumnDefinition Width="500"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"></RowDefinition>
@@ -29,40 +29,40 @@
                     <RowDefinition Height="Auto"></RowDefinition>
                     <RowDefinition Height="Auto"></RowDefinition>
                 </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">Поиск</TextBlock>
+                <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" FontSize="30">Поиск</TextBlock>
                 <CheckBox Name="CheckBox_Name" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Margin="0 10 0 0">Название</CheckBox>
-                <TextBox Name="TextBox_Name" Grid.Row="1" Grid.Column="1" Margin="0 10 0 0"></TextBox>
+                <TextBox Name="TextBox_Name" Grid.Row="1" Grid.Column="1" Margin="10 10 0 0"></TextBox>
 
                 <CheckBox Name="CheckBox_Price" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Margin="0 10 0 0">Цена</CheckBox>
-                <Grid Grid.Row="2" Grid.Column="1" Margin="0 10 0 0">
+                <Grid Grid.Row="2" Grid.Column="1" Margin="10 10 0 0">
                     <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
                         <ColumnDefinition></ColumnDefinition>
-                        <ColumnDefinition></ColumnDefinition>
-                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
                         <ColumnDefinition></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Column="0" HorizontalAlignment="Center">От</TextBlock>
-                    <TextBox Name="TextBox_PriceBegin" Grid.Column="1"></TextBox>
-                    <TextBlock Grid.Column="2" HorizontalAlignment="Center">До</TextBlock>
-                    <TextBox Name="TextBox_PriceEnd" Grid.Column="3"></TextBox>
+                    <TextBox Name="TextBox_PriceBegin" Grid.Column="1" Margin="10 0 0 0"></TextBox>
+                    <TextBlock Grid.Column="2" HorizontalAlignment="Center" Margin="10 0 0 0">До</TextBlock>
+                    <TextBox Name="TextBox_PriceEnd" Grid.Column="3" Margin="10 0 0 0"></TextBox>
                 </Grid>
 
                 <CheckBox Name="CheckBox_Amount" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Margin="0 10 0 0">Количество</CheckBox>
-                <Grid Grid.Row="3" Grid.Column="1" Margin="0 10 0 0">
+                <Grid Grid.Row="3" Grid.Column="1" Margin="10 10 0 0">
                     <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
                         <ColumnDefinition></ColumnDefinition>
-                        <ColumnDefinition></ColumnDefinition>
-                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
                         <ColumnDefinition></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Column="0" HorizontalAlignment="Center">От</TextBlock>
-                    <TextBox Name="TextBox_AmountBegin" Grid.Column="1"></TextBox>
-                    <TextBlock Grid.Column="2" HorizontalAlignment="Center">До</TextBlock>
-                    <TextBox Name="TextBox_AmountEnd" Grid.Column="3"></TextBox>
+                    <TextBox Name="TextBox_AmountBegin" Grid.Column="1" Margin="10 0 0 0"></TextBox>
+                    <TextBlock Grid.Column="2" HorizontalAlignment="Center" Margin="10 0 0 0">До</TextBlock>
+                    <TextBox Name="TextBox_AmountEnd" Grid.Column="3" Margin="10 0 0 0"></TextBox>
                 </Grid>
 
                 <CheckBox Name="CheckBox_Description" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Margin="0 10 0 0">Описание</CheckBox>
-                <TextBox Name="TextBox_Description" Grid.Row="4" Grid.Column="1" Margin="0 10 0 0"></TextBox>
+                <TextBox Name="TextBox_Description" Grid.Row="4" Grid.Column="1" Margin="10 10 0 0"></TextBox>
 
                 <Button Grid.Row="5" Grid.ColumnSpan="2" Click="Button_Filter_Click" Margin="0 10 0 0">Найти</Button>
             </Grid>
