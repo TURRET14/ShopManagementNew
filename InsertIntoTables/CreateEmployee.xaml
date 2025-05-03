@@ -26,6 +26,7 @@
                             <Setter Property="Background" Value="{StaticResource Input_Focused}"></Setter>
                             <Setter Property="BorderThickness" Value="0"></Setter>
                             <Setter Property="Foreground" Value="{StaticResource Main_Foreground}"></Setter>
+                            <Setter Property="ContextMenu" Value="{StaticResource Input_ContextMenu}"></Setter>
                         </Style>
                     </DataGridTextColumn.EditingElementStyle>
                     <DataGridTextColumn.ElementStyle>
@@ -41,12 +42,15 @@
                             <Setter Property="Background" Value="{StaticResource Input_Focused}"></Setter>
                             <Setter Property="BorderThickness" Value="0"></Setter>
                             <Setter Property="Foreground" Value="{StaticResource Main_Foreground}"></Setter>
+                            <Setter Property="ContextMenu" Value="{StaticResource Input_ContextMenu}"></Setter>
                         </Style>
                     </DataGridTextColumn.EditingElementStyle>
                 </DataGridTextColumn>
                 <DataGridComboBoxColumn xaml:Name="ColumnGender" Header="Пол" SelectedItemBinding="{Binding Gender}" Width="Auto">
                     <DataGridComboBoxColumn.EditingElementStyle>
-                        <Style TargetType="ComboBox" BasedOn="{StaticResource ComboBoxStyle}"></Style>
+                        <Style TargetType="ComboBox" BasedOn="{StaticResource ComboBoxStyle}">
+                            <Setter Property="ContextMenu" Value="{StaticResource Input_ContextMenu}"></Setter>
+                        </Style>
                     </DataGridComboBoxColumn.EditingElementStyle>
                 </DataGridComboBoxColumn>
                 <DataGridTextColumn Header="Телефон" Binding="{Binding PhoneNumber}" Width="Auto">
@@ -56,6 +60,7 @@
                             <Setter Property="Background" Value="{StaticResource Input_Focused}"></Setter>
                             <Setter Property="BorderThickness" Value="0"></Setter>
                             <Setter Property="Foreground" Value="{StaticResource Main_Foreground}"></Setter>
+                            <Setter Property="ContextMenu" Value="{StaticResource Input_ContextMenu}"></Setter>
                         </Style>
                     </DataGridTextColumn.EditingElementStyle>
                 </DataGridTextColumn>
@@ -67,6 +72,7 @@
                             <Setter Property="Background" Value="{StaticResource Input_Focused}"></Setter>
                             <Setter Property="BorderThickness" Value="0"></Setter>
                             <Setter Property="Foreground" Value="{StaticResource Main_Foreground}"></Setter>
+                            <Setter Property="ContextMenu" Value="{StaticResource Input_ContextMenu}"></Setter>
                         </Style>
                     </DataGridTextColumn.EditingElementStyle>
                     <DataGridTextColumn.ElementStyle>
@@ -82,12 +88,15 @@
                             <Setter Property="Background" Value="{StaticResource Input_Focused}"></Setter>
                             <Setter Property="BorderThickness" Value="0"></Setter>
                             <Setter Property="Foreground" Value="{StaticResource Main_Foreground}"></Setter>
+                            <Setter Property="ContextMenu" Value="{StaticResource Input_ContextMenu}"></Setter>
                         </Style>
                     </DataGridTextColumn.EditingElementStyle>
                 </DataGridTextColumn>
                 <DataGridComboBoxColumn xaml:Name="ColumnPosition" Header="Должность" SelectedItemBinding="{Binding Position}" Width="*">
                     <DataGridComboBoxColumn.EditingElementStyle>
-                        <Style TargetType="ComboBox" BasedOn="{StaticResource ComboBoxStyle}"></Style>
+                        <Style TargetType="ComboBox" BasedOn="{StaticResource ComboBoxStyle}">
+                            <Setter Property="ContextMenu" Value="{StaticResource Input_ContextMenu}"></Setter>
+                        </Style>
                     </DataGridComboBoxColumn.EditingElementStyle>
                 </DataGridComboBoxColumn>
                 <DataGridTextColumn Header="Зарплата" Binding="{Binding Salary}" Width="Auto">
@@ -97,6 +106,7 @@
                             <Setter Property="Background" Value="{StaticResource Input_Focused}"></Setter>
                             <Setter Property="BorderThickness" Value="0"></Setter>
                             <Setter Property="Foreground" Value="{StaticResource Main_Foreground}"></Setter>
+                            <Setter Property="ContextMenu" Value="{StaticResource Input_ContextMenu}"></Setter>
                         </Style>
                     </DataGridTextColumn.EditingElementStyle>
                 </DataGridTextColumn>
@@ -108,6 +118,7 @@
                             <Setter Property="Background" Value="{StaticResource Input_Focused}"></Setter>
                             <Setter Property="BorderThickness" Value="0"></Setter>
                             <Setter Property="Foreground" Value="{StaticResource Main_Foreground}"></Setter>
+                            <Setter Property="ContextMenu" Value="{StaticResource Input_ContextMenu}"></Setter>
                         </Style>
                     </DataGridTextColumn.EditingElementStyle>
                     <DataGridTextColumn.ElementStyle>
@@ -124,6 +135,7 @@
                             <Setter Property="Background" Value="{StaticResource Input_Focused}"></Setter>
                             <Setter Property="BorderThickness" Value="0"></Setter>
                             <Setter Property="Foreground" Value="{StaticResource Main_Foreground}"></Setter>
+                            <Setter Property="ContextMenu" Value="{StaticResource Input_ContextMenu}"></Setter>
                         </Style>
                     </DataGridTextColumn.EditingElementStyle>
                     <DataGridTextColumn.ElementStyle>

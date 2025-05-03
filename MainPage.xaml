@@ -16,11 +16,11 @@
                 <ColumnDefinition Width="Auto"></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <StackPanel Grid.Row="0" Grid.Column="0" Margin="10" Orientation="Horizontal">
+            <StackPanel Grid.Row="0" Grid.Column="0" Margin="10 10 0 0" Orientation="Horizontal">
                 <Image Width="50" Source="/Images/ShoppingBag.png"></Image>
                 <TextBlock Text="Магазин" FontSize="40" Margin="10"></TextBlock>
             </StackPanel>
-            <Button Name="Button_UserInfo" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" FontSize="40" Margin="10" Style="{StaticResource Button_Menu}" Click="TextBlock_UserInfo_Click"></Button>
+            <Button Name="Button_UserInfo" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" FontSize="40" Margin="0 10 10 0" Style="{StaticResource Button_Menu}" Click="TextBlock_UserInfo_Click"></Button>
             <Popup Name="Popup_UserInfo" PlacementTarget="{Binding ElementName=Button_UserInfo}" StaysOpen="False" Placement="Bottom" Width="{Binding ElementName=Button_UserInfo, Path=ActualWidth}" AllowsTransparency="True" PopupAnimation="Slide">
                 <Border Padding="10" CornerRadius="10" BorderThickness="1" BorderBrush="{StaticResource Background_Cards}">
                     <Button Click="Button_Click" FontSize="30">Выйти</Button>

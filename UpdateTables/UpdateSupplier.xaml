@@ -29,6 +29,7 @@
                         <Style TargetType="TextBox">
                             <Setter Property="MaxLength" Value="100"></Setter>
                             <Setter Property="TextWrapping" Value="Wrap"></Setter>
+                            <Setter Property="ContextMenu" Value="{StaticResource Input_ContextMenu}"></Setter>
                         </Style>
                     </DataGridTextColumn.EditingElementStyle>
                     <DataGridTextColumn.ElementStyle>
@@ -41,6 +42,7 @@
                     <DataGridTextColumn.EditingElementStyle>
                         <Style TargetType="TextBox">
                             <Setter Property="MaxLength" Value="20"></Setter>
+                            <Setter Property="ContextMenu" Value="{StaticResource Input_ContextMenu}"></Setter>
                         </Style>
                     </DataGridTextColumn.EditingElementStyle>
                 </DataGridTextColumn>
@@ -49,6 +51,7 @@
                         <Style TargetType="TextBox">
                             <Setter Property="MaxLength" Value="100"></Setter>
                             <Setter Property="TextWrapping" Value="Wrap"></Setter>
+                            <Setter Property="ContextMenu" Value="{StaticResource Input_ContextMenu}"></Setter>
                         </Style>
                     </DataGridTextColumn.EditingElementStyle>
                     <DataGridTextColumn.ElementStyle>
@@ -61,6 +64,7 @@
                     <DataGridTextColumn.EditingElementStyle>
                         <Style TargetType="TextBox">
                             <Setter Property="MaxLength" Value="20"></Setter>
+                            <Setter Property="ContextMenu" Value="{StaticResource Input_ContextMenu}"></Setter>
                         </Style>
                     </DataGridTextColumn.EditingElementStyle>
                 </DataGridTextColumn>

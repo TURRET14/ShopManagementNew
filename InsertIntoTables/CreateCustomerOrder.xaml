@@ -23,6 +23,7 @@
                         <Style TargetType="ComboBox" BasedOn="{StaticResource ComboBoxStyle}">
                             <Setter Property="IsEditable" Value="True"/>
                             <Setter Property="StaysOpenOnEdit" Value="True"></Setter>
+                            <Setter Property="ContextMenu" Value="{StaticResource Input_ContextMenu}"></Setter>
                         </Style>
                     </DataGridComboBoxColumn.EditingElementStyle>
                 </DataGridComboBoxColumn>

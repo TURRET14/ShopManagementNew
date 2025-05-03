@@ -32,6 +32,7 @@
                             <Setter Property="Background" Value="{StaticResource Input_Focused}"></Setter>
                             <Setter Property="BorderThickness" Value="0"></Setter>
                             <Setter Property="Foreground" Value="{StaticResource Main_Foreground}"></Setter>
+                            <Setter Property="ContextMenu" Value="{StaticResource Input_ContextMenu}"></Setter>
                         </Style>
                     </DataGridTextColumn.EditingElementStyle>
                     <DataGridTextColumn.ElementStyle>
@@ -47,6 +48,7 @@
                             <Setter Property="Background" Value="{StaticResource Input_Focused}"></Setter>
                             <Setter Property="BorderThickness" Value="0"></Setter>
                             <Setter Property="Foreground" Value="{StaticResource Main_Foreground}"></Setter>
+                            <Setter Property="ContextMenu" Value="{StaticResource Input_ContextMenu}"></Setter>
                         </Style>
                     </DataGridTextColumn.EditingElementStyle>
                 </DataGridTextColumn>
@@ -58,6 +60,7 @@
                             <Setter Property="Background" Value="{StaticResource Input_Focused}"></Setter>
                             <Setter Property="BorderThickness" Value="0"></Setter>
                             <Setter Property="Foreground" Value="{StaticResource Main_Foreground}"></Setter>
+                            <Setter Property="ContextMenu" Value="{StaticResource Input_ContextMenu}"></Setter>
                         </Style>
                     </DataGridTextColumn.EditingElementStyle>
                     <DataGridTextColumn.ElementStyle>

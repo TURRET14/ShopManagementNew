@@ -38,11 +38,12 @@
         <Button Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center" Click="Button_Create_Click" Margin="0 10 0 0">+Создать</Button>
         <DataGrid Grid.Row="4" Name="DataGrid_Table" AutoGenerateColumns="False" HeadersVisibility="Column" HorizontalAlignment="Stretch" VerticalAlignment="Top" ColumnWidth="Auto" CanUserAddRows="False" CanUserDeleteRows="False" HorizontalScrollBarVisibility="Disabled" Margin="0 10 0 0">
             <DataGrid.Columns>
-                <DataGridComboBoxColumn xaml:Name="ColumnProduct" Header="Продукт" SelectedItemBinding="{Binding Product}" DisplayMemberPath="NameId" Width="*">
+                <DataGridComboBoxColumn xaml:Name="ColumnProduct" Header="Продукт" SelectedItemBinding="{Binding Product}" DisplayMemberPath="NameIdPriceAmount" Width="*">
                     <DataGridComboBoxColumn.EditingElementStyle>
                         <Style TargetType="ComboBox" BasedOn="{StaticResource ComboBoxStyle}">
                             <Setter Property="IsEditable" Value="True"/>
                             <Setter Property="StaysOpenOnEdit" Value="True"></Setter>
+                            <Setter Property="ContextMenu" Value="{StaticResource Input_ContextMenu}"></Setter>
                         </Style>
                     </DataGridComboBoxColumn.EditingElementStyle>
                 </DataGridComboBoxColumn>
@@ -53,6 +54,7 @@
                             <Setter Property="Background" Value="{StaticResource Input_Focused}"></Setter>
                             <Setter Property="BorderThickness" Value="0"></Setter>
                             <Setter Property="Foreground" Value="{StaticResource Main_Foreground}"></Setter>
+                            <Setter Property="ContextMenu" Value="{StaticResource Input_ContextMenu}"></Setter>
                         </Style>
                     </DataGridTextColumn.EditingElementStyle>
                 </DataGridTextColumn>

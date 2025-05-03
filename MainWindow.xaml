@@ -6,6 +6,7 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
-    <Grid Name="MainGrid" Background="{StaticResource Background_Primary}">
-    </Grid>
+    <Border>
+        <Grid Name="MainGrid" Background="{StaticResource Background_Primary}"></Grid>
+    </Border>
 </Window>

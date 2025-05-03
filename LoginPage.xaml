@@ -6,10 +6,16 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    <Viewbox Stretch="Uniform" MaxWidth="400">
-        <Border Width="400" HorizontalAlignment="Center" VerticalAlignment="Center" CornerRadius="20" Padding="20">
+    <Border>
+        <Border.Background>
+            <ImageBrush ImageSource="/Images/ShoppingCart.png" TileMode="Tile" Stretch="Uniform" Viewport="100 100 200 200" ViewportUnits="Absolute" AlignmentX="Center" AlignmentY="Center" Opacity="0.05"></ImageBrush>
+        </Border.Background>
+        <Border HorizontalAlignment="Center" VerticalAlignment="Center" CornerRadius="20" Padding="20">
             <StackPanel Orientation="Vertical">
-                <TextBlock Text="Магазин - Вход" Margin="0" FontSize="50"></TextBlock>
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/Images/ShoppingBag.png" Width="50"></Image>
+                    <TextBlock Text="Магазин - Вход" FontSize="50" Margin="10 0 0 0"></TextBlock>
+                </StackPanel>
                 <TextBlock Text="Логин" Margin="0 5 0 0" FontSize="30"></TextBlock>
                 <TextBox Name="TextBox_Login" Margin="0 5 0 0" FontSize="40"></TextBox>
                 <TextBlock Text="Пароль" Margin="0 5 0 0" FontSize="30"></TextBlock>
@@ -17,5 +23,5 @@
                 <Button Click="Button_Login_Click" Margin="0 20 0 0" FontSize="40">Войти</Button>
             </StackPanel>
         </Border>
-    </Viewbox>
+    </Border>
 </UserControl>

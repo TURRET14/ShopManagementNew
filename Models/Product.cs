@@ -20,4 +20,6 @@ public partial class Product
     public virtual ICollection<SupplierOrderItem> SupplierOrderItems { get; set; } = new List<SupplierOrderItem>();
 
     public string NameId => $"{Name} ID_{Id}";
+
+    public string NameIdPriceAmount => $"{Name} ID_{Id} | Цена - {Price} | В Наличии - {Amount}";
 }
