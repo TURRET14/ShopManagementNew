@@ -124,49 +124,6 @@
     </Style>
 
 
-    <Style TargetType="DatePicker">
-        <Setter Property="FontFamily" Value="{StaticResource Main_Font}"></Setter>
-        <Setter Property="FontSize" Value="20"></Setter>
-        <Setter Property="Foreground" Value="{StaticResource Main_Foreground}"></Setter>
-        <Setter Property="Background" Value="{StaticResource Input_Default}"></Setter>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="DatePicker">
-                    <Border Name="MainBorder" CornerRadius="10" Padding="5" Background="{TemplateBinding Background}" Cursor="Hand">
-                        <DatePickerTextBox Name="PART_TextBox" Text="{TemplateBinding SelectedDate}" Background="{Binding Path=Background, ElementName=MainBorder}" Foreground="{TemplateBinding Foreground}" FontFamily="{TemplateBinding FontFamily}" FontSize="{TemplateBinding FontSize}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Cursor="Hand">
-                            <DatePickerTextBox.Template>
-                                <ControlTemplate TargetType="DatePickerTextBox">
-                                    <Border Name="Bd"
-                        BorderBrush="{TemplateBinding BorderBrush}"
-                        BorderThickness="{TemplateBinding BorderThickness}"
-                        Background="{TemplateBinding Background}"
-                        Padding="{TemplateBinding Padding}">
-                                        <ScrollViewer Name="PART_ContentHost"
-                                  HorizontalScrollBarVisibility="Hidden"
-                                  VerticalScrollBarVisibility="Hidden"
-                                  HorizontalAlignment="Stretch"
-                                  VerticalAlignment="Center"/>
-                                    </Border>
-                                </ControlTemplate>
-                            </DatePickerTextBox.Template>
-                        </DatePickerTextBox>
-                    </Border>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="MainBorder" Property="Background" Value="{StaticResource Input_Hover}"/>
-                        </Trigger>
-                        <Trigger Property="IsKeyboardFocused" Value="True">
-                            <Setter TargetName="MainBorder" Property="Background" Value="{StaticResource Input_Focused}"/>
-                        </Trigger>
-                        <Trigger Property="IsEnabled" Value="False">
-                            <Setter Property="Opacity" Value="0.5"/>
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-
     <SolidColorBrush xaml:Key="ComboBox.Static.Background" Color="{StaticResource Color_Input_Default}" />
     <SolidColorBrush xaml:Key="ComboBox.Static.Border" Color="{StaticResource Color_Main_Foreground}"/>
     <SolidColorBrush xaml:Key="ComboBox.Static.Glyph" Color="#FF606060"/>
@@ -753,6 +710,50 @@
                 <ControlTemplate TargetType="TextBox">
                     <Border Name="MainBorder" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="10">
                         <ScrollViewer Margin="0" Name="PART_ContentHost"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="MainBorder" Property="Background" Value="{StaticResource Input_Hover}"/>
+                        </Trigger>
+                        <Trigger Property="IsKeyboardFocused" Value="True">
+                            <Setter TargetName="MainBorder" Property="Background" Value="{StaticResource Input_Focused}"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" Value="0.5"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <Style TargetType="DatePicker">
+        <Setter Property="FontFamily" Value="{StaticResource Main_Font}"></Setter>
+        <Setter Property="FontSize" Value="20"></Setter>
+        <Setter Property="Foreground" Value="{StaticResource Main_Foreground}"></Setter>
+        <Setter Property="Background" Value="{StaticResource Input_Default}"></Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="DatePicker">
+                    <Border Name="MainBorder" CornerRadius="10" Padding="5" Background="{TemplateBinding Background}" Cursor="Hand">
+                        <DatePickerTextBox Name="PART_TextBox" Text="{TemplateBinding SelectedDate}" Background="{Binding Path=Background, ElementName=MainBorder}" Foreground="{TemplateBinding Foreground}" FontFamily="{TemplateBinding FontFamily}" FontSize="{TemplateBinding FontSize}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Cursor="Hand" ContextMenu="{StaticResource Input_ContextMenu}">
+                            <DatePickerTextBox.Template>
+                                <ControlTemplate TargetType="DatePickerTextBox">
+                                    <Border Name="Bd"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    Background="{TemplateBinding Background}"
+                    Padding="{TemplateBinding Padding}">
+                                        <ScrollViewer Name="PART_ContentHost"
+                              HorizontalScrollBarVisibility="Hidden"
+                              VerticalScrollBarVisibility="Hidden"
+                              HorizontalAlignment="Stretch"
+                              VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </DatePickerTextBox.Template>
+                        </DatePickerTextBox>
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">

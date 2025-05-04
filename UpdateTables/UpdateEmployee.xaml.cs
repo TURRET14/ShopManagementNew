@@ -150,25 +150,6 @@ namespace ShopManagement.UpdateTables
                         break;
                 }
 
-                if (Selected.UserPassword is not null)
-                {
-                    if (Selected.UserPassword.Length > 50)
-                    {
-                        ShowMessageEvent("Ошибка Записи", "Длина Пароля Не Может Быть Больше 50 Символов!");
-                        return;
-                    }
-                    if (Selected.UserPassword.Length == 0)
-                    {
-                        ShowMessageEvent("Ошибка Записи", "Пароль Не Может Быть Пустым!");
-                        return;
-                    }
-                }
-                else
-                {
-                    ShowMessageEvent("Ошибка Записи", "Пароль Не Может Быть Пустым!");
-                    return;
-                }
-
                 if (Selected.UserLogin is not null)
                 {
                     if (Selected.UserLogin.Length > 50)
@@ -176,7 +157,7 @@ namespace ShopManagement.UpdateTables
                         ShowMessageEvent("Ошибка Записи", "Длина Логина Не Может Быть Больше 50 Символов!");
                         return;
                     }
-                    if (Selected.UserLogin.Length == 0)
+                    else if (Selected.UserLogin.Length == 0)
                     {
                         ShowMessageEvent("Ошибка Записи", "Логин Не Может Быть Пустым!");
                         return;
@@ -192,8 +173,29 @@ namespace ShopManagement.UpdateTables
                 {
                     Selected.UserPassword = null;
                 }
-
-                ShopManagementContext.GetContext().Database.ExecuteSqlRaw("EXEC Dbo.UpdateEmployee @ID = {0}, @Name = {1},  @Age = {2}, @Gender = {3}, @PhoneNumber = {4}, @Email = {5}, @Experience = {6}, @Position = {7}, @Salary = {8}, @UserLogin = {9}, @UserPassword = {10}, @ChangePassword = {11}, @AdminLogin = {12}, @AdminPassword = {13}", Selected.Id, Selected.Name, Selected.Age, Selected.Gender, Selected.PhoneNumber, Selected.Email, Selected.Experience, Selected.Position, Selected.Salary, Selected.UserLogin, Selected.UserPassword, CheckBox_ChangePassword.IsChecked, UserData.Login, UserData.Password);
+                else
+                {
+                    if (Selected.UserPassword is not null)
+                    {
+                        if (Selected.UserPassword.Length > 50)
+                        {
+                            ShowMessageEvent("Ошибка Записи", "Длина Пароля Не Может Быть Больше 50 Символов!");
+                            return;
+                        }
+                        else if (Selected.UserPassword.Length == 0)
+                        {
+                            ShowMessageEvent("Ошибка Записи", "Пароль Не Может Быть Пустым!");
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        ShowMessageEvent("Ошибка Записи", "Пароль Не Может Быть Пустым!");
+                        return;
+                    }
+                }
+                
+                ShopManagementContext.GetContext().Database.ExecuteSqlRaw("EXEC Dbo.UpdateEmployee @ID = {0}, @Name = {1},  @Age = {2}, @Gender = {3}, @PhoneNumber = {4}, @Email = {5}, @Experience = {6}, @Position = {7}, @Salary = {8}, @UserLogin = {9}, @UserPassword = {10}, @AdminLogin = {11}, @AdminPassword = {12}", Selected.Id, Selected.Name, Selected.Age, Selected.Gender, Selected.PhoneNumber, Selected.Email, Selected.Experience, Selected.Position, Selected.Salary, Selected.UserLogin, Selected.UserPassword, UserData.Login, UserData.Password);
                 ShowAnotherTabEvent.Invoke(new Tables.EmployeesTable(ShowAnotherTabEvent, ShowMessageEvent, ShowLoginPageEvent));
 
                 if (IsCurrentUser == true && CheckBox_ChangePassword.IsChecked == true)

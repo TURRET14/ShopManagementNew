@@ -133,25 +133,6 @@ namespace ShopManagement.InsertIntoTables
                         break;
                 }
 
-                if (Selected.UserPassword is not null)
-                {
-                    if (Selected.UserPassword.Length > 50)
-                    {
-                        ShowMessageEvent("Ошибка Записи", "Длина Пароля Не Может Быть Больше 50 Символов!");
-                        return;
-                    }
-                    if (Selected.UserPassword.Length == 0)
-                    {
-                        ShowMessageEvent("Ошибка Записи", "Пароль Не Может Быть Пустым!");
-                        return;
-                    }
-                }
-                else
-                {
-                    ShowMessageEvent("Ошибка Записи", "Пароль Не Может Быть Пустым!");
-                    return;
-                }
-
                 if (Selected.UserLogin is not null)
                 {
                     if (Selected.UserLogin.Length > 50)
@@ -159,7 +140,7 @@ namespace ShopManagement.InsertIntoTables
                         ShowMessageEvent("Ошибка Записи", "Длина Логина Не Может Быть Больше 50 Символов!");
                         return;
                     }
-                    if (Selected.UserLogin.Length == 0)
+                    else if (Selected.UserLogin.Length == 0)
                     {
                         ShowMessageEvent("Ошибка Записи", "Логин Не Может Быть Пустым!");
                         return;
@@ -168,6 +149,25 @@ namespace ShopManagement.InsertIntoTables
                 else
                 {
                     ShowMessageEvent("Ошибка Записи", "Логин Не Может Быть Пустым!");
+                    return;
+                }
+
+                if (Selected.UserPassword is not null)
+                {
+                    if (Selected.UserPassword.Length > 50)
+                    {
+                        ShowMessageEvent("Ошибка Записи", "Длина Пароля Не Может Быть Больше 50 Символов!");
+                        return;
+                    }
+                    else if (Selected.UserPassword.Length == 0)
+                    {
+                        ShowMessageEvent("Ошибка Записи", "Пароль Не Может Быть Пустым!");
+                        return;
+                    }
+                }
+                else
+                {
+                    ShowMessageEvent("Ошибка Записи", "Пароль Не Может Быть Пустым!");
                     return;
                 }
 
