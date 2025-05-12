@@ -1,4 +1,4 @@
-﻿<Application xaml:Class="ShopManagement.App" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:xaml="http://schemas.microsoft.com/winfx/2006/xaml" StartupUri="MainWindow.xaml" ThemeMode="System">
+﻿<Application xaml:Class="ShopManagement.App" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:xaml="http://schemas.microsoft.com/winfx/2006/xaml" StartupUri="MainWindow.xaml">
     <Application.Resources>
         <SolidColorBrush xaml:Key="{xaml:Static SystemColors.HighlightBrushKey}" Color="#5A5A5A"/>
         <SolidColorBrush xaml:Key="{xaml:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="#5A5A5A"/>

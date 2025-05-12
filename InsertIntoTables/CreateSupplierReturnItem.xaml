@@ -38,7 +38,7 @@
         <Button Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center" Click="Button_Create_Click" Margin="0 10 0 0">+Создать</Button>
         <DataGrid Grid.Row="4" Name="DataGrid_Table" AutoGenerateColumns="False" HeadersVisibility="Column" HorizontalAlignment="Stretch" VerticalAlignment="Top" ColumnWidth="Auto" CanUserAddRows="False" CanUserDeleteRows="False" HorizontalScrollBarVisibility="Disabled" Margin="0 10 0 0">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Количество" Binding="{Binding Amount}" Width="Auto">
+                <DataGridTextColumn Header="Количество" Binding="{Binding Amount, TargetNullValue=''}" Width="Auto">
                     <DataGridTextColumn.EditingElementStyle>
                         <Style TargetType="TextBox">
                             <Setter Property="MaxLength" Value="10"></Setter>

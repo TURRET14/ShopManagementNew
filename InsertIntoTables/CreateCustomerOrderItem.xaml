@@ -47,7 +47,7 @@
                         </Style>
                     </DataGridComboBoxColumn.EditingElementStyle>
                 </DataGridComboBoxColumn>
-                <DataGridTextColumn Header="Количество" Binding="{Binding Amount}" Width="Auto">
+                <DataGridTextColumn Header="Количество" Binding="{Binding Amount, TargetNullValue=''}" Width="Auto">
                     <DataGridTextColumn.EditingElementStyle>
                         <Style TargetType="TextBox">
                             <Setter Property="MaxLength" Value="10"></Setter>

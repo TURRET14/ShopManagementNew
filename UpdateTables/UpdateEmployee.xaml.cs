@@ -80,6 +80,12 @@ namespace ShopManagement.UpdateTables
                     return;
                 }
 
+                if (Selected.Age < 18 || Selected.Age > 100)
+                {
+                    ShowMessageEvent("Ошибка Записи", "Возраст Не Может Быть Меньше 18 И Больше 100!");
+                    return;
+                }
+
                 if (Selected.PhoneNumber is not null)
                 {
                     if (Selected.PhoneNumber.Length > 20)

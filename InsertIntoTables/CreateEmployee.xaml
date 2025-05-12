@@ -35,7 +35,7 @@
                         </Style>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="Возраст" Binding="{Binding Age}" Width="Auto">
+                <DataGridTextColumn Header="Возраст" Binding="{Binding Age, TargetNullValue=''}" Width="Auto">
                     <DataGridTextColumn.EditingElementStyle>
                         <Style TargetType="TextBox">
                             <Setter Property="MaxLength" Value="5"></Setter>
@@ -81,7 +81,7 @@
                         </Style>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="Опыт" Binding="{Binding Experience}" Width="Auto">
+                <DataGridTextColumn Header="Опыт" Binding="{Binding Experience, TargetNullValue=''}" Width="Auto">
                     <DataGridTextColumn.EditingElementStyle>
                         <Style TargetType="TextBox">
                             <Setter Property="MaxLength" Value="5"></Setter>
@@ -99,7 +99,7 @@
                         </Style>
                     </DataGridComboBoxColumn.EditingElementStyle>
                 </DataGridComboBoxColumn>
-                <DataGridTextColumn Header="Зарплата" Binding="{Binding Salary}" Width="Auto">
+                <DataGridTextColumn Header="Зарплата" Binding="{Binding Salary, TargetNullValue=''}" Width="Auto">
                     <DataGridTextColumn.EditingElementStyle>
                         <Style TargetType="TextBox">
                             <Setter Property="MaxLength" Value="10"></Setter>
