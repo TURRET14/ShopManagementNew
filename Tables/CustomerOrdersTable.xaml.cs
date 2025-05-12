@@ -33,12 +33,14 @@ namespace ShopManagement.Tables
             try
             {
                 OrdersList = ShopManagementContext.GetContext().CustomerOrders.FromSqlRaw("EXEC GetCustomerOrders @AdminLogin = {0}, @AdminPassword = {1}", UserData.Login, UserData.Password).AsNoTracking().AsEnumerable().ToList();
+                List<CustomerOrderItem> OrderItems = ShopManagementContext.GetContext().CustomerOrderItems.FromSqlRaw("EXEC GetCustomerOrderItems @AdminLogin = {0}, @AdminPassword = {1}", UserData.Login, UserData.Password).AsNoTracking().AsEnumerable().ToList();
                 List<Customer> Customers = ShopManagementContext.GetContext().Customers.FromSqlRaw("EXEC GetCustomers @AdminLogin = {0}, @AdminPassword = {1}", UserData.Login, UserData.Password).AsNoTracking().AsEnumerable().ToList();
                 List<Employee> Employees = ShopManagementContext.GetContext().Employees.FromSqlRaw("EXEC GetEmployeesIDAndNames @AdminLogin = {0}, @AdminPassword = {1}", UserData.Login, UserData.Password).AsNoTracking().AsEnumerable().ToList();
                 foreach (CustomerOrder Order in OrdersList)
                 {
                     Order.Customer = Customers.FirstOrDefault(Entry => Entry.Id == Order.CustomerId);
                     Order.Employee = Employees.FirstOrDefault(Entry => Entry.Id == Order.EmployeeId);
+                    Order.CustomerOrderItems = OrderItems.Where(Entry => Entry.OrderId == Order.Id).ToList();
                 }
                 DataGrid_Table.ItemsSource = OrdersList;
             }

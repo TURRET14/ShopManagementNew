@@ -2,12 +2,23 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net8.0-windows7.0</TargetFramework>
+    <TargetFramework>net8.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
     <ApplicationManifest>App.manifest</ApplicationManifest>
     <ApplicationIcon>Images\ShoppingBag.ico</ApplicationIcon>
+
+	  <PublishSingleFile>true</PublishSingleFile>
+	  <SelfContained>true</SelfContained>
+	  <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+
+	  <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
+	  <IncludeAllContentForSelfExtract>true</IncludeAllContentForSelfExtract>
+
+	  <PublishReadyToRun>true</PublishReadyToRun>
+	  <PublishReadyToRunShowWarnings>true</PublishReadyToRunShowWarnings>
+	  <StripSymbols>true</StripSymbols>
   </PropertyGroup>
 
   <ItemGroup>

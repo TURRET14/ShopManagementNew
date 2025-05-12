@@ -35,7 +35,7 @@ namespace ShopManagement.UpdateTables
             ShowAnotherTabEvent = ShowAnotherTab;
             ShowMessageEvent = ShowMessage;
             ShowLoginPageEvent = ShowLoginPage;
-            ColumnGender.ItemsSource = new List<string>() { "M", "F"};
+            ColumnGender.ItemsSource = new List<string>() { "M", "F", "Нет"};
             switch (Selected.Position)
             {
                 case "SYSTEM_ADMIN":
@@ -50,8 +50,11 @@ namespace ShopManagement.UpdateTables
                 case "SHOP_CASHIER":
                     Selected.Position = "Кассир";
                     break;
+                default:
+                    Selected.Position = null;
+                    break;
             }
-            ColumnPosition.ItemsSource = new List<string>() {"Системный Администратор", "Администратор", "Менеджер", "Кассир" };
+            ColumnPosition.ItemsSource = new List<string>() {"Системный Администратор", "Администратор", "Менеджер", "Кассир", "Нет" };
             DataGrid_Table.ItemsSource = new List<Employee> { Selected };
         }
 
@@ -65,24 +68,24 @@ namespace ShopManagement.UpdateTables
                 {
                     if (Selected.Name.Length > 100)
                     {
-                        ShowMessageEvent("Ошибка Записи", "Длина Имени Не Может Быть Больше 100 Символов!");
+                        ShowMessageEvent("Ошибка Записи", "Длина имени не может быть больше 100 символов!");
                         return;
                     }
                     else if (Selected.Name.Length == 0)
                     {
-                        ShowMessageEvent("Ошибка Записи", "Имя Не Может Быть Пустым!");
+                        ShowMessageEvent("Ошибка Записи", "Имя не может быть пустым!");
                         return;
                     }
                 }
                 else
                 {
-                    ShowMessageEvent("Ошибка Записи", "Имя Не Может Быть Пустым!");
+                    ShowMessageEvent("Ошибка Записи", "Имя не может быть пустым!");
                     return;
                 }
 
                 if (Selected.Age < 18 || Selected.Age > 100)
                 {
-                    ShowMessageEvent("Ошибка Записи", "Возраст Не Может Быть Меньше 18 И Больше 100!");
+                    ShowMessageEvent("Ошибка Записи", "Возраст не может быть меньше 18 и больше 100!");
                     return;
                 }
 
@@ -90,7 +93,7 @@ namespace ShopManagement.UpdateTables
                 {
                     if (Selected.PhoneNumber.Length > 20)
                     {
-                        ShowMessageEvent("Ошибка Записи", "Длина Номера Телефона Не Может Быть Больше 20 Символов!");
+                        ShowMessageEvent("Ошибка Записи", "Длина номера телефона не может быть больше 20 символов!");
                         return;
                     }
                     else if (Selected.PhoneNumber.Length == 0)
@@ -103,7 +106,7 @@ namespace ShopManagement.UpdateTables
                 {
                     if (Selected.Email.Length > 100)
                     {
-                        ShowMessageEvent("Ошибка Записи", "Длина Электронной Почты Не Может Быть Больше 100 Символов!");
+                        ShowMessageEvent("Ошибка Записи", "Длина электронной почты не может быть больше 100 символов!");
                         return;
                     }
                     else if (Selected.Email.Length == 0)
@@ -114,45 +117,44 @@ namespace ShopManagement.UpdateTables
 
                 if (Selected.Gender is not null)
                 {
-                    if (Selected.Gender.Length == 0)
+                    if (Selected.Gender.Length == 0 || Selected.Gender == "Нет")
                     {
                         Selected.Gender = null;
                     }
                     else if (Selected.Gender != "M" && Selected.Gender != "F")
                     {
-                        ShowMessageEvent("Ошибка Записи", "Пол Может Быть Только Мужской (M) Или Женский (F)!");
+                        ShowMessageEvent("Ошибка Записи", "Пол может быть только мужской (M) или женский (F)!");
                         return;
                     }
                 }
 
                 if (Selected.Experience < 0)
                 {
-                    ShowMessageEvent("Ошибка Записи", "Опыт Не Может Быть Меньше 0!");
+                    ShowMessageEvent("Ошибка Записи", "Опыт не может быть меньше 0!");
                     return;
                 }
 
                 if (Selected.Salary < 0)
                 {
-                    ShowMessageEvent("Ошибка Записи", "Зарплата Не Может Быть Меньше 0!");
+                    ShowMessageEvent("Ошибка Записи", "Зарплата не может быть меньше 0!");
                     return;
                 }
+
+                string? Position = null;
 
                 switch (Selected.Position)
                 {
                     case "Системный Администратор":
-                        Selected.Position = "SYSTEM_ADMIN";
+                        Position = "SYSTEM_ADMIN";
                         break;
                     case "Администратор":
-                        Selected.Position = "SHOP_ADMIN";
+                        Position = "SHOP_ADMIN";
                         break;
                     case "Менеджер":
-                        Selected.Position = "SHOP_MANAGER";
+                        Position = "SHOP_MANAGER";
                         break;
                     case "Кассир":
-                        Selected.Position = "SHOP_CASHIER";
-                        break;
-                    default:
-                        Selected.Position = null;
+                        Position = "SHOP_CASHIER";
                         break;
                 }
 
@@ -160,18 +162,18 @@ namespace ShopManagement.UpdateTables
                 {
                     if (Selected.UserLogin.Length > 50)
                     {
-                        ShowMessageEvent("Ошибка Записи", "Длина Логина Не Может Быть Больше 50 Символов!");
+                        ShowMessageEvent("Ошибка Записи", "Длина логина не может быть больше 50 символов!");
                         return;
                     }
                     else if (Selected.UserLogin.Length == 0)
                     {
-                        ShowMessageEvent("Ошибка Записи", "Логин Не Может Быть Пустым!");
+                        ShowMessageEvent("Ошибка Записи", "Логин не может быть пустым!");
                         return;
                     }
                 }
                 else
                 {
-                    ShowMessageEvent("Ошибка Записи", "Логин Не Может Быть Пустым!");
+                    ShowMessageEvent("Ошибка Записи", "Логин не может быть пустым!");
                     return;
                 }
 
@@ -185,29 +187,41 @@ namespace ShopManagement.UpdateTables
                     {
                         if (Selected.UserPassword.Length > 50)
                         {
-                            ShowMessageEvent("Ошибка Записи", "Длина Пароля Не Может Быть Больше 50 Символов!");
+                            ShowMessageEvent("Ошибка Записи", "Длина пароля не может быть больше 50 символов!");
                             return;
                         }
                         else if (Selected.UserPassword.Length == 0)
                         {
-                            ShowMessageEvent("Ошибка Записи", "Пароль Не Может Быть Пустым!");
+                            ShowMessageEvent("Ошибка Записи", "Пароль не может быть пустым!");
                             return;
                         }
                     }
                     else
                     {
-                        ShowMessageEvent("Ошибка Записи", "Пароль Не Может Быть Пустым!");
+                        ShowMessageEvent("Ошибка Записи", "Пароль не может быть пустым!");
                         return;
                     }
                 }
                 
-                ShopManagementContext.GetContext().Database.ExecuteSqlRaw("EXEC Dbo.UpdateEmployee @ID = {0}, @Name = {1},  @Age = {2}, @Gender = {3}, @PhoneNumber = {4}, @Email = {5}, @Experience = {6}, @Position = {7}, @Salary = {8}, @UserLogin = {9}, @UserPassword = {10}, @AdminLogin = {11}, @AdminPassword = {12}", Selected.Id, Selected.Name, Selected.Age, Selected.Gender, Selected.PhoneNumber, Selected.Email, Selected.Experience, Selected.Position, Selected.Salary, Selected.UserLogin, Selected.UserPassword, UserData.Login, UserData.Password);
+                ShopManagementContext.GetContext().Database.ExecuteSqlRaw("EXEC Dbo.UpdateEmployee @ID = {0}, @Name = {1},  @Age = {2}, @Gender = {3}, @PhoneNumber = {4}, @Email = {5}, @Experience = {6}, @Position = {7}, @Salary = {8}, @UserLogin = {9}, @UserPassword = {10}, @AdminLogin = {11}, @AdminPassword = {12}", Selected.Id, Selected.Name, Selected.Age, Selected.Gender, Selected.PhoneNumber, Selected.Email, Selected.Experience, Position, Selected.Salary, Selected.UserLogin, Selected.UserPassword, UserData.Login, UserData.Password);
                 ShowAnotherTabEvent.Invoke(new Tables.EmployeesTable(ShowAnotherTabEvent, ShowMessageEvent, ShowLoginPageEvent));
 
-                if (IsCurrentUser == true && CheckBox_ChangePassword.IsChecked == true)
+                if (IsCurrentUser == true)
                 {
-                    UserData.Login = Selected.UserLogin;
-                    UserData.Password = Selected.UserPassword;
+                    if (Selected.Position == null)
+                    {
+                        UserData.ClearData();
+                        ShowLoginPageEvent.Invoke();
+                    }
+                    else
+                    {
+                        UserData.Login = Selected.UserLogin;
+                        UserData.AccessLevel = Selected.Position;
+                        if (CheckBox_ChangePassword.IsChecked == true)
+                        {
+                            UserData.Password = Selected.UserPassword;
+                        }
+                    }
                 }
             }
             catch (SqlException Ex)

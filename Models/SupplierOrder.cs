@@ -26,4 +26,6 @@ public partial class SupplierOrder
             return Date.DateTime.ToShortDateString() + " " + Date.DateTime.ToShortTimeString();
         }
     }
+
+    public decimal TotalCost => SupplierOrderItems.Sum(Entry => Entry.TotalCost);
 }

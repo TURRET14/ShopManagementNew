@@ -46,7 +46,7 @@ namespace ShopManagement.InsertIntoTables
 
                 if (Selected.Amount < 1)
                 {
-                    ShowMessageEvent("Ошибка Записи", "Количество Возвращаемого Товара Не Может Быть Меньше 1!");
+                    ShowMessageEvent("Ошибка Записи", "Количество возвращаемого товара не может быть меньше 1!");
                     return;
                 }
 
@@ -54,7 +54,7 @@ namespace ShopManagement.InsertIntoTables
                 {
                     if (Selected.Reason.Length > 150)
                     {
-                        ShowMessageEvent("Ошибка Записи", "Длина Причины Возврата Не Может Быть Больше 150 Символов!");
+                        ShowMessageEvent("Ошибка Записи", "Длина причины возврата не может быть больше 150 символов!");
                         return;
                     }
                     else if (Selected.Reason.Length == 0)

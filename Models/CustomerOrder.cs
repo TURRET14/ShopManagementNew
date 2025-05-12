@@ -26,4 +26,6 @@ public partial class CustomerOrder
             return Date.DateTime.ToShortDateString() + " " + Date.DateTime.ToShortTimeString();
         }
     }
+
+    public decimal TotalCost => CustomerOrderItems.Sum(Entry => Entry.TotalCost);
 }

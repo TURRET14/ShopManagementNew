@@ -46,18 +46,18 @@ namespace ShopManagement.UpdateTables
                 {
                     if (Selected.Name.Length > 100)
                     {
-                        ShowMessageEvent("Ошибка Записи", "Длина Имени Не Может Быть Больше 100 Символов!");
+                        ShowMessageEvent("Ошибка Записи", "Длина имени не может быть больше 100 символов!");
                         return;
                     }
                     else if (Selected.Name.Length == 0)
                     {
-                        ShowMessageEvent("Ошибка Записи", "Имя Не Может Быть Пустым!");
+                        ShowMessageEvent("Ошибка Записи", "Имя не может быть пустым!");
                         return;
                     }
                 }
                 else
                 {
-                    ShowMessageEvent("Ошибка Записи", "Имя Не Может Быть Пустым!");
+                    ShowMessageEvent("Ошибка Записи", "Имя не может быть пустым!");
                     return;
                 }
 
@@ -65,7 +65,7 @@ namespace ShopManagement.UpdateTables
                 {
                     if (Selected.PhoneNumber.Length > 20)
                     {
-                        ShowMessageEvent("Ошибка Записи", "Длина Номера Телефона Не Может Быть Больше 20 Символов!");
+                        ShowMessageEvent("Ошибка Записи", "Длина номера телефона не может быть больше 20 символов!");
                         return;
                     }
                     else if (Selected.PhoneNumber.Length == 0)
@@ -78,7 +78,7 @@ namespace ShopManagement.UpdateTables
                 {
                     if (Selected.Email.Length > 100)
                     {
-                        ShowMessageEvent("Ошибка Записи", "Длина Электронной Почты Не Может Быть Больше 100 Символов!");
+                        ShowMessageEvent("Ошибка Записи", "Длина электронной почты не может быть больше 100 символов!");
                         return;
                     }
                     else if (Selected.Email.Length == 0)

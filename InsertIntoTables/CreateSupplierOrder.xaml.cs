@@ -52,18 +52,18 @@ namespace ShopManagement.InsertIntoTables
                 {
                     if (Selected.Supplier.Id < 0)
                     {
-                        ShowMessageEvent("Ошибка Записи", "Такого Поставщика Нет!");
+                        ShowMessageEvent("Ошибка Записи", "Такого поставщика нет!");
                         return;
                     }
                     else if (SupplierList.FirstOrDefault(Selected.Supplier) is null)
                     {
-                        ShowMessageEvent("Ошибка Записи", "Такого Поставщика Нет!");
+                        ShowMessageEvent("Ошибка Записи", "Такого поставщика нет!");
                         return;
                     }
                 }
                 else
                 {
-                    ShowMessageEvent("Ошибка Записи", "Поставщик Не Может Быть Пустым!");
+                    ShowMessageEvent("Ошибка Записи", "Поставщик не может быть пустым!");
                     return;
                 }
 

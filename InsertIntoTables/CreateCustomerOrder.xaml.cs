@@ -52,18 +52,18 @@ namespace ShopManagement.InsertIntoTables
                 {
                     if (Selected.Customer.Id < 0)
                     {
-                        ShowMessageEvent("Ошибка Записи", "Такого Клиента Нет!");
+                        ShowMessageEvent("Ошибка Записи", "Такого клиента нет!");
                         return;
                     }
                     else if (CustomerList.FirstOrDefault(Selected.Customer) is null)
                     {
-                        ShowMessageEvent("Ошибка Записи", "Такого Клиента Нет!");
+                        ShowMessageEvent("Ошибка Записи", "Такого клиента нет!");
                         return;
                     }
                 }
                 else
                 {
-                    ShowMessageEvent("Ошибка Записи", "Клиент Не Может Быть Пустым!");
+                    ShowMessageEvent("Ошибка Записи", "Клиент не может быть пустым!");
                     return;
                 }
 

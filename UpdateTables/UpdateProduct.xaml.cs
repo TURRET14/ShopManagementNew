@@ -46,30 +46,30 @@ namespace ShopManagement.UpdateTables
                 {
                     if (Selected.Name.Length > 100)
                     {
-                        ShowMessageEvent("Ошибка Записи", "Длина Названия Товара Не Может Быть Больше 100 Символов!");
+                        ShowMessageEvent("Ошибка Записи", "Длина названия товара не может быть больше 100 символов!");
                         return;
                     }
                     else if (Selected.Name.Length == 0)
                     {
-                        ShowMessageEvent("Ошибка Записи", "Название Товара Не Может Быть Пустым!");
+                        ShowMessageEvent("Ошибка Записи", "Название товара не может быть пустым!");
                         return;
                     }
                 }
                 else
                 {
-                    ShowMessageEvent("Ошибка Записи", "Название Товара Не Может Быть Пустым!");
+                    ShowMessageEvent("Ошибка Записи", "Название товара не может быть пустым!");
                     return;
                 }
 
                 if (Selected.Price < 0)
                 {
-                    ShowMessageEvent("Ошибка Записи", "Цена Товара Не Может Быть Меньше 0!");
+                    ShowMessageEvent("Ошибка Записи", "Цена товара не может быть меньше 0!");
                     return;
                 }
 
                 if (Selected.Amount < 0)
                 {
-                    ShowMessageEvent("Ошибка Записи", "Количество Товара Не Может Быть Меньше 0!");
+                    ShowMessageEvent("Ошибка Записи", "Количество товара не может быть меньше 0!");
                     return;
                 }
 
@@ -77,7 +77,7 @@ namespace ShopManagement.UpdateTables
                 {
                     if (Selected.Description.Length > 150)
                     {
-                        ShowMessageEvent("Ошибка Записи", "Длина Описания Товара Не Может Быть Больше 100 Символов!");
+                        ShowMessageEvent("Ошибка Записи", "Длина описания товара не может быть больше 100 символов!");
                         return;
                     }
                     else if (Selected.Description.Length == 0)

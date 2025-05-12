@@ -38,10 +38,12 @@ namespace ShopManagement.UpdateTables
             Order = OrderObject;
             ShowMessageEvent = ShowMessage;
             ShowLoginPageEvent = ShowLoginPage;
+            DataGrid_Header.ItemsSource = new List<CustomerOrderItem> { OrderItem };
             try
             {
                 List<Employee> Employees = ShopManagementContext.GetContext().Employees.FromSqlRaw("EXEC GetEmployeesIDAndNames @AdminLogin = {0}, @AdminPassword = {1}", UserData.Login, UserData.Password).AsNoTracking().AsEnumerable().ToList();
                 Selected.Employee = Employees.FirstOrDefault(Entry => Entry.Id == Selected.EmployeeId);
+                Selected.OrderItem = OrderItem;
                 DataGrid_Table.ItemsSource = new List<CustomerReturnItem>() { Selected };
             }
             catch (SqlException Ex)
@@ -50,7 +52,7 @@ namespace ShopManagement.UpdateTables
             }
         }
 
-        private void Button_Delete_Click(object sender, RoutedEventArgs e)
+        private void ActionsPanel_Click(object sender, RoutedEventArgs e)
         {
             ConfirmationMessage Msg = new ConfirmationMessage("Удаление", "Вы уверены, что хотите удалить запись?");
             Msg.PlacementTarget = ActionsPanel;

@@ -140,5 +140,13 @@ namespace ShopManagement
         {
             ShowAnotherTab(new Reports.SupplierOrdersGroupByEmployeeReport(ShowMessageEvent, ShowLoginPageEvent));
         }
+
+        private void StackPanel_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Image BackgroundImage = new Image();
+            BackgroundImage.MaxWidth = 300;
+            BackgroundImage.Source = new BitmapImage(new Uri("/Images/ShoppingCart.png", UriKind.Relative));
+            ContentControl_ForTables.Child = BackgroundImage;
+        }
     }
 }

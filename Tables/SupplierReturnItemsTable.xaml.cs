@@ -44,6 +44,7 @@ namespace ShopManagement.Tables
                 foreach (SupplierReturnItem ReturnItem in SupplierReturnItemsList)
                 {
                     ReturnItem.Employee = Employees.FirstOrDefault(Entry => Entry.Id == ReturnItem.EmployeeId);
+                    ReturnItem.OrderItem = OrderItem;
                 }
                 DataGrid_Table.ItemsSource = SupplierReturnItemsList;
             }

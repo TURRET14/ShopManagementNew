@@ -30,8 +30,8 @@ namespace ShopManagement.InsertIntoTables
             ShowAnotherTabEvent = ShowAnotherTab;
             ShowMessageEvent = ShowMessage;
             ShowLoginPageEvent = ShowLoginPage;
-            ColumnGender.ItemsSource = new List<string>() { "M", "F" };
-            ColumnPosition.ItemsSource = new List<string>() { "Администратор", "Менеджер", "Кассир" };
+            ColumnGender.ItemsSource = new List<string>() { "M", "F", "Нет" };
+            ColumnPosition.ItemsSource = new List<string>() { "Администратор", "Менеджер", "Кассир", "Нет" };
             DataGrid_Table.ItemsSource = new List<Employee>() { new Employee()};
         }
 
@@ -45,24 +45,24 @@ namespace ShopManagement.InsertIntoTables
                 {
                     if (Selected.Name.Length > 100)
                     {
-                        ShowMessageEvent("Ошибка Записи", "Длина Имени Не Может Быть Больше 100 Символов!");
+                        ShowMessageEvent("Ошибка Записи", "Длина имени не может быть больше 100 символов!");
                         return;
                     }
                     else if (Selected.Name.Length == 0)
                     {
-                        ShowMessageEvent("Ошибка Записи", "Имя Не Может Быть Пустым!");
+                        ShowMessageEvent("Ошибка Записи", "Имя не может быть пустым!");
                         return;
                     }
                 }
                 else
                 {
-                    ShowMessageEvent("Ошибка Записи", "Имя Не Может Быть Пустым!");
+                    ShowMessageEvent("Ошибка Записи", "Имя не может быть пустым!");
                     return;
                 }
 
                 if (Selected.Age < 18 || Selected.Age > 100)
                 {
-                    ShowMessageEvent("Ошибка Записи", "Возраст Не Может Быть Меньше 18 И Больше 100!");
+                    ShowMessageEvent("Ошибка Записи", "Возраст не может быть меньше 18 и больше 100!");
                     return;
                 }
 
@@ -70,7 +70,7 @@ namespace ShopManagement.InsertIntoTables
                 {
                     if (Selected.PhoneNumber.Length > 20)
                     {
-                        ShowMessageEvent("Ошибка Записи", "Длина Номера Телефона Не Может Быть Больше 20 Символов!");
+                        ShowMessageEvent("Ошибка Записи", "Длина номера телефона не может быть больше 20 символов!");
                         return;
                     }
                     else if (Selected.PhoneNumber.Length == 0)
@@ -83,7 +83,7 @@ namespace ShopManagement.InsertIntoTables
                 {
                     if (Selected.Email.Length > 100)
                     {
-                        ShowMessageEvent("Ошибка Записи", "Длина Электронной Почты Не Может Быть Больше 100 Символов!");
+                        ShowMessageEvent("Ошибка Записи", "Длина электронной почты не может быть больше 100 символов!");
                         return;
                     }
                     else if (Selected.Email.Length == 0)
@@ -94,42 +94,41 @@ namespace ShopManagement.InsertIntoTables
 
                 if (Selected.Gender is not null)
                 {
-                    if (Selected.Gender.Length == 0)
+                    if (Selected.Gender.Length == 0 || Selected.Gender == "Нет")
                     {
                         Selected.Gender = null;
                     }
                     else if (Selected.Gender != "M" && Selected.Gender != "F")
                     {
-                        ShowMessageEvent("Ошибка Записи", "Пол Может Быть Только Мужской (M) Или Женский (F)!");
+                        ShowMessageEvent("Ошибка Записи", "Пол может быть только мужской (M) или женский (F)!");
                         return;
                     }
                 }
 
                 if (Selected.Experience < 0)
                 {
-                    ShowMessageEvent("Ошибка Записи", "Опыт Не Может Быть Меньше 0!");
+                    ShowMessageEvent("Ошибка Записи", "Опыт не может быть меньше 0!");
                     return;
                 }
 
                 if (Selected.Salary < 0)
                 {
-                    ShowMessageEvent("Ошибка Записи", "Зарплата Не Может Быть Меньше 0!");
+                    ShowMessageEvent("Ошибка Записи", "Зарплата не может быть меньше 0!");
                     return;
                 }
+
+                string? Position = null;
 
                 switch (Selected.Position)
                 {
                     case "Администратор":
-                        Selected.Position = "SHOP_ADMIN";
+                        Position = "SHOP_ADMIN";
                         break;
                     case "Менеджер":
-                        Selected.Position = "SHOP_MANAGER";
+                        Position = "SHOP_MANAGER";
                         break;
                     case "Кассир":
-                        Selected.Position = "SHOP_CASHIER";
-                        break;
-                    default:
-                        Selected.Position = null;
+                        Position = "SHOP_CASHIER";
                         break;
                 }
 
@@ -137,18 +136,18 @@ namespace ShopManagement.InsertIntoTables
                 {
                     if (Selected.UserLogin.Length > 50)
                     {
-                        ShowMessageEvent("Ошибка Записи", "Длина Логина Не Может Быть Больше 50 Символов!");
+                        ShowMessageEvent("Ошибка Записи", "Длина логина не может быть больше 50 символов!");
                         return;
                     }
                     else if (Selected.UserLogin.Length == 0)
                     {
-                        ShowMessageEvent("Ошибка Записи", "Логин Не Может Быть Пустым!");
+                        ShowMessageEvent("Ошибка Записи", "Логин не может быть пустым!");
                         return;
                     }
                 }
                 else
                 {
-                    ShowMessageEvent("Ошибка Записи", "Логин Не Может Быть Пустым!");
+                    ShowMessageEvent("Ошибка Записи", "Логин не может быть пустым!");
                     return;
                 }
 
@@ -156,22 +155,22 @@ namespace ShopManagement.InsertIntoTables
                 {
                     if (Selected.UserPassword.Length > 50)
                     {
-                        ShowMessageEvent("Ошибка Записи", "Длина Пароля Не Может Быть Больше 50 Символов!");
+                        ShowMessageEvent("Ошибка Записи", "Длина пароля не может быть больше 50 символов!");
                         return;
                     }
                     else if (Selected.UserPassword.Length == 0)
                     {
-                        ShowMessageEvent("Ошибка Записи", "Пароль Не Может Быть Пустым!");
+                        ShowMessageEvent("Ошибка Записи", "Пароль не может быть пустым!");
                         return;
                     }
                 }
                 else
                 {
-                    ShowMessageEvent("Ошибка Записи", "Пароль Не Может Быть Пустым!");
+                    ShowMessageEvent("Ошибка Записи", "Пароль не может быть пустым!");
                     return;
                 }
 
-                ShopManagementContext.GetContext().Database.ExecuteSqlRaw("EXEC Dbo.CreateEmployee @Name = {0},  @Age = {1}, @Gender = {2}, @PhoneNumber = {3}, @Email = {4}, @Experience = {5}, @Position = {6}, @Salary = {7}, @UserLogin = {8}, @UserPassword = {9}, @AdminLogin = {10}, @AdminPassword = {11}", Selected.Name, Selected.Age, Selected.Gender, Selected.PhoneNumber, Selected.Email, Selected.Experience, Selected.Position, Selected.Salary, Selected.UserLogin, Selected.UserPassword, UserData.Login, UserData.Password);
+                ShopManagementContext.GetContext().Database.ExecuteSqlRaw("EXEC Dbo.CreateEmployee @Name = {0},  @Age = {1}, @Gender = {2}, @PhoneNumber = {3}, @Email = {4}, @Experience = {5}, @Position = {6}, @Salary = {7}, @UserLogin = {8}, @UserPassword = {9}, @AdminLogin = {10}, @AdminPassword = {11}", Selected.Name, Selected.Age, Selected.Gender, Selected.PhoneNumber, Selected.Email, Selected.Experience, Position, Selected.Salary, Selected.UserLogin, Selected.UserPassword, UserData.Login, UserData.Password);
                 ShowAnotherTabEvent.Invoke(new Tables.EmployeesTable(ShowAnotherTabEvent, ShowMessageEvent, ShowLoginPageEvent));
             }
             catch (SqlException Ex)

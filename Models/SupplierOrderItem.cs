@@ -20,4 +20,6 @@ public partial class SupplierOrderItem
     public virtual Product? Product { get; set; }
 
     public virtual ICollection<SupplierReturnItem> SupplierReturnItems { get; set; } = new List<SupplierReturnItem>();
+
+    public decimal TotalCost => Price * Amount;
 }

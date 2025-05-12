@@ -56,24 +56,24 @@ namespace ShopManagement.InsertIntoTables
                 {
                     if (Selected.Product.Id < 0)
                     {
-                        ShowMessageEvent("Ошибка Записи", "Такого Товара Нет!");
+                        ShowMessageEvent("Ошибка Записи", "Такого товара нет!");
                         return;
                     }
                     else if (ProductList.FirstOrDefault(Selected.Product) is null)
                     {
-                        ShowMessageEvent("Ошибка Записи", "Такого Товара Нет!");
+                        ShowMessageEvent("Ошибка Записи", "Такого товара нет!");
                         return;
                     }
                 }
                 else
                 {
-                    ShowMessageEvent("Ошибка Записи", "Товар Не Может Быть Пустым!");
+                    ShowMessageEvent("Ошибка Записи", "Товар не может быть пустым!");
                     return;
                 }
 
                 if (Selected.Amount < 1)
                 {
-                    ShowMessageEvent("Ошибка Записи", "Количество Товара Не Может Быть Меньше 1!");
+                    ShowMessageEvent("Ошибка Записи", "Количество товара не может быть меньше 1!");
                     return;
                 }
 

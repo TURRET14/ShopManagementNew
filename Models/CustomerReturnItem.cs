@@ -28,4 +28,17 @@ public partial class CustomerReturnItem
             return Date.DateTime.ToShortDateString() + " " + Date.DateTime.ToShortTimeString();
         }
     }
+
+    public decimal TotalCost
+    { get
+        {
+            if (OrderItem == null)
+            {
+                return 0;
+            }
+            else
+            {
+                return OrderItem.Price * Amount;
+            }
+    }  }
 }

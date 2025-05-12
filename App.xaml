@@ -3,5 +3,6 @@
         <SolidColorBrush xaml:Key="{xaml:Static SystemColors.HighlightBrushKey}" Color="#5A5A5A"/>
         <SolidColorBrush xaml:Key="{xaml:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="#5A5A5A"/>
         <SolidColorBrush xaml:Key="{xaml:Static SystemColors.InactiveSelectionHighlightTextBrushKey}" Color="#EAEAEA"/>
+        <SolidColorBrush xaml:Key="{xaml:Static SystemColors.ControlTextBrush}" Color="Transparent"></SolidColorBrush>
     </Application.Resources>
 </Application>

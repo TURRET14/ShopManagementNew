@@ -20,4 +20,6 @@ public partial class CustomerOrderItem
     public virtual CustomerOrder Order { get; set; } = null!;
 
     public virtual Product? Product { get; set; }
+
+    public decimal TotalCost => Price * Amount;
 }
