@@ -42,8 +42,8 @@ namespace ShopManagement.Tables
                 ExceptionHandlers.SqlExceptionHandler(Ex, ShowMessageEvent, ShowLoginPageEvent);
             }
 
-            ComboBox_Gender.ItemsSource = new List<string> { "M", "F" };
-            ComboBox_Position.ItemsSource = new List<string>() { "Системный Администратор", "Администратор", "Менеджер", "Кассир" };
+            ComboBox_Gender.ItemsSource = new List<string> { "M", "F", "Нет" };
+            ComboBox_Position.ItemsSource = new List<string>() { "Системный Администратор", "Администратор", "Менеджер", "Кассир", "Нет" };
         }
 
         private void Button_Create_Click(object sender, RoutedEventArgs e)
@@ -142,6 +142,10 @@ namespace ShopManagement.Tables
                                 }
                             }).ToList();
                         }
+                        else
+                        {
+                            FilteredList = FilteredList.Where(Entry => Entry.Gender is null).ToList();
+                        }
                     }
                 }
             }
@@ -201,6 +205,10 @@ namespace ShopManagement.Tables
                                     return false;
                                 }
                             }).ToList();
+                        }
+                        else
+                        {
+                            FilteredList = FilteredList.Where(Entry => Entry.Position is null).ToList();
                         }
                     }
                 }

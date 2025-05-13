@@ -118,6 +118,14 @@
                     <Setter Property="Background" Value="#323232"></Setter>
                     <Setter Property="BorderBrush" Value="#707070"></Setter>
                     <Setter Property="BorderThickness" Value="1"></Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="{StaticResource MenuButton_Hover}"></Setter>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Background" Value="{StaticResource MenuButton_Pressed}"></Setter>
+                        </Trigger>
+                    </Style.Triggers>
                 </Style>
             </Setter.Value>
         </Setter>

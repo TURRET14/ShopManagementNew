@@ -34,10 +34,11 @@ namespace ShopManagement.Tables
             Order = OrderObject;
             ShowMessageEvent = ShowMessage;
             ShowLoginPageEvent = ShowLoginPage;
-            DataGrid_Header.ItemsSource = new List<SupplierOrder> { Order };
             try
             {
                 OrderItemsList = ShopManagementContext.GetContext().SupplierOrderItems.FromSqlRaw("EXEC GetSupplierOrderItems @AdminLogin = {0}, @AdminPassword = {1}", UserData.Login, UserData.Password).AsNoTracking().AsEnumerable().Where(Entry => Entry.OrderId == Order.Id).ToList();
+                Order.SupplierOrderItems = OrderItemsList;
+                DataGrid_Header.ItemsSource = new List<SupplierOrder> { Order };
                 List<Product> Products = ShopManagementContext.GetContext().Products.FromSqlRaw("EXEC GetProducts @AdminLogin = {0}, @AdminPassword = {1}", UserData.Login, UserData.Password).AsNoTracking().AsEnumerable().ToList();
                 foreach (SupplierOrderItem OrderItem in OrderItemsList)
                 {
