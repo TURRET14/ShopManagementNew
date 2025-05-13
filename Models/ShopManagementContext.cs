@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 
 namespace ShopManagement.Models;
 
@@ -53,7 +54,10 @@ public partial class ShopManagementContext : DbContext
     public virtual DbSet<SupplierReturnItem> SupplierReturnItems { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseSqlServer("Server=SEMYONDESKTOP;Database=ShopManagement;User=ShopManagementGuest;Password=JFHLKT51065!;TrustServerCertificate=True");
+        => optionsBuilder.UseSqlServer("Server=SEMYONDESKTOP;Database=ShopManagement;User=ShopManagementGuest;Password=JFHLKT51065!;TrustServerCertificate=True", SqlOptions =>
+        {
+            SqlOptions.ExecutionStrategy(Deps => new NonRetryingExecutionStrategy(Deps));
+        });
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
